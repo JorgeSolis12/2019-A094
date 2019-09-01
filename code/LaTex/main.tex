@@ -1,0 +1,722 @@
+\documentclass[10pt]{article}  
+
+%%%%%%%% PREÁMBULO %%%%%%%%%%%%
+\title{Trabajo Terminal I}
+\usepackage[spanish]{babel} %Indica que escribiermos en español
+\usepackage[utf8]{inputenc} %Indica qué codificación se está usando ISO-8859-1(latin1)  o utf8  
+
+\usepackage{amsmath} % Comandos extras para matemáticas (cajas para ecuaciones,
+% etc)
+\usepackage{amssymb} % Simbolos matematicos (por lo tanto)
+\usepackage{graphicx} % Incluir imágenes en LaTeX
+\usepackage{eso-pic} 
+\usepackage{color} % Para colorear texto
+\usepackage{subfigure} % subfiguras
+\usepackage{float} %Podemos usar el especificador [H] en las figuras para que se
+% queden donde queramos
+\usepackage{capt-of} % Permite usar etiquetas fuera de elementos flotantes
+% (etiquetas de figuras)
+\usepackage{sidecap} % Para poner el texto de las imágenes al lado
+	\sidecaptionvpos{figure}{c} % Para que el texto se alinie al centro vertical
+\usepackage{caption} % Para poder quitar numeracion de figuras
+\usepackage{commath} % funcionalidades extras para diferenciales, integrales,
+% etc (\od, \dif, etc)
+\usepackage{cancel} % para cancelar expresiones (\cancelto{0}{x})
+ 
+\usepackage{anysize} 					% Para personalizar el ancho de  los márgenes
+\marginsize{3cm}{2cm}{2cm}{2cm} % Izquierda, derecha, arriba, abajo
+
+\usepackage{appendix}
+\renewcommand{\appendixname}{Apéndices}
+\renewcommand{\appendixtocname}{Apéndices}
+\renewcommand{\appendixpagename}{Apéndices} 
+
+% Para que las referencias sean hipervínculos a las figuras o ecuaciones y
+% aparezcan en color
+\usepackage[colorlinks=true,plainpages=true,citecolor=blue,linkcolor=blue]{hyperref}
+%\usepackage{hyperref} 
+% Para agregar encabezado y pie de página
+
+
+\usepackage{listings} % Para usar código fuente
+\definecolor{dkgreen}{rgb}{0,0.6,0} % Definimos colores para usar en el código
+\definecolor{gray}{rgb}{0.5,0.5,0.5} 
+% configuración para el lenguaje que queramos utilizar
+\lstset{language=Matlab,
+   keywords={break,case,catch,continue,else,elseif,end,for,function,
+      global,if,otherwise,persistent,return,switch,try,while},
+   basicstyle=\ttfamily,
+   keywordstyle=\color{blue},
+   commentstyle=\color{red},
+   stringstyle=\color{dkgreen},
+   numbers=left,
+   numberstyle=\tiny\color{gray},
+   stepnumber=1,
+   numbersep=10pt,
+   backgroundcolor=\color{white},
+   tabsize=4,
+   showspaces=false,
+   showstringspaces=false}
+
+\newcommand{\sen}{\operatorname{\sen}}	% Definimos el comando \sen para el seno
+%en español
+
+\title{Trabajo Terminal }
+
+%%%%%%%% TERMINA PREÁMBULO %%%%%%%%%%%%
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PORTADA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+																					%%%
+\begin{center}																		%%%
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}									%%%\left
+ 																					%%%
+
+\begin{figure}[t]
+\raggedright
+\includegraphics[scale = 0.24]{Imagenes/IPN}
+\end{figure}
+
+												%%%
+\vspace*{-1.5 cm}								%%%
+																					%%%	
+\textsc{\LARGE \bfseries INSTITUTO POLITÉCNICO NACIONAL }\\[0.5cm]	\textsc{\large \bfseries ESCUELA SUPERIOR DE CÓMPUTO}\\[1.5cm]
+													%%%
+
+
+\begin{minipage}{0.9\textwidth} 
+\begin{center}																					%%%
+\textsc{\Large \bfseries ESCOM}
+\end{center}
+\end{minipage}\\[1.5cm]
+
+\textsc{\large \itshape Trabajo Terminal}\\[0.4cm]
+
+{ \huge \bfseries Prototipo de Herramienta de apoyo al daltonismo}\\[0.4cm]	%%%-
+
+{ \large  2019-A094}\\[1.00cm] 																					%%%
+													%%%
+ 																				%%%
+																	
+
+\begin{center}
+\textsc{\Large \itshape Presenta:}\\[0.4cm]
+\end{center}
+
+\textsc{\Large \bfseries Jorge Armando Solis Solis }\\[2.00cm]
+								
+
+\begin{center}
+\textsc{\Large \itshape Directores:}\\[0.4cm]
+\end{center}
+
+\textsc{\Large \bfseries
+M. en C Rafael Norman Saucedo Delgado \\
+L.E. Rosa Itzel Solis Solis  }\\[2.00cm]
+
+\end{center}							 											
+
+\begin{minipage}{1.00\textwidth} \begin{flushright}
+\textsc{\normalsize \today}\\[0.4cm]
+\end{flushright}\end{minipage}
+
+
+\begin{figure}[b]
+\raggedright
+\includegraphics[scale = 0.25]{Imagenes/logo.png}
+\end{figure}
+
+																				
+\newpage																		
+%%%%%%%%%%%%%%%%%%%% TERMINA PORTADA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Abstract.}
+The next Trabajo Terminal propose the creation of a prototype that helps people that suffers differents daltonism types except of achromatopsia. Research is currently needed and in Mexico, the systems are lacking that help to the daltonism people, being only international companies that work in this regard. The contribution will be the detection and correction only while using proposed prototype, having a positive impact on the medical and social problems detected (Discrimination). This will be done using the SCRUM methodology within one year of work, in conjunction with artificial intelligence, through classification algorithms, and Ishihara charts. With the above described, the alteration can be diagnosed in the patient, and in those who are diagnosed correctly distinguish the spectrum of colors in their daily lives.
+
+\newpage
+ 
+\section{Agradecimientos}
+
+Se agradece por su apoyo a las siguientes personas: \\
+ Mis padres Rosalba Solis Calderon, Armando Solis Hernández por el gran apoyo que me han dado durante todos los años de mi trayectoria escolar.\\
+ 
+A mis directora y hermana  Rosa Itzel Solis Solis por el apoyo durante todo el Trabajo Terminal, recordando un poco a que durante toda mi carrera he contado con su apoyo incondicional.\\
+
+A mi Director, profesor y amigo. Rafael Norman Saucedo Delgado por no tan solo el haber aceptado ser mi director, si no por el apoyo que me ha brindado en la ayuda en las materias y la cercanía que hemos creado gracias al club de cultura e idioma japonés. \\
+Y por su apoyo con las instalaciones para realización de pruebas a mi líder y amigo del partido Mario Becerril Martínez y a su madre y consejal de la G.A.M. María de Jesus Martínez Bravo.
+
+\newpage
+
+\tableofcontents 
+
+\newpage
+
+
+ 
+\section{Resumen.}
+
+ El siguiente trabajo terminal propone la creación de un prototipo que cuenta con la finalidad de apoyar a la gente que padece diferentes tipos de daltonismo exceptuando la acromatopsia. Actualmente hace falta investigación al respecto y en México se carece de sistemas que apoyen a personas daltónicas, siendo solamente empresas internacionales las que trabajan al respecto. El aporte será el apoyo a su detección y corrección sólo durante el uso del prototipo propuesto, teniendo una repercusión positiva en la problemática médica y social detectada (Discriminación). Esto se realizará utilizando la metodología SCRUM en el lapso de uno año de trabajo, en conjunto con la inteligencia artificial, por medio de algoritmos de clasificación, y las cartas de Ishihara. Con lo anterior descrito, se podrá diagnosticar la alteración en el paciente, y en aquellos que se encuentren diagnosticados el distinguir correctamente el espectro de colores en sus vidas cotidianas.
+
+
+\section{Objetivo.}
+
+Desarrollar un prototipo de herramienta médica capaz de diagnosticar y mostrar la correcta gama de colores durante su uso  a pacientes con los diferentes tipos de daltonismo, exceptuando la acromatopsia. 
+
+\subsection{Objetivos Específicos.}
+\begin{itemize}
+\item Diagnosticar pacientes con daltonismo, de manera más práctica a través de la Inteligencia Artificial.
+ \item Identificar con mayor facilidad diferentes tipos de daltonismo.
+\item Mostrar al paciente el correcto espectro de colores, utilizando la transformación de colores RGB.
+\end{itemize}
+
+%\cite{IEEEreferencias:Ref1}
+
+\newpage
+
+\section{Introducción}
+
+\section{Antecedentes}
+\subsection{Daltonismo}
+El daltonismo está enmarcado en la discromatopsia, un término que hace referencia a un inconveniente basado en la incapacidad para diferenciar los colores, debido a la falta de funcionamiento de las células encargadas de su percepción. Es más frecuente de lo pensado, más habitual en los varones y en la mayoría de los casos se trata de un problema genético [1][2].
+
+\setlength{\parskip}{2mm}
+
+Quien descubrió este defecto fue el naturalista, químico y matemático de origen inglés John Dalton (1766-1844).
+Cuentan que cuando fue a conocer al rey Guillermo IV acudió con un traje académico escarlata (rojo), un color demasiado llamativo para un acto tan solemne. La razón es simple: él veía su ropa de color gris oscuro [1].
+
+\subsection{John Dalton}
+
+A la edad de 26 años (1792), Dalton descubrió que ni él ni su hermano eran capaces de distinguir los colores. Le regaló a su madre unas medias (que él creía azules) y ella le preguntó sorprendida cuál era la razón por la que le daba unas medias de color escarlata, que no era apropiado para una mujer cuáquera. En su primer artículo científico importante, John Dalton proporcionó una descripción científica sobre este fenómeno que posteriormente se conoció con el nombre de daltonismo [1].
+
+\setlength{\parskip}{2mm}
+
+Así describía su discapacidad en \textit{<<Memoirs of the Manchester Literary and Philosophical Society>>}:
+
+<< Siempre fui de la opinión, aunque no soliera mencionarla, de que los nombres de algunos colores eran muy poco razonables. El término rosa, en referencia a la flor de dicho nombre, parecía bastante adecuado; pero cuando se utilizaba el término rojo en lugar de rosa lo consideraba muy inadecuado; para mí debería haber sido azul, pues rosa y azul me parecían muy estrechamente relacionados [el rosa en cuestión debía haber sido más próximo al malva, ya que Dalton habría sido insensible al componente rojo]; mientras que rosa y rojo apenas tienen cualquier relación. 
+
+\setlength{\parskip}{2mm}
+
+En el curso de mi dedicación a las ciencias, la de la óptica reclamaba necesariamente atención y me familiaricé muy bien con la teoría de la luz y los colores antes de que apreciara ninguna peculiaridad en mi visión. Sin embargo, yo no había prestado mucho interés a la discriminación práctica de los colores debido, en cierto modo, a lo que yo imaginaba que era una extrañeza de su nomenclatura. A partir del año 1.790, el estudio ocasional de la botánica me obligó a prestar más atención que antes a los colores. Con respecto a los colores llamados blanco, amarillo o verde, admitía sin problemas que se usaba el término apropiado. Azul, púrpura, rosa y carmesí parecían bastante menos distinguibles siendo, según mi opinión, todos ellos remitibles a azul. Muchas veces he preguntado seriamente a alguien si una flor era azul o rosa, pero, en general, aquellos a quienes preguntaba consideraban que estaba de broma. Pese a todo, nunca me di cuenta de que había una peculiaridad en mi visión hasta que accidentalmente observé el color de la flor del Geranium zonale a la luz de una vela en el otoño de 1.792.
+
+\setlength{\parskip}{2mm}
+
+La flor era rosa, pero de día se me aparecía casi azul celeste. A la luz de la vela, sin embargo, cambiaba de forma sorprendente: ya no tenía ningún tono azul sino que era lo que yo llamo rojo, un color que forma un chocante contraste con el azul. [En realidad, habría parecido esencialmente gris o negro]. Sin dudar de que el cambio de color sería igual para todos, pedí a algunos de mis amigos que observasen el fenómeno; entonces quedé sorprendido al encontrar que todos ellos coincidían en que el color no era sustancialmente diferente del que tenía a la luz del día, excepto mi hermano, que la veía de la misma forma que yo. Esta observación demostraba claramente que mi visión no era como la de otras personas>>.  [3]
+
+\setlength{\parskip}{2mm}
+
+Pero la historia de la ceguera de Dalton para el color tuvo que esperar siglo y medio más para llegar a su final. [3]
+El 27 de julio de 1844 falleció de un ataque al corazón. Según su deseo, tras su muerte se le practicó la autopsia para determinar la causa de lo que luego se llamó daltonismo [1].
+
+\setlength{\parskip}{2mm}
+
+Dalton tenía la teoría de que él veía el mundo a través de un filtro azul y que su humor vítreo (una sustancia gelatinosa que se encuentra dentro del globo ocular) sería realmente azul. Así, dio instrucciones precisas para que tras su muerte, su ayudante, Joseph Ransome extirpara sus ojos y comprobara la conjetura. Ransome, de manera obediente, hizo lo que su mentor le encargó y abriendo el globo ocular, derramó su contenido sobre una lupa. La frustración llegó al observar que el humor vítreo de Dalton era perfectamente pelúcido. Acto seguido, hizo un agujero en el otro ojo y miró a través de él para ver si rojo y verde parecían idénticos y grises. El resultado fue negativo y Ransome concluyó que el defecto debía estar en el nervio óptico que conecta la retina con el cerebro[3].
+
+\setlength{\parskip}{2mm}
+
+Así su último experimento demostró que el daltonismo no es un problema del ojo mismo, sino que estaba causado por alguna deficiencia del poder sensorial[1].
+
+\setlength{\parskip}{2mm}
+
+Mientras tanto, los globos oculares mutilados fueron depositados en un recipiente con conservante y dejados al cuidado de la Sociedad Literaria y Filosófica de Manchester, y allí reposaron sin que nadie los tocara hasta que en 1.995, un grupo de fisiólogos de Cambridge pidió permiso a la Sociedad para tomar una pequeña muestra de la retina con el fin de extraer y amplificar el ADN mediante PCR, y examinar los genes (ya por entonces perfectamente caracterizados) de los tres tipos de conos retinianos implicados en la visión de los colores[3].
+
+\setlength{\parskip}{2mm}
+
+Fue enterrado con honores de monarca, en un funeral seguido por más de cuatrocientas mil personas, contraviniendo los principios de los cuáqueros conforme a los cuales vivió. [1]
+
+\subsection{Estudio del daltonismo}
+
+Años mas tarde Thomas Young (1801) quién propuso la <<Teoria Tricotromática>> estableció en su teoría que existen tres tipos de receptor en la retina, los cuales son cada uno sensibles a un color: rojo, verde y azul. Cada uno recibía la información independientemente camino al cerebro. Él, conociendo que se podía obtener cualquier color mezclando azul, verde o rojo; dedujo que los tres colores se mezclan en algún lugar sistema nervioso para obtener el color del objeto que se mira [4].
+
+\setlength{\parskip}{2mm}
+
+Los conos contienen unos pigmentos con diferentes sensibilidades a la longitud de onda. Partiendo de esta premisa, la denominada teoría tricrómica avanzada por Thomas Young a finales del siglo XVIII, resultó que Dalton era en realidad un deutérope, con un defecto en el pigmento óptico sensible a longitudes de onda intermedias, y no, como pensaba Young, un protánope, es decir, con un defecto en el pigmento sensible a longitudes de onda cortas [3].
+
+\setlength{\parskip}{2mm}
+
+Hering (1874), por otro lado propuso su << Teoría de los Colores Oponentes>> , en el cual enfatizaba que los seres humanos percibían los colores de acuerdo a pares de colores complementarios y opuestos. Por ejemplo el negro al blanco, el amarillo al azul y por último el rojo al verde. En fin que los receptores en la retina trabajarían por medio de un << sistema neural de pares de colores antagónicos u oponentes>> (Hering,1874)[4].
+
+\setlength{\parskip}{2mm}
+
+Durante el paso del tiempo han existido muchas personas que han sido acompañadas por esta incapacidad 
+Tenemos el ejemplo del pintor Charles Meryon de origen francés.
+
+\setlength{\parskip}{2mm}
+
+Al comenzar sus estudios artísticos en la década de 1840, utilizaba los sepias pero más tarde se dedicó a la acuarela que le ofrecía mayores posibilidades de expresión. En el año 1841 escribió a su padre explicándole sus dificultades en la percepción de los colores.
+
+\setlength{\parskip}{2mm}
+
+Tras realizar sus estudios, Meryon fue consciente que su defecto visual le impediría dominar la pintura y se dedicó al grabado, técnica en la que dominan el blanco y el negro con toda la gama de grises. El mismo escribió: «Este defecto mío de la visión de los colores es tal, que prefiero los hermosos negros con los que puedo observar todos los grados de gris que los vivos colores de las pinturas».
+
+\setlength{\parskip}{2mm}
+
+A pesar de estar perfectamente documentada su alteración de la visión cromática, todavía hemos encontrado historias del arte y páginas de la red dedicadas a Meryon donde se afirma que el cambio de la pintura por el grabado fue por su timidez y falta de ambición[5].
+
+\setlength{\parskip}{2mm}
+
+Una de las raras pinturas que se conservan de Meryon es la titulada El barco fantasma en el Museo del Louvre, realizada mediante la técnica de pastel y donde el artista evitó los verdes y rojos que le causaban mayores dificultades, utilizando los amarillos y azules, colores preferidos por los artistas con defectos en la visión cromática y que dan a las obras un aspecto monocromático[5].
+
+\setlength{\parskip}{2mm}
+
+Otro caso fue el del  pintor post impresionista Vincent Willlem Van Gogh (1853), el científico japonés Kazunori Asada afirmó que el problema en la vista del pintor radicaba en la ausencia de los receptores del color rojo. El científico llegó a esta conclusión gracias a un simulador de inmersión, que permite percibir el color de la misma manera que lo experimentan personas con diferentes tipos de daltonismo u otros desórdenes en la percepción del color.
+
+\setlength{\parskip}{2mm}
+
+Van Gogh se hizo famoso por su particular uso de la luz y el color, con trazos gruesos sobre el lienzo dando pinceladas espesas o con el filo de una paleta. Además, empleaba colores sin mezclar, muy vivos, puros y fuertes, como por ejemplo el azul y el amarillo. Su obra influyó en la mayoría de los principales movimientos artísticos del siglo XX. Se dice que sólo la gente con deficiente percepción de los colores como él pueden comprender mejor sus cuadros, tal y como él mismo los imaginó[6].
+
+\setlength{\parskip}{2mm}
+
+Durante la segunda guerra mundial se decía que los mejores tiradores eran daltónicos y en efecto, este tipo de ceguera al color ayuda a destapar el engaño del camuflaje. Los científicos han constatado que los daltónicos no pueden percibir el color verde como los demás, pero a cambio detectan mejor los matices entre los distintos tonos. Por eso, para ellos, los patrones del camuflaje no crean una mancha indistinguible del follaje, sino todo lo contrario. Su daltonismo expone una zona de contrastes anormales que destaca sobre el fondo vegetal [7].
+
+\setlength{\parskip}{2mm}
+
+A día de hoy, también existen artistas con deficiencias para percibir el color, como es el caso de Jean von Roesgen. El pintor nació en Luxemburgo en el año 1963, y a día de hoy es un artista internacionalmente valorado pese a su daltonismo. Von Roesgen comenzó pintando obras monocromáticas pero ha conseguido intensos tonos con su limitada paleta de colores, y con técnicas para no confundirlos. No obstante se ciñe a los colores azules, amarillos, naranjas… e intenta evitar los tonos rojos y verdes [6].
+
+\setlength{\parskip}{2mm}
+
+También podemos encontrar en otras áreas de actual importancia diversos personajes que viven con daltonismo 
+Muy pocas personas saben que Facebook nació como un proyecto que Mark Zuckerberg puso en marcha durante su estancia en Harvard. En aquel entonces, la red social se llamaba \textit{ <<The Facebook>>} y solamente estaba pensada para alumnos del campus.Durante su creación, los desarrolladores de Facebook estuvieron pensando en un color que distinga a la red social. Luego de muchas deliberaciones, Mark Zuckerberg decidió que el color sería azul. ¿Por qué?
+
+\setlength{\parskip}{2mm}
+
+Mike Buzzard, uno de los creativos de Facebook, dio a conocer uno de los secretos mejor guardados de la red social. Según contó a The Cuban Council, el azul fue elegido porque Mark Zuckerberg es daltónico [8].
+
+\setlength{\parskip}{2mm}
+
+En el ámbito de la pantalla grande contamos con varios ejemplos: 
+
+\setlength{\parskip}{2mm}
+\begin{itemize}
+    \item Keanu Reeves: La estrella del cine ha revelado ya en alguna entrevista sufrir daltonismo.
+    \item Bing Crosby: Cantante y actor fallecido en 1977 confundía siempre el azul con el verde y viceversa.'
+    \item Paul Newman: El actor y director ya fallecido descubrió que era daltónico mediante los exámenes para ingresar en la marina americana.
+    \item Eddie Redmayne: Gran actor reconocido por su interpretación en <<Los Miserables>> o <<La chica danesa>>. también entra en la lista de los daltónicos famosos.
+    \item Meat Loaf: El cantante es también daltónico, por eso no pudo formar parte del ejército americano.
+    \item Christopher Nolan: Director de cine con daltonismo, lo cual no le ha impedido ser brillante en su profesión.
+    \item Rutger Hauer: Este actor estuvo en la marina, pero no siguió con ello por ser daltónico [9].
+\end{itemize}
+
+En el ámbito futbolístico podemos encontrar 
+Thomas Delaney que se ha convertido en uno de los futbolistas más importantes y referentes de la Selección de Dinamarca. Acompañado de Christian Eriksen [10].
+\setlength{\parskip}{2mm}
+
+Bill Clinton
+
+El expresidente estadounidense tiene dificultades en diferenciar rojo y verde.
+
+\setlength{\parskip}{2mm}
+
+Príncipe William
+El según el portal de salud especializado Health Research Funding, también él padece este trastorno[11].
+
+\section{Introducción .}
+\subsection{Percepción del color} 
+
+La acromatopsia parcial o Daltonismo es un padecimiento visual en personas que no pueden discriminar entre colores, o sólo aprecian algunas gamas de colores. Dado que aproximadamente 75\% de las mutaciones relacionadas con esta anomalía se localizan en los genes que codifican para los canales iónicos dependientes de nucleótidos cíclicos (canales CNG), se describen como una canalopatía [12].
+
+\setlength{\parskip}{2mm}
+
+Para poder entender esta alteración debemos comenzar por entender como es que percibimos la visión de los colores.
+Para visualizar los objetos, se necesitan dos elementos fundamentales: el ojo y la luz. En el siglo V a. C. el filósofo griego Empédocles trataba de explicar el proceso de la visión y afirmó que la diosa Afrodita formó el ojo humano con los cuatro elementos (tierra, aire, fuego y agua) y luego encendió una llama dentro del ojo que al brillar hacía posible la visión.
+
+\setlength{\parskip}{2mm}
+
+En la actualidad, se ha explicado que ésta se debe a la incidencia en la retina de un haz luminoso [12].
+
+\setlength{\parskip}{2mm}
+
+Según los fundamentos de la óptica, la luz es una oscilación electromagnética que se propaga en el vacío o en un medio transparente y puede ser percibida a través de nuestro sentido de la vista. No obstante, la luz visible es sólo una pequeña parte del amplio conjunto de ondas que pueden ser emitidas o absorbidas por los objetos, y que integran el espectro electromagnético La parte visible del espectro se compone de tres principales gamas de colores (azul, verde y rojo) y la mezcla de éstos forma los colores que vemos en el arcoíris [12].
+
+\setlength{\parskip}{2mm}
+
+De todo el espectro electromagnético, el ojo humano sólo es capaz de percibir una ínfima fracción. Es lo que denominamos el espectro visible. Lo que el ojo percibe como diferentes colores son ondas de luz de diferente longitud. Así que lo que llamamos colores, técnicamente es luz de diferentes longitudes de onda. El ojo humano es sensible a longitudes de onda comprendidas entre unos 750 nm., el color rojo, hasta unos 380 nm., el color violeta. Hay animales que pueden ver utilizando parte de la luz ultravioleta, como las abejas y otros insectos, y también la luz infrarroja como las mantis marinas (posiblemente tienen la visión más completa que conocemos del mundo animal) [13].
+
+\setlength{\parskip}{2mm}
+
+Podemos considerar el espectro de la luz que recibimos del sol como una referencia de lo que denominaríamos luz natural. Pero este espectro varía a lo largo del día. Después de amanecer y antes de anochecer es una luz cálida con predominancia de tonos naranjas y rojos. Entre estos dos momentos, al mediodía solar, se alcanza el nivel de mayor intensidad de luz con predominancia de tonos azules. Es deseable que cualquier fuente de luz artificial que utilicemos emita, al menos, la totalidad del espectro de luz visible para el ojo humano simulando aquella que recibimos del sol en diferentes momentos del día [13] [Figura1]. 
+
+\begin{figure}[H]
+	\begin{center}
+\includegraphics[scale = 0.85]{Imagenes/espectro.png}
+\captionof{figure}{\label{fig:1} Gráfico de un espectro electromagnético de la luz.} 
+	\end{center} 
+\end{figure}
+
+Los ojos poseen dos elementos transparentes: la córnea y el cristalino, los cuales dejan pasar la luz hacia la capa interna del ojo llamada retina, que se encuentra en la parte posterior. La retina es una estructura muy compleja, formada por diversos tipos de células interconectadas, donde las únicas que procesan la luz son las células fotorreceptoras, llamadas conos y bastones. Éstas son responsables de detectar la intensidad de la luz y definir el color.
+
+\setlength{\parskip}{2mm}
+
+Entonces, la retina procesa la información recibida por las células fotorreceptoras y la envía en forma de señal eléctrica a través del nervio óptico a la parte trasera del cerebro (lóbulo occipital), donde en conjunto con otro tipo de células cerebrales convierte la información en un impulso nervioso, que percibimos como figuras. Básicamente, la retina procesa una señal luminosa, luego el cerebro decide qué es la imagen [12].
+
+\setlength{\parskip}{2mm}
+
+La percepción del color inicia al estimular las células en la retina llamadas conos, estos  se concentran principalmente en la mácula de la retina, en donde más al centro se encuentra la fóvea. La visión cromática depende, entre otros factores, de la complejidad del sistema visual que se haya desarrollado durante la evolución. El número de pigmentos visuales y la capacidad de los conos de percibir determinadas longitudes de ondas [12].
+
+\setlength{\parskip}{2mm}
+
+La visión se clasifica como monocromática (en mapaches y salamandras), dicromática (en la mayoría de los animales), tricromática (en los primates, incluido el humano) y tetracromática (en aves, reptiles y peces). La vista de algunos animales abarca longitudes de onda que sobrepasan ligeramente el espectro visible por los seres humanos, pero se encuentra dentro de los límites generales; por ejemplo, las abejas son sensibles a la luz ultravioleta, que no es percibida por el ojo humano. La visión en los humanos es tricromática debido a que poseemos tres tipos de conos, sensibles al espectro de luz visible correspondiente a los colores azul, verde y rojo. La incidencia en la retina de un haz luminoso de una cierta longitud de onda determina qué tipo de cono ha de estimularse [12].
+
+\setlength{\parskip}{2mm}
+
+Los conos se denominan según la longitud de onda que los activa: L, M y S (del inglés: long, medium y short) para la percepción de los colores azul, verde y rojo, respectivamente [12]. Cada tipo es sensible a diferentes longitudes de onda o colores. El cono corto tiene el pico de sensibilidad en unos 430 nm. en la zona entre el color violeta y el azul, el cono medio en unos 540 nm. en el color verde y el cono largo tiene el pico en unos 570 nm. casi en el color amarillo. La diferencia entre las señales recibidas de cada uno de los conos permite al cerebro percibir un rango continuo de colores, que es lo que hemos llamado el espectro visible [13].
+
+\setlength{\parskip}{2mm}
+
+Después, el cerebro combina la información de cada fotorreceptor y genera los colores intermedios al estimular diferentes conos de manera simultánea [12].
+
+\setlength{\parskip}{2mm}
+
+Por otra parte, las células fotorreceptoras llamadas bastones pueden funcionar en condiciones de poca luz. Por lo general se localizan en la parte exterior de la retina y se utilizan para la visión periférica.
+
+\setlength{\parskip}{2mm}
+
+Hay un solo tipo de bastones, los cuales son más sensibles a la luz que los conos y son casi enteramente responsables de la visión nocturna. Los bastones no discriminan entre las diferentes longitudes de onda de la luz percibida [12]; tienen el pico de sensibilidad aproximadamete a 498 nm., en la zona entre el verde y el azul. Por lo tanto la visión con los bastones es monocromática [13].
+
+\setlength{\parskip}{2mm}
+
+Existen dos teorías que explican de mejor manera la percepción del color:
+
+a)	Teoría Tricromática (Thomas Young, 1802):
+ Esta teoría hace referencia a que la  percepción visual está dada por la capacidad de los tres tipos de conos existentes (tres mecanismos receptores) a ser estimulados por distintas longitudes de onda. 
+ 
+\setlength{\parskip}{2mm} 
+ 
+“Los tres tipos de pigmentos de los conos (Yodopsina, Cianopsina y Porfiropsina) se corresponderían con los tres mecanismos receptores.”[14]
+
+\setlength{\parskip}{2mm}
+
+b) Teoría de los Procesos Oponentes (Ewald Hering, 1878):
+ 
+“Propuso que la naturaleza de la visión del color se debía al emparejamiento de sensaciones de color, que operarían mediante procesos oponentes. Es decir, cada receptor produciría dos tipos de respuestas antagónicas entre sí. Cuando un miembro del par resulta estimulado más que su oponente, entonces se verá el matiz correspondiente al superior, pero si son estimulados por igual, se anulan por ser complementarios y aparece la sensación de gris, como ocurre en la mezcla sustractiva de colores”[14]
+
+\subsection{La fototransducción}
+
+El proceso de capturar una señal luminosa y convertirla en una respuesta fisiológica se conoce como fototransducción. La luz es detectada en el ojo por una proteína llamada rodopsina, que se encuentra en la membrana de las células llamadas bastones. La rodopsina está formada por dos partes: una proteína llamada opsina y un pigmento derivado de la vitamina A, conocido como 11-cis-retinal. Este pigmento permite la absorción de la luz al inducir un cambio en su estructura, que a su vez afecta la forma de la proteína rodopsina (cambiando a todo-trans-retinal) [12].
+
+\setlength{\parskip}{2mm}
+
+El cambio conformacional inducido es el primer paso para que se genere una amplia cascada de señales fisiológicas en las que intervienen diversas proteínas. De esta manera, la rodopsina modificada después interactúa con la proteína transducina, la cual pertenece a un grupo de proteínas llamadas proteínas G, que se activan al unirse con una molécula llamada guanosín trifosfato (GTP). En general, las proteínas G están formadas por tres partes, denominadas subunidades alfa (α), beta (β) y gamma (γ) [12]. 
+
+\setlength{\parskip}{2mm}
+
+Cuando la transducina se une a GTP, se disocia en dos complejos, la subunidad α unida a GTP
+(αGTP) y el complejo formado por las subunidades β y γ. Luego, la subunidad αGTP de la transducina interactúa con la fosfodiesterasa, una proteína que modifica a la molécula derivada del GTP, conocida como guanosín monofosfato cíclico (GMPc). Lo anterior induce la producción de la forma no cíclica de esta molécula (guanosín monofosfato, GMP), que estimula de manera indirecta la producción de GTP para favorecer la amplificación de las cascadas de señales fisiológicas [12].
+
+\setlength{\parskip}{2mm}
+
+De manera particular, en condiciones de oscuridad o poca luz, la proteína denominada guanilato ciclasa se activa y convierte el GMP en GMPc. Cuando el GMPc se une a ciertas proteínas localizadas en la membrana de las células fotorreceptoras, llamadas canales iónicos dependientes de nucleótidos cíclicos (canales CNG, por sus siglas en inglés), estos canales permiten el paso de iones con cargas positivas (como el calcio o el sodio) hacia el interior de las células, de manera que el flujo de iones también favorece la amplificación de señales al activar o estimular otras proteínas [12] (Figura 2).
+
+\setlength{\parskip}{2mm}
+
+En los fotorreceptores se transforma la luz en un impulso nervioso que luego pasa a las células ganglionares. Luego, el impulso pasa al Nervio Óptico el cual se decusa a nivel del Quiasma Óptico, luego el Nervio Óptico hace sinapsis con las neuronas presentes en el Cuerpo Geniculado Lateral, del cual emergen Radiaciones Ópticas que hacen sinapsis finalmente con las neuronas de la corteza visual, específicamente en el núcleo de Edinger-Westphal ubicado en el área 17 de Brodman[14].
+
+\setlength{\parskip}{2mm}
+
+\begin{figure}[H]
+	\begin{center}
+\includegraphics[scale = 0.52]{Imagenes/cascada.png}
+\captionof{figure}{\label{fig:1} Cascada de la fototransducción.} 
+	\end{center} 
+\end{figure}
+
+\subsection{Árbol de decisión}
+
+Veamos a continuación a introducir las ideas fundamentales del denominado algoritmo \textit{Top Down Induction of Decision Trees}(TDIDT ) el cual puede ser contemplado como uniformizador de la mayoría de los algoritmos de inducción de arboles de clasificación a partir de un conjunto de datos conteniendo patrones etiquetados. \cite{IEEEreferencias:Ref2}
+\begin{figure}[H]
+	\begin{center}
+\includegraphics[scale = 0.85]{Imagenes/algoritmo.JPG}
+\captionof{figure}{\label{fig:1} pseudocódigo de el algoritmo más básico del árbol de decisión.} 
+	\end{center} 
+\end{figure}
+
+\setlength{\parskip}{2mm}
+
+Explicación:
+
+Árbol inicial:
+
+Árbol con un único nodo, sin etiquetar, al que asignamos como conjunto de ejemplos todo el conjunto de entrenamiento.
+
+\setlength{\parskip}{2mm}
+
+• Bucle principal:
+
+\setlength{\parskip}{2mm}
+
+– Consideramos el primer nodo, N, sin etiquetar
+\setlength{\parskip}{2mm}
+
+$\ast$ Si los ejemplos asignados N tienen todos la misma clasificación,  etiquetamos N con esa clasificación.
+
+\setlength{\parskip}{2mm}
+
+$\ast$ En otro caso ...
+
+\setlength{\parskip}{2mm}
+
+· Etiquetamos N con el mejor atributo A según el conjunto de
+ejemplos asignado.
+\setlength{\parskip}{2mm}
+
+· Para cada valor de A creamos una nueva arista descendente en el nodo N, y al final de cada una de esas nuevas aristas creamos un nuevo nodo sin etiquetar, N1, . . . , Nk.
+
+\setlength{\parskip}{2mm}
+
+· Separamos los ejemplos asignados al nodo N según el valor que tomen para el atributo A y creamos nuevos conjuntos de ejemplos para N1, . . . , Nk.
+
+\setlength{\parskip}{2mm}
+
+• Hasta que todos los nodos estén etiquetados [?].
+
+subyacente al algoritmo TDIDT es que mientras que todos los patrones que se correspondan con una determinada rama del árbol de clasificación no pertenezcan a una misma clase, se seleccione la variable que de entre las no seleccionadas en esa rama sea la más informativa o la más idónea con respecto de un criterio previamente establecido. La elección de esta variable sirve para expandir el árbol en tantas ramas como posibles valores toma dicha variable.
+
+\subsection{Modelo RGB}
+
+Módelo euclideano creado originalmente para los televisores NTSC (National Television System(s) Committee), el cual buscaba ser compatible con las televisiones de Blaco y Negro de la época. 
+\cite{IEEEreferencias:Ref2}
+
+Los colores aparecen con sus componentes primarias de rojo, verde y azul. Los valores de R, G, y B se encuentran a lo largo de tres ejes. En otras palabras, en el eje del rojo, en el eje del verde y en el eje del azul se encuentran las intensidades de cada color. El cián está situado en el vértice del cubo en donde el color verde y el azul tienen su máximo valor, y el valor del rojo es cero.
+
+\begin{figure}[H]
+	\begin{center}
+\includegraphics[scale = 0.85]{Imagenes/cubo.JPG}
+\captionof{figure}{\label{fig:1} Cubo unitario de colores en RGB.} 
+	\end{center} 
+\end{figure}
+
+\cite{IEEEreferencias:Ref2}
+
+\section{Estado del Arte}
+Existen aplicaciones desarrolladas por grandes emporios que buscan brindarle a una persona que padece daltonismo, algún tipo de apoyo, por lo que encontrar herramientas que se apoyen de los sistemas computacionales es muy complicado. Por lo que es considerable apoyarse de las tecnologías para ayudar a brindar una mejor calidad de vida a las personas daltónicas, a continuación se mostrará el estado de arte de aquellas aplicaciones y/o contribuciones que se hacen fundamentales para el diseño de la herramienta.
+
+\subsection{ColorADD}
+
+El denominado <<código braile para los daltónicos>>, es un código único, inclusivo, universal basado en tres símbolos monocromáticos que representan a los colores primarios, que permite la interpretación del color. A través del conocimiento de la <<Teoría de la Adición del Color>> que se enseña en los años escolares tempranos, los símbolos pueden estar relacionados y toda la paleta de colores se identifica gráficamente.\cite{IEEEreferencias:Ref2}
+\newline
+\begin{figure}[H]
+	\begin{center}
+\includegraphics[scale = 0.85]{Imagenes/1437744306_549219_1437997332_sumario_normal.jpg}
+\captionof{figure}{\label{fig:1} Código de colores ColorADD.} 
+	\end{center} 
+\end{figure}
+
+Como dice Miguel Neiva creador de ColorADD tras ocho años de investigación, “Los símbolos que incluyen los colores, se convierten en un juego mental, fácil de memorizar y aplicar en situaciones cotidianas. ColorADD es un herramienta democrática e inclusiva que acerca el color y el diseño a todos”.
+\cite{IEEEreferencias:Ref2} \newline
+
+Un dato curioso es el país de Portugal, el cual a día de hoy señaliza todas sus lineas de metro de Oporto con este código de colores, además de que siete hospitales portugueses lo usan tanto en la señalización interna, como en las pulseras de los pacientes, o en las etiquetas de las jeringuillas de análisis y contar con mapas turísticos con esta señalización del código.
+
+
+\begin{figure}[H]
+	\begin{center}
+\includegraphics[scale = 0.25]{Imagenes/UNO.jpg}
+\captionof{figure}{\label{fig:1} Juego con código colorADD.} 
+	\end{center} 
+\end{figure}
+
+De igual manera las empresas Viarco y Mattel generaron apoyándose del código ColorADD, su primer paquetes de colores aptos para ciegos de color y un juego UNO (juego muy conocido de Mattel en el que a través de números y colores van bajando cartas hasta que a algún jugador sólo le quede una) con este código de colores.   
+
+\begin{figure}[H]
+	\begin{center}
+\includegraphics[scale = 0.45]{Imagenes/coloradd.jpg}
+\captionof{figure}{\label{fig:1} Colores Viarco con código ColorADD.} 
+	\end{center} 
+\end{figure}
+
+\subsection{Microsoft\textregistered \space Color Binacoulars }
+En el año 2016 la marca americana Microsoft\textregistered,\space a través de su programa Microsoft\textregistered \space Garage que alienta a los empleados a trabajar en proyectos que les apasionan, incluso si no tienen ninguna relación con su función principal dentro de la empresa, desarrolló un proyecto llamado Microsoft Color binacoulars, el cual en palabras de sus mismos creadores:
+
+\setlength{\parskip}{2mm}
+
+Color Binoculars ayuda a las personas daltónicas a distinguir entre los colores en su vida cotidiana. Usando su cámara, los binoculares de color reemplazan combinaciones de colores difíciles, como el rojo y el verde, con combinaciones más fáciles de distinguir, como el rosa y el verde.
+
+\setlength{\parskip}{2mm}
+
+La aplicación también es compatible con los tres tipos principales de daltonismo. Ya sea que elija flores para un ser querido, experimente la belleza de la naturaleza o elija ropa a juego para su atuendo, deje que Color Binoculars lo ayude a ver mejor su mundo"
+
+\setlength{\parskip}{2mm}
+
+El funcionamiento de la aplicación es algo sencillo, se trata de una aplicación móvil, la cual proporciona un cambio de colores a través de un filtrado de la cámara del teléfono inteligente, dándole un acercamiento de entre los tres tipos de ceguera de colores disponibles, Verde/Rojo, Rojo/Verde, Azul/Amarillo.
+
+\begin{figure}[H]
+	\begin{center}
+\includegraphics[scale = 0.35]{Imagenes/Color_Binoculars_03-1.png}
+\captionof{figure}{\label{fig:1} Captura de pantalla de la aplicación en funcionamiento.} 
+	\end{center} 
+\end{figure}
+
+\subsection{Samsung\textregistered \space SeeColors }
+
+A finales del año 2017 la marca de electrónicos coreana Samsung\textregistered,\space dio a conocer una aplicación en su propio portal web de noticias, el cual ellos mismos lo describieron como "Se trata de una herramienta que ayuda las personas con con deficiencia de visión de color (CVD, por sus siglas en inglés) a identificar sus deficiencias visuales personales. QLED TV, con un volumen de color del 100\%, ajusta la configuración de color en la pantalla, con base en los resultados individuales, y permite que los espectadores con CVD disfruten de una experiencia de visualización con colores optimizados" \cite{IEEEreferencias:Ref3}. \newline
+
+\setlength{\parskip}{2mm}
+
+Esta herramienta funciona desde una aplicación móvil, la cual detecta de manera personalizada a la deficiencia de colores que la persona padece, para después brindarle una recalibración de los colores en la proyección de las pantallas QLED TV de la marca Samsung\textregistered. \newline
+
+\setlength{\parskip}{2mm}
+
+Para ofrecer un método fácil que determine de qué manera mira cada persona los colores, Samsung Electronics colaboró con la Profesora Klára Wenzel, directora del Departamento de Mecatrónica, Óptica e Ingeniería Mecánica e Informática de la Universidad de Tecnología y Economía de Budapest, para incorporar Colorlite Test (Prueba de Visión Cromática) o C-Test (Prueba C), a los televisores y los dispositivos móviles.
+\cite{IEEEreferencias:Ref3}.
+
+\setlength{\parskip}{2mm}
+
+A continuación se mostrará un diagrama que la misma marca proporciona en su portal de noticias. \newline
+
+\begin{figure}[H]
+	\begin{center}
+\includegraphics[scale = 2.30]{Imagenes/Samsung-SeeColors-App-for-QLED-TV_main_2.jpg}
+\captionof{figure}{\label{fig:2} Diagrama a alto nivel de el proceso de funcionamiento de la aplicación Samsung\textregistered \space SeeColors} 
+	\end{center} 
+\end{figure}
+
+\subsection{Visolve}
+
+Bajo la misma inforamción encontrada en la página web de la herramienta, ella se define como la herramienta de software que transforma los colores de la pantalla de la computadora en colores discriminables para varias personas, incluidas las personas con deficiencia de la visión del color, comúnmente llamada daltonismo. Además de la conversión de color, también tiene capacidades de filtrado y eclosión de color. 
+\cite{IEEEreferencias:Ref3}.
+
+\setlength{\parskip}{2mm}
+
+Visolve es una herramienta instalable en varios dispositivos, tanto moviles, como computadoras, ya que se encuentra un instalador en Windows y Mac, como en Android y IOS.
+
+\setlength{\parskip}{2mm}
+
+Además de distinguir colores y encontrar un color específico, su objetivo es ayudar a las personas con daltonismo: adivinar un color normal, y sentir las gradaciones de color en paisajes naturales, etc. por su información visual.
+\cite{IEEEreferencias:Ref3}.
+
+\setlength{\parskip}{2mm}
+
+Visolve puede ejecutar los siguientes tres tipos de transformación de color, filtrado y sombreado:
+
+\begin{itemize}
+    \item Transformación rojo-verde: transforma los colores más rojos en más brillantes y los colores más verdes en más oscuros,
+    \item Transformación azul-amarilla: transforma los colores más azules en más brillantes y los colores más amarillos en más oscuros,
+    \item Aumento de saturación: aumenta la saturación de todos los colores.
+    \item Filtrado: oscurece todos los colores que no sean el color especificado, y
+    \item Trama: dibuja diferentes patrones de trama según el color.
+\end{itemize}
+\cite{IEEEreferencias:Ref3}.
+
+Cuando las personas con daltonismo aplican, por ejemplo, la transformación Rojo-Verde, si tienen en cuenta la regla de transformación anterior y ven cambios de color, podrían adivinar un color normal. Además, la transformación Rojo-Verde refleja el grado de saturación de color en su brillo regularmente. Entonces podrían saber no solo la diferencia entre rojo y verde, sino también la diferencia entre dos rojos, es decir, los grados de rojo.
+\cite{IEEEreferencias:Ref3}.
+
+\setlength{\parskip}{2mm}
+
+Esperamos que el diseño universal de visión en color se incorpore en cada dispositivo digital con pantalla. Además, podemos ayudar a que su sitio web sea más accesible.
+\cite{IEEEreferencias:Ref3}.
+
+\section{Proupuesta}
+
+\subsection{Planteamiento del problema}
+
+Un problema importante en la sociedad y poco atendido debido a que se trata de una alteración y no de una enfermedad, es el daltonismo, el cual como se definió el el marco teórico se trata de una enfermedad la cual altera la visión de colores, provocando problemas a todo aquel que la padece.
+
+\setlength{\parskip}{2mm}
+
+Una manera viable de apoyar a la gente que lo padece, es diagnosticarlo a través de las cartas de Ishihara, método sencillo y claro de conocer si una persona es daltónica y de serlo que tipo de padece.
+
+\setlength{\parskip}{2mm}
+
+El segundo paso y el más ocupado por los sistemas de hoy en día es alterar a través de dispositivos electrónicos la visión de correcta de los colores, realizando una alteración a los colores RGB.
+
+\subsection{Justificación.}
+
+Desde que John Dalton lo descubriese en sí mismo el 1792 \cite{IEEEreferencias:Ref1} a la fecha, se han realizado pocos estudios sobre el tema, al igual que lo poco que se ha diseñado en sistemas sobre el mismo. La mayor parte de la gente ignora padecer daltonismo. Si bien no es una enfermedad tiende a ser un problema de carácter médico, social y profesional. Una alternativa viable y poco ocupada es los sistemas, estos no pueden curar la alteración, pero sí pueden auxiliar de manera viable al uso de más herramientas para los oftalmólogos, los cuales pueden diagnosticar a través de del algoritmo de clasificación supervisada, de inteligencia artificial. Así que nuestro enfoque principal será el uso médico. Apoyando a mostrar el espectro real de colores a aquellos que acudan a consulta, logrando aminorar la marginación social provocada por la alteración, la cual ocurre cuando es expuesta la persona por sus grupos cercanos y/o familiares causando burlas, rezago y/o discriminación, acompañada de la limitante para desempeñar ciertos empleos.
+
+\subsection{Factibilidad}
+\subsubsection{Factibilidad Técnica}
+\subsubsection{Factibilidad Económica}
+
+\subsection{Metodología}
+La metodología elegida bajo el que se creará este diseño es SCRUM, metodología con base en el paradigma ágil, que reduce la complejidad en el desarrollo de productos para satisfacer las necesidades de los clientes. La gerencia y los equipos de Scrum trabajan juntos alrededor de requisitos y tecnologías para entregar productos funcionando de manera incremental usando el empirismo. 
+
+\begin{figure}[H]
+	\begin{center}
+\includegraphics[scale = 0.80]{Imagenes/ScrumFramework.png}
+\captionof{figure}{\label{fig:2} Ciclo de vida de un proyecto en SCRUM} 
+	\end{center} 
+\end{figure}
+
+Scrum es un marco de trabajo simple que promueve la colaboración en los equipos para lograr desarrollar productos complejos. Ken Schwaber y Jeff Sutherland han escrito La Guía Scrum para explicar Scrum de manera clara y simple. \newline
+
+\setlength{\parskip}{2mm}
+
+Scrum no cuenta con requerimientos funcionales y no funcionales, a su vez este cuenta con un mecanismo llamado épicas e historias de usuario, las historias de usuario se crean de redacciones hechas por uno o más integrantes del \textit{scrum core}, mientras que las épicas con los resultados obtenidas de esta.\newline
+
+\setlength{\parskip}{2mm}
+
+Scrum tiene como principal activdad los \textit{Sprints}, a estos se les define un tiempo llamado \textit{"TimeBox"} el cual, se puede ir monitoreando a través de dos artefactos, la \textit{burndown chart} y realizando actualizaciones al \textit{backlog}, además de llevar un seguimiento en reuniones llamadas \textit{daily standup}, las cuales son reuniones de una duración menor a 15 minutos, en la que se designan las tareas y se les pregunta del avance de las tareas al \textit{scrum core}, en caso de haber un retraso, el \textit{scrum master}, el cual se designa del ser el más preparado de los integrantes del \textit{scrum core}, con el fin de acabar en el tiempo propuesto al inicio del \textit{sprint}.\newline
+
+\setlength{\parskip}{2mm}
+
+Al finalizar cada uno de los \textit{sprints}, debe de encontrarse un entregable, el cual se conforma del mínimo entregable definido por el alcance del \textit{sprint}, después de realizar el entregable, se realizar un \textit{Sprint Review}, el cual sirve para dar una retrospectiva obtenida por el sprint, analizando cuales fueron errores y aciertos en la planeación del \textit{sprint}.\newline
+
+\subsubsection{BurnDown Chart}
+BurnDown Chart, o Gráfo de trabajo pendiente, es una gráfica en la cual se muestra la velocidad en la que se está terminando los objetivos y/o tareas planeadas en el sprint. Sirve como una buena métrica para medir si esta ocurriendo un atraso en el proyecto.
+\cite{IEEEreferencias:Ref3}.
+
+\subsubsection{Backlog}
+El cliente es el responsable de crear y gestionar la lista (con la ayuda del Facilitador y del equipo, quien proporciona el coste estimado de completar cada requisito). Dado que reflejar las expectativas del cliente, esta lista permite involucrarle en la dirección de los resultados del producto o proyecto.
+
+\begin{itemize}
+    \item Contiene los objetivos/requisitos de alto nivel del producto o proyecto, que se suelen expresar en forma de historias de usuario. Para cada objetivo/requisito se indica el valor que aporta al cliente y el coste estimado de completarlo. La lista está priorizada balanceando el valor que cada requisito aporta al negocio frente al coste estimado que tiene su desarrollo, es decir, basándose en el Retorno de la Inversión (ROI).
+    
+    \item En la lista se indican las posibles iteraciones y las entregas (releases) esperadas por el cliente (los puntos en los cuales desea que se le entreguen los objetivos/requisitos completados hasta ese momento), en función de la velocidad de desarrollo del (los) equipo(s) que trabajará(n) en el proyecto. Es conveniente que el contenido de cada iteración tenga una coherencia, de manera que se reduzca el esfuerzo de completar todos sus objetivos.
+    \item La lista también tiene que considerar los riesgos del proyecto e incluir los requisitos o tareas necesarios para mitigarlos.
+
+\end{itemize}
+\cite{IEEEreferencias:Ref3}.
+
+\subsubsection{Sprint}
+Son ciclos de ejecución muy cortos, los cuales son creados, gestionados y ejecutados por el mismo scrum core, cada de uno de ellos se compone de varias fases, y al finalizarlos resulta un entregable. \cite{IEEEreferencias:Ref3}.
+
+\subsubsection{Daily StandUp}
+Es una reunión por parte del \textit{Scrum Team}, de duración máxima de 15 minutos, en la que se detallan los avances designados a el \textit{scrum team} así como los problemas que podrían estar presentes.
+
+\setlength{\parskip}{2mm}
+
+Es importante que estas reuniones no rebasen los 15 minutos, ya que podrían afectar el seguimiento del \textit{Sprint}.
+
+\setlength{\parskip}{2mm}
+
+Cabe recalcar que dentro de SCRUM existen diferente roles, tales como:
+\begin{itemize}
+    \item \textbf{Product Owner:} Es el enlace entre el \textit{scrum team} y los \textit{stake holders}.
+    \item \textbf{Stake Holder:} Son los interesados en el proyecto, no pertenecientes al \textit{Scrum Team}, ya sean clientes, patrocinadores, directores, etc.
+    \item \textbf{Scrum Master:} Es la persona con más experiencia dentro del \textit{SCRUM Team}, por ende es el encargado de resolver los problemas más difíciles que ocurran dentro del \textit{Sprint}, así como apoyar y dar seguimiento al proyecto.
+    \item \textbf{Scrum Team:} Son todos los integrantes directamente involucrados con el proyecto.
+\end{itemize}
+
+Una manera fácil, viable y sencilla de obtener requerimientos es proporcionada por Scrum, ya que se encuentran disponibles un par de ellas que van de la mano y ayudan al análisis del \textit{As is}. Este par de recursos son: 
+
+\begin{itemize}
+    \item \textbf{Historias de usuario:} Son historias redactadas por el \textit{scrum team}, respondiendo a las preguntas, ¿Quién?, ¿Cómo? y ¿Para qué?
+    \item \textbf{Épicas:} Es el concentrado final de las historias de usuario, el cúal solamente pronuncia los objetivos (Requerimientos funcionales y no funcionales) a seguir del proyecto.
+\end{itemize}
+
+\section{Análisis}
+\section{Diseño}
+
+\section{Conclusiones.}
+
+\section{Cronograma de trabajo terminal II.}
+
+
+%%%%%%% Bibliografía %%%%%%%%
+\bibliographystyle{bst/IEEEtran.bst} 
+\addcontentsline{toc}{section}{Referencias}  
+\bibliography{bib/IEEEabrv,bib/IEEEreferencias.bib} 
+%%%%%%% Bibliografía %%%%%%%%    
+
+\appendix  
+\clearpage % o \cleardoublepage
+\addappheadtotoc 
+\appendixpage 
+
+\section{Anexos 1.}
+
+
+\section{Anexos 2.}
+
+
+
+\end{document}
