@@ -582,11 +582,23 @@ En definitiva, tal y como asegura el Dr. Scott Anderson, “las sociedades deber
 
 Avanzando con el tema, es propio también mencionar la teoría de las tecnologías básicas a emplear en el sistema, ya que ellas serán las que nos ayudarán a que el proyecto logre su cometido.
 
-Las dos que se hará mención son el árbol de decisiones, algoritmo de \textit{machine learning} capaz de lograr hacer el diagnóstico exacto y el modelo RGB, el cual nos ayudará entender en la teoría para aplicarlo en la transformación de colores.
+Las dos que se hará mención son el árbol de decisiones, algoritmo de \textit{machine learning} capaz de lograr hacer el diagnóstico exacto y el modelo RGB, el cual nos ayudará entender en la teoría para aplicarlo en la transformación de colores. 
+
 
 \subsection{Árbol de decisión}
 
+El enfoque classification and regression tree (CART) fue desarrollado por Breiman et al. (1984)\cite{IEEEreferencias:Ref44}.
+
+\begin{itemize}
+    \item Son un tipo de algoritmos de \textit{\textbf{machine learning}} de aprendizaje supervisado (i.e., existe una variable objetivo predefinida).
+    \item Principalmente usados en problemas de clasificación.
+    \item Las variables de entrada y salida pueden ser categóricas o continuas.
+    \item Divide el espacio de predictores (variables independientes) en regiones distintas y no sobrepuestas \cite{IEEEreferencias:Ref44}.
+\end{itemize}
+
+
 Veamos a continuación a introducir las ideas fundamentales del denominado algoritmo \textit{Top Down Induction of Decision Trees}(TDIDT ) el cual puede ser contemplado como uniformizador de la mayoría de los algoritmos de inducción de arboles de clasificación a partir de un conjunto de datos conteniendo patrones etiquetados. \cite{IEEEreferencias:Ref15}
+
 \begin{figure}[H]
 	\begin{center}
 \includegraphics[scale = 0.85]{Imagenes/algoritmo.JPG}
@@ -629,14 +641,23 @@ ejemplos asignado.
 
 · Separamos los ejemplos asignados al nodo N según el valor que tomen para el atributo A y creamos nuevos conjuntos de ejemplos para N1, . . . , Nk.
 
+
 \setlength{\parskip}{2mm}
 
 • Hasta que todos los nodos estén etiquetados \cite{IEEEreferencias:Ref15}.
 
-subyacente al algoritmo TDIDT es que mientras que todos los patrones que se correspondan con una determinada rama del árbol de clasificación no pertenezcan a una misma clase, se seleccione la variable que de entre las no seleccionadas en esa rama sea la más informativa o la más idónea con respecto de un criterio previamente establecido. La elección de esta variable sirve para expandir el árbol en tantas ramas como posibles valores toma dicha variable.
+subyacente al algoritmo TDIDT es que mientras que todos los patrones que se correspondan con una determinada rama del árbol de clasificación no pertenezcan a una misma clase, se seleccione la variable que de entre las no seleccionadas en esa rama sea la más informativa o la más idónea con respecto de un criterio previamente establecido. La elección de esta variable sirve para expandir el árbol en tantas ramas como posibles valores toma dicha variable\cite{IEEEreferencias:Ref15}.
 
-\cite{IEEEreferencias:Ref15}.
+La decisión de hacer divisiones estratégicas afecta altamente la precisión del árbol \cite{IEEEreferencias:Ref44}.
 
+\begin{itemize}
+    \item Los criterios de decisión son diferentes para árboles de clasificación y regresión.
+    \item Existen varios algoritmos para decidir la ramificación.
+    \item La creación de subnodos incrementa la homogeneidad de los subnodos resultantes. Es decir, la pureza del nodo se incrementa respecto a la variable objetivo.
+    \item  Se prueba la división con todas las variables y se escoge la que produce subnodos más homogéneos.
+    \item Algunos algoritmos más comunes para la selección: Indice Gini, Chi Cuadrado, Ganancia de la información y Reducción en la varianza \cite{IEEEreferencias:Ref44}.
+
+\end{itemize}
 \subsection{Modelo RGB}
 
 Módelo euclideano creado originalmente para los televisores NTSC (National Television System(s) Committee), el cual buscaba ser compatible con las televisiones de Blanco y Negro de la época \cite{IEEEreferencias:Ref16}.
@@ -1142,13 +1163,14 @@ Scrum cuenta con una característica denominada sprint, ejecución de la iteraci
 
 
 \subsection{Análisis de requerimientos}
+\subsubsection{Historias de usuario}
 La metodología \textit{Scrum} nos ofrece ya un análisis de requerimientos, este es a través de las historias de usuario, de las cuales ya se hablaron durante la definición de la métrica.
 
 Por lo que primeramente, se ilustrarán las historias de las que se obtuvieron los requerimientos.
 
 \begin{figure}[H]
 	\begin{center}
-\includegraphics[scale = 1.5]{HS/US1.png}
+\includegraphics[scale = .55]{HS/US1.png}
 \captionof{figure}{\label{fig:2} Historia de usuario 1}
 	\end{center} 
 \end{figure}
@@ -1249,7 +1271,7 @@ Para el diseño, se comenzó con los diagramas UML tratandose de un software ori
 
 \begin{figure}[H]
 	\begin{center}
-\includegraphics[scale = 0.90]{UML/clase.jpeg}
+\includegraphics[scale = 0.90]{UML/clases.png}
 \captionof{figure}{\label{fig:2} Diagrama de clases}
 	\end{center} 
 \end{figure}
@@ -1298,7 +1320,7 @@ relación.
 
 \begin{figure}[H]
 	\begin{center}
-\includegraphics[scale = 1.0]{UML/entidad-relacion.jpeg}
+\includegraphics[scale = 1.0]{UML/er.png}
 \captionof{figure}{\label{fig:2} Diagrama entidad relación}
 	\end{center} 
 \end{figure}
