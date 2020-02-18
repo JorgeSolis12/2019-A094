@@ -4,7 +4,7 @@
 \title{Trabajo Terminal I}
 \usepackage[spanish]{babel} %Indica que escribiermos en español
 \usepackage[utf8]{inputenc} %Indica qué codificación se está usando ISO-8859-1(latin1)  o utf8  
-
+\usepackage{longtable}
 \usepackage{amsmath} % Comandos extras para matemáticas (cajas para ecuaciones,
 % etc)
 \usepackage{amssymb} % Simbolos matematicos (por lo tanto)
@@ -67,6 +67,7 @@
 %%%%%%%% TERMINA PREÁMBULO %%%%%%%%%%%%
 
 \begin{document}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PORTADA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 																					%%%
@@ -150,6 +151,10 @@ Y por su apoyo con las instalaciones para realización de pruebas a mi líder y 
 \newpage
 
 \tableofcontents 
+\newpage
+\listoffigures
+\newpage
+\listoftables
 
 \newpage
 
@@ -162,7 +167,7 @@ Y por su apoyo con las instalaciones para realización de pruebas a mi líder y 
 
 \section{Objetivo.}
 
-Desarrollar un prototipo de herramienta médica capaz de diagnosticar y mostrar la correcta gama de colores durante su uso  a pacientes con los diferentes tipos de daltonismo, exceptuando la acromatopsia. 
+Desarrollar un prototipo de herramienta de apoyo capaz de diagnosticar y mostrar la correcta gama de colores durante su uso  a pacientes con los diferentes tipos de daltonismo, exceptuando la acromatopsia. 
 
 \subsection{Objetivos Específicos.}
 \begin{itemize}
@@ -176,7 +181,7 @@ Desarrollar un prototipo de herramienta médica capaz de diagnosticar y mostrar 
 \newpage
 
 \section{Introducción}
-John Dalton (1766-1844) fue quien descubrió el daltonismo. Cuando fue a conocer al rey Guillermo IV acudió con un traje académico escarlata (rojo), un color demasiado llamativo para un acto tan solemne. La razón es simple: él veía su ropa de color gris oscuro.
+John Dalton (1766-1844) fue quien descubrió el daltonismo. Cuando fue a conocer al rey Guillermo IV acudió con un traje académico escarlata (rojo), un color demasiado llamativo para un acto tan solemne. La razón es simple: él veía su ropa de color gris oscuro \cite{IEEEreferencias:Ref1}.
 
 
 \setlength{\parskip}{2mm}
@@ -186,15 +191,18 @@ John Dalton proporcionó una descripción científica sobre este fenómeno que p
 
 \setlength{\parskip}{2mm}
 
-La forma más frecuente del daltonismo es que el paciente presente dificultades para distinguir entre el verde (deutaconos) y el rojo (protaconos), aunque puede ocurrir con las tonalidades azules (tritaconos). En cambio, un daltónico puede apreciar más matices del violeta que un sujeto con visión normal[1][2]. Este defecto es genético, aunque también puede adquirirse por una enfermedad ocular o sistémica, e incluso por un traumatismo o uso de algún medicamento.
+La forma más frecuente del daltonismo es que el paciente presente dificultades para distinguir entre el verde (deutaconos) y el rojo (protaconos), aunque puede ocurrir con las tonalidades azules (tritaconos). En cambio, un daltónico puede apreciar más matices del violeta que un sujeto con visión normal[1][2]. Este defecto es genético, aunque también puede adquirirse por una enfermedad ocular o sistémica, e incluso por un traumatismo o uso de algún medicamento \cite{IEEEreferencias:Ref3}.
+
 
 \setlength{\parskip}{2mm}
 
-Esta ceguera hacia el rojo y el verde afecta a un ocho por ciento de la población masculina de todo el mundo. En América Latina uno de cada doce hombres es daltónico. La mayoría de los casos de daltonismo se deben a un problema genético ligado al sexo. Muy pocas mujeres son daltónicas y aproximadamente uno de cada diez hombres sufren alguna forma de daltonismo.
+Esta ceguera hacia el rojo y el verde afecta a un ocho por ciento de la población masculina de todo el mundo. En América Latina uno de cada doce hombres es daltónico. La mayoría de los casos de daltonismo se deben a un problema genético ligado al sexo. Muy pocas mujeres son daltónicas y aproximadamente uno de cada diez hombres sufren alguna forma de daltonismo \cite{IEEEreferencias:Ref3}.
+
 
 \setlength{\parskip}{2mm}
 
-Los objetos absorben y reflejan la luz de forma distinta dependiendo de sus características físicas, como su forma, composición, etc. El color que se percibe de un objeto es el rayo de luz que rechaza. Las personas captan esos “rebotes” con diferentes longitudes de onda, gracias a la estructura de los ojos. Si los rayos de luz atraviesan al objeto, éste es invisible. Las células sensoriales (fotorreceptores) de la retina que reaccionan en respuesta a la luz son de dos tipos: conos y bastones. Los bastones se activan en la oscuridad y sólo permiten distinguir el negro, el blanco y los distintos grises. Nos permiten percibir el contraste. Los conos, en cambio, funcionan de día y en ambientes iluminados y hacen posible la visión de los colores. Tanto los conos como los bastones se conectan con los centros cerebrales de la visión por medio del nervio óptico.
+Los objetos absorben y reflejan la luz de forma distinta dependiendo de sus características físicas, como su forma, composición, etc. El color que se percibe de un objeto es el rayo de luz que rechaza. Las personas captan esos “rebotes” con diferentes longitudes de onda, gracias a la estructura de los ojos. Si los rayos de luz atraviesan al objeto, éste es invisible. Las células sensoriales (fotorreceptores) de la retina que reaccionan en respuesta a la luz son de dos tipos: conos y bastones. Los bastones se activan en la oscuridad y sólo permiten distinguir el negro, el blanco y los distintos grises. Nos permiten percibir el contraste. Los conos, en cambio, funcionan de día y en ambientes iluminados y hacen posible la visión de los colores. Tanto los conos como los bastones se conectan con los centros cerebrales de la visión por medio del nervio óptico \cite{IEEEreferencias:Ref3}.
+
 
 \setlength{\parskip}{2mm}
 
@@ -221,19 +229,19 @@ A la edad de 26 años (1792), Dalton descubrió que ni él ni su hermano eran ca
 
 Así describía su discapacidad en \textit{<<Memoirs of the Manchester Literary and Philosophical Society>>}:
 
-\textit{<<Siempre fui de la opinión, aunque no soliera mencionarla, de que los nombres de algunos colores eran muy poco razonables. El término rosa, en referencia a la flor de dicho nombre, parecía bastante adecuado; pero cuando se utilizaba el término rojo en lugar de rosa lo consideraba muy inadecuado; para mí debería haber sido azul, pues rosa y azul me parecían muy estrechamente relacionados [el rosa en cuestión debía haber sido más próximo al malva, ya que Dalton habría sido insensible al componente rojo]; mientras que rosa y rojo apenas tienen cualquier relación>>}. 
+\textit{<<Siempre fui de la opinión, aunque no soliera mencionarla, de que los nombres de algunos colores eran muy poco razonables. El término rosa, en referencia a la flor de dicho nombre, parecía bastante adecuado; pero cuando se utilizaba el término rojo en lugar de rosa lo consideraba muy inadecuado; para mí debería haber sido azul, pues rosa y azul me parecían muy estrechamente relacionados [el rosa en cuestión debía haber sido más próximo al malva, ya que Dalton habría sido insensible al componente rojo]; mientras que rosa y rojo apenas tienen cualquier relación. }.
 
 \setlength{\parskip}{2mm}
 
-En el curso de mi dedicación a las ciencias, la de la óptica reclamaba necesariamente atención y me familiaricé muy bien con la teoría de la luz y los colores antes de que apreciara ninguna peculiaridad en mi visión. Sin embargo, yo no había prestado mucho interés a la discriminación práctica de los colores debido, en cierto modo, a lo que yo imaginaba que era una extrañeza de su nomenclatura. A partir del año 1.790, el estudio ocasional de la botánica me obligó a prestar más atención que antes a los colores. Con respecto a los colores llamados blanco, amarillo o verde, admitía sin problemas que se usaba el término apropiado. Azul, púrpura, rosa y carmesí parecían bastante menos distinguibles siendo, según mi opinión, todos ellos remitibles a azul. Muchas veces he preguntado seriamente a alguien si una flor era azul o rosa, pero, en general, aquellos a quienes preguntaba consideraban que estaba de broma. Pese a todo, nunca me di cuenta de que había una peculiaridad en mi visión hasta que accidentalmente observé el color de la flor del Geranium zonale a la luz de una vela en el otoño de 1.792.
+\textit{En el curso de mi dedicación a las ciencias, la de la óptica reclamaba necesariamente atención y me familiaricé muy bien con la teoría de la luz y los colores antes de que apreciara ninguna peculiaridad en mi visión. Sin embargo, yo no había prestado mucho interés a la discriminación práctica de los colores debido, en cierto modo, a lo que yo imaginaba que era una extrañeza de su nomenclatura. A partir del año 1.790, el estudio ocasional de la botánica me obligó a prestar más atención que antes a los colores. Con respecto a los colores llamados blanco, amarillo o verde, admitía sin problemas que se usaba el término apropiado. Azul, púrpura, rosa y carmesí parecían bastante menos distinguibles siendo, según mi opinión, todos ellos remitibles a azul. Muchas veces he preguntado seriamente a alguien si una flor era azul o rosa, pero, en general, aquellos a quienes preguntaba consideraban que estaba de broma. Pese a todo, nunca me di cuenta de que había una peculiaridad en mi visión hasta que accidentalmente observé el color de la flor del Geranium zonale a la luz de una vela en el otoño de 1792}.
 
 \setlength{\parskip}{2mm}
 
-La flor era rosa, pero de día se me aparecía casi azul celeste. A la luz de la vela, sin embargo, cambiaba de forma sorprendente: ya no tenía ningún tono azul sino que era lo que yo llamo rojo, un color que forma un chocante contraste con el azul. [En realidad, habría parecido esencialmente gris o negro]. Sin dudar de que el cambio de color sería igual para todos, pedí a algunos de mis amigos que observasen el fenómeno; entonces quedé sorprendido al encontrar que todos ellos coincidían en que el color no era sustancialmente diferente del que tenía a la luz del día, excepto mi hermano, que la veía de la misma forma que yo. Esta observación demostraba claramente que mi visión no era como la de otras personas>>\cite{IEEEreferencias:Ref3}.
+\textit{La flor era rosa, pero de día se me aparecía casi azul celeste. A la luz de la vela, sin embargo, cambiaba de forma sorprendente: ya no tenía ningún tono azul sino que era lo que yo llamo rojo, un color que forma un chocante contraste con el azul. [En realidad, habría parecido esencialmente gris o negro]. Sin dudar de que el cambio de color sería igual para todos, pedí a algunos de mis amigos que observasen el fenómeno; entonces quedé sorprendido al encontrar que todos ellos coincidían en que el color no era sustancialmente diferente del que tenía a la luz del día, excepto mi hermano, que la veía de la misma forma que yo. Esta observación demostraba claramente que mi visión no era como la de otras personas>>}\cite{IEEEreferencias:Ref3}.
 
 \setlength{\parskip}{2mm}
 
-Pero la historia de la ceguera de Dalton para el color tuvo que esperar siglo y medio más para llegar a su final[3]. 
+Pero la historia de la ceguera de Dalton para el color tuvo que esperar siglo y medio más para llegar a su final\cite{IEEEreferencias:Ref3}.
 El 27 de julio de 1844 falleció de un ataque al corazón. Según su deseo, tras su muerte se le practicó la autopsia para determinar la causa de lo que luego se llamó daltonismo \cite{IEEEreferencias:Ref1}.
 
 \setlength{\parskip}{2mm}
@@ -267,15 +275,14 @@ Hering (1874), por otro lado propuso su << Teoría de los Colores Oponentes>> , 
 \setlength{\parskip}{2mm}
 
 Durante el paso del tiempo han existido muchas personas que han sido acompañadas por esta incapacidad 
-Tenemos el ejemplo del pintor Charles Meryon de origen francés.
+Tenemos el ejemplo del pintor Charles Meryon de origen francés\cite{IEEEreferencias:Ref5}.
 
 \setlength{\parskip}{2mm}
 
-Al comenzar sus estudios artísticos en la década de 1840, utilizaba los sepias pero más tarde se dedicó a la acuarela que le ofrecía mayores posibilidades de expresión. En el año 1841 escribió a su padre explicándole sus dificultades en la percepción de los colores.
-
+Al comenzar sus estudios artísticos en la década de 1840, utilizaba los sepias pero más tarde se dedicó a la acuarela que le ofrecía mayores posibilidades de expresión. En el año 1841 escribió a su padre explicándole sus dificultades en la percepción de los colores\cite{IEEEreferencias:Ref5}.
 \setlength{\parskip}{2mm}
 
-Tras realizar sus estudios, Meryon fue consciente que su defecto visual le impediría dominar la pintura y se dedicó al grabado, técnica en la que dominan el blanco y el negro con toda la gama de grises. El mismo escribió: «Este defecto mío de la visión de los colores es tal, que prefiero los hermosos negros con los que puedo observar todos los grados de gris que los vivos colores de las pinturas».
+Tras realizar sus estudios, Meryon fue consciente que su defecto visual le impediría dominar la pintura y se dedicó al grabado, técnica en la que dominan el blanco y el negro con toda la gama de grises. El mismo escribió: «Este defecto mío de la visión de los colores es tal, que prefiero los hermosos negros con los que puedo observar todos los grados de gris que los vivos colores de las pinturas»\cite{IEEEreferencias:Ref5}.
 
 \setlength{\parskip}{2mm}
 
@@ -287,7 +294,7 @@ Una de las raras pinturas que se conservan de Meryon es la titulada El barco fan
 
 \setlength{\parskip}{2mm}
 
-Otro caso fue el del  pintor post impresionista Vincent Willlem Van Gogh (1853), el científico japonés Kazunori Asada afirmó que el problema en la vista del pintor radicaba en la ausencia de los receptores del color rojo. El científico llegó a esta conclusión gracias a un simulador de inmersión, que permite percibir el color de la misma manera que lo experimentan personas con diferentes tipos de daltonismo u otros desórdenes en la percepción del color.
+Otro caso fue el del  pintor post impresionista Vincent Willlem Van Gogh (1853), el científico japonés Kazunori Asada afirmó que el problema en la vista del pintor radicaba en la ausencia de los receptores del color rojo. El científico llegó a esta conclusión gracias a un simulador de inmersión, que permite percibir el color de la misma manera que lo experimentan personas con diferentes tipos de daltonismo u otros desórdenes en la percepción del color\cite{IEEEreferencias:Ref6}.
 
 \setlength{\parskip}{2mm}
 
@@ -316,12 +323,12 @@ En el ámbito de la pantalla grande contamos con varios ejemplos:
 
 \setlength{\parskip}{2mm}
 \begin{itemize}
-    \item Keanu Reeves: La estrella del cine ha revelado ya en alguna entrevista sufrir daltonismo.
-    \item Bing Crosby: Cantante y actor fallecido en 1977 confundía siempre el azul con el verde y viceversa.'
-    \item Paul Newman: El actor y director ya fallecido descubrió que era daltónico mediante los exámenes para ingresar en la marina americana.
-    \item Eddie Redmayne: Gran actor reconocido por su interpretación en <<Los Miserables>> o <<La chica danesa>>. también entra en la lista de los daltónicos famosos.
-    \item Meat Loaf: El cantante es también daltónico, por eso no pudo formar parte del ejército americano.
-    \item Christopher Nolan: Director de cine con daltonismo, lo cual no le ha impedido ser brillante en su profesión.
+    \item Keanu Reeves: La estrella del cine ha revelado ya en alguna entrevista sufrir daltonismo\cite{IEEEreferencias:Ref9}.
+    \item Bing Crosby: Cantante y actor fallecido en 1977 confundía siempre el azul con el verde y viceversa\cite{IEEEreferencias:Ref9}.
+    \item Paul Newman: El actor y director ya fallecido descubrió que era daltónico mediante los exámenes para ingresar en la marina americana\cite{IEEEreferencias:Ref9}.
+    \item Eddie Redmayne: Gran actor reconocido por su interpretación en <<Los Miserables>> o <<La chica danesa>>. también entra en la lista de los daltónicos famosos\cite{IEEEreferencias:Ref9}.
+    \item Meat Loaf: El cantante es también daltónico, por eso no pudo formar parte del ejército americano\cite{IEEEreferencias:Ref9}.
+    \item Christopher Nolan: Director de cine con daltonismo, lo cual no le ha impedido ser brillante en su profesión\cite{IEEEreferencias:Ref9}.
     \item Rutger Hauer: Este actor estuvo en la marina, pero no siguió con ello por ser daltónico\cite{IEEEreferencias:Ref9}.
 \end{itemize}
 
@@ -332,7 +339,7 @@ Thomas Delaney que se ha convertido en uno de los futbolistas más importantes y
 \newpage
 Bill Clinton
 
-El expresidente estadounidense tiene dificultades en diferenciar rojo y verde.
+El expresidente estadounidense tiene dificultades en diferenciar rojo y verde \cite{IEEEreferencias:Ref11}.
 
 \setlength{\parskip}{2mm}
 
@@ -347,7 +354,7 @@ La acromatopsia parcial o Daltonismo es un padecimiento visual en personas que n
 \setlength{\parskip}{2mm}
 
 Para poder entender esta alteración debemos comenzar por entender como es que percibimos la visión de los colores.
-Para visualizar los objetos, se necesitan dos elementos fundamentales: el ojo y la luz. En el siglo V a. C. el filósofo griego Empédocles trataba de explicar el proceso de la visión y afirmó que la diosa Afrodita formó el ojo humano con los cuatro elementos (tierra, aire, fuego y agua) y luego encendió una llama dentro del ojo que al brillar hacía posible la visión.
+Para visualizar los objetos, se necesitan dos elementos fundamentales: el ojo y la luz. En el siglo V a. C. el filósofo griego Empédocles trataba de explicar el proceso de la visión y afirmó que la diosa Afrodita formó el ojo humano con los cuatro elementos (tierra, aire, fuego y agua) y luego encendió una llama dentro del ojo que al brillar hacía posible la visión\cite{IEEEreferencias:Ref13}.
 
 \setlength{\parskip}{2mm}
 
@@ -363,16 +370,17 @@ De todo el espectro electromagnético, el ojo humano sólo es capaz de percibir 
 
 \setlength{\parskip}{2mm}
 
-Podemos considerar el espectro de la luz que recibimos del sol como una referencia de lo que denominaríamos luz natural. Pero este espectro varía a lo largo del día. Después de amanecer y antes de anochecer es una luz cálida con predominancia de tonos naranjas y rojos. Entre estos dos momentos, al mediodía solar, se alcanza el nivel de mayor intensidad de luz con predominancia de tonos azules. Es deseable que cualquier fuente de luz artificial que utilicemos emita, al menos, la totalidad del espectro de luz visible para el ojo humano simulando aquella que recibimos del sol en diferentes momentos del día \cite{IEEEreferencias:Ref13} [Figura1]. 
+Podemos considerar el espectro de la luz que recibimos del sol como una referencia de lo que denominaríamos luz natural. Pero este espectro varía a lo largo del día. Después de amanecer y antes de anochecer es una luz cálida con predominancia de tonos naranjas y rojos. Entre estos dos momentos, al mediodía solar, se alcanza el nivel de mayor intensidad de luz con predominancia de tonos azules. Es deseable que cualquier fuente de luz artificial que utilicemos emita, al menos, la totalidad del espectro de luz visible para el ojo humano simulando aquella que recibimos del sol en diferentes momentos del día \cite{IEEEreferencias:Ref13} [Figura \ref{fig: Figura1}:]. 
 
 \begin{figure}[H]
 	\begin{center}
 \includegraphics[scale = 0.85]{Imagenes/espectro.png}
-\captionof{figure}{\label{fig:1} Gráfico de un espectro electromagnético de la luz.} 
+\captionof{figure}{\label{fig: Figura1} Gráfico de un espectro electromagnético de la luz visible para el ser humano \cite{IEEEreferencias:Ref48}.} 
 	\end{center} 
+	 
 \end{figure}
 
-Los ojos poseen dos elementos transparentes: la córnea y el cristalino, los cuales dejan pasar la luz hacia la capa interna del ojo llamada retina, que se encuentra en la parte posterior. La retina es una estructura muy compleja, formada por diversos tipos de células interconectadas, donde las únicas que procesan la luz son las células fotorreceptoras, llamadas conos y bastones. Éstas son responsables de detectar la intensidad de la luz y definir el color.
+Los ojos poseen dos elementos transparentes: la córnea y el cristalino, los cuales dejan pasar la luz hacia la capa interna del ojo llamada retina, que se encuentra en la parte posterior. La retina es una estructura muy compleja, formada por diversos tipos de células interconectadas, donde las únicas que procesan la luz son las células fotorreceptoras, llamadas conos y bastones. Éstas son responsables de detectar la intensidad de la luz y definir el color\cite{IEEEreferencias:Ref12}.
 
 \setlength{\parskip}{2mm}
 
@@ -390,13 +398,12 @@ La visión se clasifica como monocromática (en mapaches y salamandras), dicrom�
 
 Los conos se denominan según la longitud de onda que los activa: L, M y S (del inglés: long, medium y short) para la percepción de los colores azul, verde y rojo, respectivamente [12]. Cada tipo es sensible a diferentes longitudes de onda o colores. El cono corto tiene el pico de sensibilidad en unos 430 nm. en la zona entre el color violeta y el azul, el cono medio en unos 540 nm. en el color verde y el cono largo tiene el pico en unos 570 nm. casi en el color amarillo. La diferencia entre las señales recibidas de cada uno de los conos permite al cerebro percibir un rango continuo de colores, que es lo que hemos llamado el espectro visible \cite{IEEEreferencias:Ref13}.
 
-\setlength{\parskip}{2mm}
-
+\newpage
 Después, el cerebro combina la información de cada fotorreceptor y genera los colores intermedios al estimular diferentes conos de manera simultánea \cite{IEEEreferencias:Ref12}.
 
 \setlength{\parskip}{2mm}
 
-Por otra parte, las células fotorreceptoras llamadas bastones pueden funcionar en condiciones de poca luz. Por lo general se localizan en la parte exterior de la retina y se utilizan para la visión periférica.
+Por otra parte, las células fotorreceptoras llamadas bastones pueden funcionar en condiciones de poca luz. Por lo general se localizan en la parte exterior de la retina y se utilizan para la visión periférica\cite{IEEEreferencias:Ref13}.
 
 \setlength{\parskip}{2mm}
 
@@ -407,7 +414,7 @@ Hay un solo tipo de bastones, los cuales son más sensibles a la luz que los con
 Existen dos teorías que explican de mejor manera la percepción del color:
 
 \textbf{a)	Teoría Tricromática (Thomas Young, 1802):}
- Esta teoría hace referencia a que la  percepción visual está dada por la capacidad de los tres tipos de conos existentes (tres mecanismos receptores) a ser estimulados por distintas longitudes de onda. 
+ Esta teoría hace referencia a que la  percepción visual está dada por la capacidad de los tres tipos de conos existentes (tres mecanismos receptores) a ser estimulados por distintas longitudes de onda\cite{IEEEreferencias:Ref14}.
  
 \setlength{\parskip}{2mm} 
  
@@ -425,16 +432,16 @@ El proceso de capturar una señal luminosa y convertirla en una respuesta fisiol
 
 \setlength{\parskip}{2mm}
 
-El cambio conformacional inducido es el primer paso para que se genere una amplia cascada de señales fisiológicas en las que intervienen diversas proteínas. De esta manera, la rodopsina modificada después interactúa con la proteína transducina, la cual pertenece a un grupo de proteínas llamadas proteínas G, que se activan al unirse con una molécula llamada guanosín trifosfato (GTP). En general, las proteínas G están formadas por tres partes, denominadas subunidades alfa (\alpha), beta (\beta) y gamma (\gamma) \cite{IEEEreferencias:Ref12}. 
+El cambio conformacional inducido es el primer paso para que se genere una amplia cascada de señales fisiológicas en las que intervienen diversas proteínas. De esta manera, la rodopsina modificada después interactúa con la proteína transducina, la cual pertenece a un grupo de proteínas llamadas proteínas G, que se activan al unirse con una molécula llamada guanosín trifosfato (GTP). En general, las proteínas G están formadas por tres partes, denominadas subunidades alfa ($\alpha$), beta ($\beta$) y gamma ($\gamma$) \cite{IEEEreferencias:Ref12}. 
 
 \setlength{\parskip}{2mm}
 
-Cuando la transducina se une a GTP, se disocia en dos complejos, la subunidad α unida a GTP
-(αGTP) y el complejo formado por las subunidades β y γ. Luego, la subunidad αGTP de la transducina interactúa con la fosfodiesterasa, una proteína que modifica a la molécula derivada del GTP, conocida como guanosín monofosfato cíclico (GMPc). Lo anterior induce la producción de la forma no cíclica de esta molécula (guanosín monofosfato, GMP), que estimula de manera indirecta la producción de GTP para favorecer la amplificación de las cascadas de señales fisiológicas \cite{IEEEreferencias:Ref12}.
+Cuando la transducina se une a GTP, se disocia en dos complejos, la subunidad $\alpha$ unida a GTP
+($\alpha$GTP) y el complejo formado por las subunidades $\beta$ y $\gamma$. Luego, la subunidad $\alpha$GTP de la transducina interactúa con la fosfodiesterasa, una proteína que modifica a la molécula derivada del GTP, conocida como guanosín monofosfato cíclico (GMPc). Lo anterior induce la producción de la forma no cíclica de esta molécula (guanosín monofosfato, GMP), que estimula de manera indirecta la producción de GTP para favorecer la amplificación de las cascadas de señales fisiológicas \cite{IEEEreferencias:Ref12}.
 
 \setlength{\parskip}{2mm}
 
-De manera particular, en condiciones de oscuridad o poca luz, la proteína denominada guanilato ciclasa se activa y convierte el GMP en GMPc. Cuando el GMPc se une a ciertas proteínas localizadas en la membrana de las células fotorreceptoras, llamadas canales iónicos dependientes de nucleótidos cíclicos (canales CNG, por sus siglas en inglés), estos canales permiten el paso de iones con cargas positivas (como el calcio o el sodio) hacia el interior de las células, de manera que el flujo de iones también favorece la amplificación de señales al activar o estimular otras proteínas \cite{IEEEreferencias:Ref12} (Figura 2).
+De manera particular, en condiciones de oscuridad o poca luz, la proteína denominada guanilato ciclasa se activa y convierte el GMP en GMPc. Cuando el GMPc se une a ciertas proteínas localizadas en la membrana de las células fotorreceptoras, llamadas canales iónicos dependientes de nucleótidos cíclicos (canales CNG, por sus siglas en inglés), estos canales permiten el paso de iones con cargas positivas (como el calcio o el sodio) hacia el interior de las células, de manera que el flujo de iones también favorece la amplificación de señales al activar o estimular otras proteínas \cite{IEEEreferencias:Ref12} [Figura \ref{fig: Figura2}].
 
 \setlength{\parskip}{2mm}
 
@@ -449,7 +456,7 @@ Además de las capas uno y dos que reciben aferencias, cada núcleo geniculado l
 \begin{figure}[H]
 	\begin{center}
 \includegraphics[scale = 0.52]{Imagenes/cascada.png}
-\captionof{figure}{\label{fig:1} Cascada de la fototransducción.} 
+\captionof{figure}{\label{fig: Figura2} Cascada de la fototransducción\cite{IEEEreferencias:Ref12}.} 
 	\end{center} 
 \end{figure}
 
@@ -461,11 +468,11 @@ El 8\% - 10\% de los hombres y 0.5\% - 1\% de las mujeres tienen daltonismo, nor
 Esto significa que prácticamente 1 niño de cada 10 sufrirá una alteración en la visón de los colores", precisa el también director médico de la clínica Área Oftalmológica Avanzada de la ciudad condal, quien sostiene que también se puede heredar de padres a hijos, en la proporción antes descrita\cite{IEEEreferencias:Ref26}.
 
 
-La prevalencia de alteraciones adquiridas es similar en ambos géneros, pero en alteraciones congénitas el porcentaje es mayor en el género masculino, por la dominancia genética que está ligada al cromosoma X. La prevalencia varía en hombres de 2.5 a 8.7\% y en mujeres de 0.2 a 0.4\% (García y Camacho, 2012; Jiménez et al., 2013; Munaiz, 2012; Cruz-Pérez, 2015; García et al., 2010).
-Las discromatopsias congénitas parecen ser más frecuentes en América del Norte y en Europa occidental, predominando las discromatopsias en varones caucásicos con 5.6\%, siguiendo los asiáticos con 3.1\%, 2.6\% en va- rones hispanos y el grupo de menor prevalencia con 1.4\% pertenece a los afroamericanos (García et al., 2010; Montenegro y Barón, 2011); en cuanto a las mujeres, se obtuvo una prevalencia de 0.5\%.
-Otros autores refieren que la prevalencia más alta corresponde a los checos con 10.5\%, estando el resto de Europa alrededor de 8\% y España con 9\% de la población masculina.
+La prevalencia de alteraciones adquiridas es similar en ambos géneros, pero en alteraciones congénitas el porcentaje es mayor en el género masculino, por la dominancia genética que está ligada al cromosoma X. La prevalencia varía en hombres de 2.5 a 8.7\% y en mujeres de 0.2 a 0.4\% (García y Camacho, 2012; Jiménez et al., 2013; Munaiz, 2012; Cruz-Pérez, 2015; García et al., 2010)\cite{IEEEreferencias:Ref27}.
+Las discromatopsias congénitas parecen ser más frecuentes en América del Norte y en Europa occidental, predominando las discromatopsias en varones caucásicos con 5.6\%, siguiendo los asiáticos con 3.1\%, 2.6\% en va- rones hispanos y el grupo de menor prevalencia con 1.4\% pertenece a los afroamericanos (García et al., 2010; Montenegro y Barón, 2011); en cuanto a las mujeres, se obtuvo una prevalencia de 0.5\%\cite{IEEEreferencias:Ref27}.
+Otros autores refieren que la prevalencia más alta corresponde a los checos con 10.5\%, estando el resto de Europa alrededor de 8\% y España con 9\% de la población masculina\cite{IEEEreferencias:Ref27}.
 Los chinos, japoneses y filipinos presentan una prevalencia de entre 4 y 5\%, los esquimales tienen la cifra más baja con tan sólo 1\% de su población (Lobera, Romero y Carmona, 1992; Valenzuela, 2008. Algunos estudios realizados en México refieren que la prevalencia es entre 2.7 y 6.01\% en varones y 0.5\% en mujeres, predominando en las congénitas el tipo deután y en las adquiridas las tritanomalías (Lagunas, 1984; OMS, 2017; Goldstein, 2011. Difiriendo de estudios que indican también que la prevalencia en México es de 1.9\% en varones y 0.1\% en mujeres (Jiménez et al., 2013). Estas grandes diferencias pueden ser a causa del tamaño de la muestra utilizada. Las frecuencias normalmente altas de 5.43 y 7\% observadas se deben a un alto factor de mestizaje, por eso es necesario tener una muestra significativa, para reducir el margen de error. Es por eso que investigaciones realizadas en México refieren que mientras el grupo sea menos mestizado, más baja es la incidencia de este defecto (Aréchiga, 1976; Jiménez et al., 2013).
-Otro estudio sobre incidencia de discromatopsias congénitas en varones en poblaciones indígenas mexicanas muestra un recopilado de estudios de diversas poblaciones, el más antiguo es de 1933 y el último es de 1984. Los datos indican que el porcentaje de incidencia va de 0 a 7.0\%, sin embargo, no se especifican las pruebas utilizadas, el tipo de discromatopsia ni el control que se llevó a cabo para cada estudio (Lagunas, 1984).
+Otro estudio sobre incidencia de discromatopsias congénitas en varones en poblaciones indígenas mexicanas muestra un recopilado de estudios de diversas poblaciones, el más antiguo es de 1933 y el último es de 1984. Los datos indican que el porcentaje de incidencia va de 0 a 7.0\%, sin embargo, no se especifican las pruebas utilizadas, el tipo de discromatopsia ni el control que se llevó a cabo para cada estudio (Lagunas, 1984)\cite{IEEEreferencias:Ref27}.
 El estudio epidemiológico de discromatopsias congénitas más reciente en México fue realizado por el personal de enfermería en el noreste de México, encontrando una prevalencia de 1.9\%, clasificando los protanes y deutanes en débiles y fuertes (Jiménez et al., 2013)etiquetados. \cite{IEEEreferencias:Ref27}.
 
 
@@ -483,14 +490,14 @@ Así, se reconoce que se trata de un fenómeno más frecuente en hombres que en 
 Aunque existen muchos tipos de daltonismo, el 99\% de los casos corresponden a protanopia y deuteranopia o sus equivalentes (protanomalia y deuteranomalia).
 
 \begin{itemize}
-    \item \textbf{Acromático}: El daltonismo acromático es aquel en el que el individuo ve en blanco y negro (escala de gris). El individuo no percibe ningún color ya sea porque no tiene ninguno de los tres tipos de conos o por razones neurológicas. Se presenta únicamente un caso por cada 100.000 personas.
-    \item \textbf{Monocromático:} Se presenta cuando \textbf{únicamente existe uno de los tres pigmentos} de los conos y la visión de la luz y el color queda reducida a una dimensión.
-    \item \textbf{Dicromático:} El dicromatismo es un defecto moderadamente grave en el cual falta o padece una \textbf{disfunción de uno de los tres mecanismos básicos del color.} Es hereditaria y puede ser de tres tipos diferentes: Protanopia, deuteranopia y tritanopia.
+    \item \textbf{Acromático}: El daltonismo acromático es aquel en el que el individuo ve en blanco y negro (escala de gris). El individuo no percibe ningún color ya sea porque no tiene ninguno de los tres tipos de conos o por razones neurológicas. Se presenta únicamente un caso por cada 100.000 personas\cite{IEEEreferencias:Ref31}.
+    \item \textbf{Monocromático:} Se presenta cuando \textbf{únicamente existe uno de los tres pigmentos} de los conos y la visión de la luz y el color queda reducida a una dimensión\cite{IEEEreferencias:Ref31}.
+    \item \textbf{Dicromático:} El dicromatismo es un defecto moderadamente grave en el cual falta o padece una \textbf{disfunción de uno de los tres mecanismos básicos del color.} Es hereditaria y puede ser de tres tipos diferentes: Protanopia, deuteranopia y tritanopia\cite{IEEEreferencias:Ref31}.
 
     \begin{itemize}
         \item \textbf{Protanopia.} La protanopia consiste en la ausencia total de los fotorreceptores retinianos del rojo.
-        \item \textbf{Deuteranopia.} La ceguera al color verde o deuteranopia se debe a la ausencia de los fotorreceptores retinianos del color verde.
-        \item \textbf{Tritanopia.} La tritanopia es una condición muy poco frecuente en la que están ausentes los fotorreceptores de la retina para el color azul. FIGURA 3
+        \item \textbf{Deuteranopia.} La ceguera al color verde o deuteranopia se debe a la ausencia de los fotorreceptores retinianos del color verde\cite{IEEEreferencias:Ref31}.
+        \item \textbf{Tritanopia.} La tritanopia es una condición muy poco frecuente en la que están ausentes los fotorreceptores de la retina para el color azul \cite{IEEEreferencias:Ref31}[Figura \ref{fig: Figura3}].
     \end{itemize}
     \item \textbf{Tricromático anómalo: } El afectado posee los tres tipos de conos, pero con defectos funcionales, por lo que confunde un color con otro. Es el grupo más abundante y común de daltónicos, tienen tres tipos de conos, pero perciben los tonos de los colores alterados. Suelen tener defectos similares a los daltónicos dicromáticos, pero menos notables. Las afecciones que se incluyen dentro de este grupo son la protanomalia (1\% de los varones, 0.01\% de las mujeres), deuteranomalia, la más usual (6 \% de los varones, 0.4 \% de las mujeres) y tritanomalía muy poco frecuente (0.01 \% de los varones y 0.01 \% de las mujeres)\cite{IEEEreferencias:Ref31}.
 \end{itemize}
@@ -498,14 +505,14 @@ Aunque existen muchos tipos de daltonismo, el 99\% de los casos corresponden a p
 \begin{figure}[H]
 	\begin{center}
 \includegraphics[scale = 0.85]{Imagenes/daltonismo.png}
-\captionof{figure}{\label{fig:1} Diferencias entre tipos de daltonismo} 
+\captionof{figure}{\label{fig: Figura3} Diferencias entre tipos de daltonismo\cite{IEEEreferencias:Ref25}.} 
 	\end{center} 
 \end{figure}
 
 \begin{figure}[H]
 	\begin{center}
 \includegraphics[scale = 0.25]{Imagenes/daltonismo2.jpg}
-\captionof{figure}{\label{fig:1} Diferencias entre tipos de daltonismo} 
+\captionof{figure}{\label{fig:1} Diferencias en las visiones entre tipos de daltonismo\cite{IEEEreferencias:Ref49}.} 
 	\end{center} 
 \end{figure}
 
@@ -526,7 +533,7 @@ El test se basa en una serie de discos que contienen círculos de puntos de colo
 \begin{figure}[H]
 	\begin{center}
 \includegraphics[scale = 0.55]{Imagenes/ishihara.jpg}
-\captionof{figure}{\label{fig:1} Diferencias entre tipos de daltonismo} 
+\captionof{figure}{\label{fig:1} Ejemplos de cartas de ishihara\cite{IEEEreferencias:Ref50}.} 
 	\end{center} 
 \end{figure}
 
@@ -540,7 +547,7 @@ saturación, luminosidad y tonalidad son las tres características que definen u
 \begin{figure}[H]
 	\begin{center}
 \includegraphics[scale = 0.55]{Imagenes/fm.png}
-\captionof{figure}{\label{fig:1} Diferencias entre tipos de daltonismo} 
+\captionof{figure}{\label{fig:1}est de Farnsworth } 
 	\end{center} 
 \end{figure}
 
@@ -552,6 +559,10 @@ El daltonismo no tiene una curación. Se mantendrá toda la vida pero, generalme
 Aun y que no haya una <<cura>> o tratamiento al daltonismo en humanos, existe un avance importante realizado por Mancuso et al. donde lograron corregir este trastorno visual, en un inicio con dos individuos de una especie de mono \textit{<<Saimiri sciureus>>}, por medio de la terapia génica mediada por virus insertando el gen de L-opsina humana (Bennet, 2009). Unos años después, Neitz (2014) señaló que es posible por medio de la misma técnica pasar la visión dicromática a tricromática de algunos primates, adquiriendo la visión del color rojo-verde; de la misma forma, en ratones transgénicos, se logró la visión tricromática añadiendo un tercer tipo de cono \cite{IEEEreferencias:Ref26}.
 
 \subsection{Impacto Social}
+Es de vital importancia mencionar este fundamento, ya que de no hacerlo así, estaríamos dejando algo de vitalidad para la herramienta anteriormente mencionada. El impacto social ya se a mencionado implícitamente en los casos de gente reconocida en diferentes ámbitos, ellos comparten diferentes problemas debido a esta alteración.
+
+A continuación desglosaremos de manera más extensa cada uno de las situaciones y los problemas que esta alteración provoca, enunciando de manera precisa estos.
+
 \subsubsection{Comunicación visual}
 Asinsten (2010) dice que en todo tipo de comunicación siempre hay tres elementos principales: emisor que es quien produce el mensaje, el receptor quien recibe y comprende o no el mensaje, y el mensaje que contiene la información que se intercambia. De acuerdo a De la Torre y Rizo (2000), el ser humano, como receptor de mensajes, obtiene información a través de sus cinco sentidos, pero cada uno de ellos realiza una función de distinto tipo \cite{IEEEreferencias:Ref32}.
 
@@ -570,6 +581,8 @@ Así con el tiempo, van aumentando las limitaciones mientras la vida se vuelve m
 Si bien los expertos reducen el daltonismo a un mal menor, quienes lo padecen difieren: Los problemas derivados del daltonismo son bastantes, aunque puedan parecer superficiales. Hablamos de no poder optar a puestos de trabajo y de tener dificultad para ver a diario \cite{IEEEreferencias:Ref1}
 De acuerdo a Matlin y Foley (1996), el color tiene un impacto considerable en la vida diaria. Se considera cómo afecta el color en diferentes productos, como por ejemplo las cajas de detergente deben mostrar colores primarios cálidos, para lograr inspirar imágenes de limpieza y fuera. Con esto, se probó la reacción de consumidores a los detergentes, quienes detectaron que las cajas de color amarillo o naranja eran demasiado fuertes y las de caja azul eran muy débiles, por lo que el producto ideal era utilizar colores claros, blancos y celestes \cite{IEEEreferencias:Ref32}.
 
+\newpage 
+
 \subsection{Discriminación: Una sociedad inadaptada}
 
 Actualmente los daltónicos sufren gran cantidad de limitaciones. Pero, tal como insiste el Dr. Scott Anderson de Oftalmedic, Clínica Salvà, no se derivan de condiciones físicas, sino que están establecidas por la sociedad: \textit{<<Las sociedades se crean a la medida de las mayorías, por eso tenemos códigos de colores para señales de tráfico, semáforos, químicos… Sin embargo una característica de las sociedades modernas es la inclusión creciente de quienes tienen capacidades y necesidades especiales>>}. Es una discriminación indirecta, explica. De hecho, la Asociación de Daltónicos no Anónimos (ASDNA) configura una lista de aquellas profesiones a las que los daltónicos no tienen acceso, entre las que se encuentran la de piloto de aviación, controlador aéreo, conductor de transporte público colectivo, ciertos grados de policía, bombero…
@@ -586,7 +599,7 @@ Las dos que se hará mención son el árbol de decisiones, algoritmo de \textit{
 
 \subsection{Árbol de decisión}
 
-El enfoque classification and regression tree (CART) fue desarrollado por Breiman et al. (1984)\cite{IEEEreferencias:Ref44}.
+El enfoque  Classification And Regression Tree (Árbol de regresión y Clasificación) (CART) fue desarrollado por Breiman et al. (1984)\cite{IEEEreferencias:Ref44}.
 
 \begin{itemize}
     \item Son un tipo de algoritmos de \textit{\textbf{machine learning}} de aprendizaje supervisado (i.e., existe una variable objetivo predefinida).
@@ -595,18 +608,16 @@ El enfoque classification and regression tree (CART) fue desarrollado por Breima
     \item Divide el espacio de predictores (variables independientes) en regiones distintas y no sobrepuestas \cite{IEEEreferencias:Ref44}.
 \end{itemize}
 
-
 Veamos a continuación a introducir las ideas fundamentales del denominado algoritmo \textit{Top Down Induction of Decision Trees}(TDIDT ) el cual puede ser contemplado como uniformizador de la mayoría de los algoritmos de inducción de arboles de clasificación a partir de un conjunto de datos conteniendo patrones etiquetados\cite{IEEEreferencias:Ref15}.
 
 \begin{figure}[H]
 	\begin{center}
 \includegraphics[scale = 0.85]{Imagenes/algoritmo.JPG}
-\captionof{figure}{\label{fig:1} pseudocódigo de el algoritmo más básico del árbol de decisión.} 
+\captionof{figure}{\label{fig:7} pseudocódigo de el algoritmo más básico del árbol de decisión\cite{IEEEreferencias:Ref46}.} 
 	\end{center} 
 \end{figure}
 
 \setlength{\parskip}{2mm}
-\newpage
 
 \textbf{Explicación:}
 
@@ -658,7 +669,47 @@ La decisión de hacer divisiones estratégicas afecta altamente la precisión de
     \item Algunos algoritmos más comunes para la selección: Indice Gini, Chi Cuadrado, Ganancia de la información y Reducción en la varianza \cite{IEEEreferencias:Ref44}.
 
 \end{itemize}
-\newpage
+
+\subsubsection{Selección y expansión}
+
+Evidentemente, la construcción del árbol de decisión no es única, y si aplicamos una estrategia u otra a la hora de decidir en qué orden se hacen las preguntas sobre los atributos podemos encontrar árboles muy dispares. De entre todos los posibles árboles, estamos interesados en encontrar aquellos que cumplan las mejores características como máquinas de predicción, e intentaremos dar un mecanismo automático de construcción del árbol a partir de los ejemplos\cite{IEEEreferencias:Ref45}.
+
+En el año 1979, J. Ross Quinlan presenta un método para construir árboles de decisión que presentan muy buenas características, como son un buen balanceado y un tamaño pequeño (el menor número de preguntas posibles para poder encontrar la respuesta en todos los casos, si es posible). Para ello, hace uso de la Teoría de la Información desarrollada por C. Shannon en 1948. Aunque el mérito se le asocia a Quinlan, la verdad es que de forma paralela aparecieron varios métodos de construcción que eran prácticamente equivalentes. El algoritmo de construcción que presenta se llama ID3, y hasta el momento ha sido el más utilizado y en el que se han basado la mayoría de las mejoras posteriores introducidas por el mismo Quinlan y por otros autores\cite{IEEEreferencias:Ref45}.
+
+El ID3 construye un árbol de decisión de arriba a abajo, de forma directa, sin hacer uso de backtracking, y basándose únicamente en los ejemplos iniciales proporcionados. Para ello, usa el concepto de Ganancia de Información para seleccionar el atributo más útil en cada paso. En cierta forma, sigue un método voraz para decidir la pregunta que mayor ganancia da en cada paso, es decir, aquella que permite separar mejor los ejemplos respecto a la clasificación final\cite{IEEEreferencias:Ref45}..
+
+Para poder aplicar el algoritmo hemos de comenzar sabiendo cómo se mide la ganancia de información, y para ello hay que introducir el concepto de Entropía de Shannon, que de alguna forma mide el grado de incertidumbre de una muestra\cite{IEEEreferencias:Ref45}.
+
+\textbf{Entropía de Shannon}
+
+Supongamos que miramos cómo de homogéneos son los ejemplos de los que queremos aprender respecto a la clasificación:
+\begin{itemize}
+    \item Una muestra \textbf{completamente homogénea} (es decir, en la que todos se clasifican igual) tiene incertidumbre mínima, es decir, no tenemos dudas de cuál es la clasificación de cualquiera de sus elementos (si elegimos al azar cualquier de ellos, sabremos qué resultado tendremos). En este caso, fijaremos la incertidumbre (entropía) a 0\cite{IEEEreferencias:Ref45}.
+    \item Una muestra \textbf{igualmente distribuida}, es decir, que tiene el mismo número de ejemplos de cada posible clasificación, muestra una incertidumbre máxima, en el sentido de que es la peor situación para poder saber a priori cuál sería la clasificación de cualquiera de sus ejemplos elegido al azar. Así pues, en este caso fijaremos la incertidumbre (entropía) a 1\cite{IEEEreferencias:Ref45}.
+\end{itemize}
+Con estos requisitos, y algunas propiedades más que hemos de añadir para que se comporte bien, buscamos dar una definición matemática de la entropía que sirva para medir la incertidumbre de un sistema. Tras un análisis minucioso de las propiedades que debía cumplir una tal función de entropía, Shannon llegó a la conclusión de que la mejor función matemática que mide este grado de incertidumbre es la siguiente:
+ \begin{equation}\label{eq:ej}
+E(S) = \sum_{i=1}^{C}-p_{i}log_{2}(p_{i})
+\end{equation}
+
+donde \textit{S} es el conjunto de muestras (el sistema analizado), \textit{C} es el número de diferentes clasificaciones que usamos, y cada $p_{i}$ es la proporción de ejemplos que hay de la clasificación i en la muestra.
+
+\subsubsection{Poda}
+
+\begin{itemize}
+    \item \textbf{Pre-poda.} Estimar si es probable que se produzca una mejora si se expande el nodo actual. Si no es probable, el nodo no se expande\cite{IEEEreferencias:Ref46}.
+   \item \textbf{Post-poda.} Dado un árbol de decisión, se poda un subárbol (convirtiéndolo en un nodo hoja con valor de clase igual a la clase más
+    frecuente en el correspondiente nodo) si su poda produce un árbol
+con mejor rendimiento que el inicial. El proceso de poda comienza
+desde los nodos más profundos del árbol escogiendo, a igual nivel, el
+que produzca un mayor rendimiento\cite{IEEEreferencias:Ref46}.
+
+\end{itemize}
+
+Para el aspecto de los filtros, realizaremos una transformación de colores, este nos permitirá colocar filtros sobre una imagen, emulando de manera cercana la visión real del color. 
+
+Por lo que es importante hablar del modelo y como este debe ser transformado para llegar a lograr esto.
+
 \subsection{Modelo RGB}
 
 Módelo euclideano creado originalmente para los televisores NTSC (National Television System(s) Committee), el cual buscaba ser compatible con las televisiones de Blanco y Negro de la época \cite{IEEEreferencias:Ref16}.
@@ -667,11 +718,51 @@ Los colores aparecen con sus componentes primarias de rojo, verde y azul. Los va
 \begin{figure}[H]
 	\begin{center}
 \includegraphics[scale = 0.85]{Imagenes/cubo.JPG}
-\captionof{figure}{\label{fig:1} Cubo unitario de colores en RGB.} 
+\captionof{figure}{\label{fig:8} Cubo unitario de colores en RGB \cite{IEEEreferencias:Ref47}.} 
 	\end{center} 
 \end{figure}
 
-\newpage
+\subsection{Segmentación del color}
+
+La adquisición de la información se realiza a través imagen
+en color obtenida, a continuación, se obtiene la
+imagen de luminancia de la imagen original y la imagen en
+escala de grises de la componente de color que queramos captar.
+Posteriormente realizamos una substracción de la información
+que contiene la imagen de luminancia de la imagen original
+sobre la imagen de escala de grises de la componente a captar.
+Lo que se obtiene con esto, es una imagen en escala de grises en
+la cual quedan resaltados los objetos del color de la componente
+deseada \cite{IEEEreferencias:Ref47}.
+
+\begin{figure}[H]
+	\begin{center}
+\includegraphics[scale = 0.85]{Imagenes/segmentacion.png}
+\captionof{figure}{\label{fig:1}  Ejemplo reconocimiento color rojo. Imagen original (arriba), imagen luminancia banda de color (centro izquierda, imagen luminancia original (centro derecha) e imagen diferencia (abajo)\cite{IEEEreferencias:Ref47}} 
+	\end{center} 
+\end{figure}
+
+Hay que tener en cuenta que para calcular la señal de luminancia de la imagen original.
+
+\begin{equation}\label{eq:ej}
+Y = 0.299R + 0.587G + 0.114B 
+\end{equation}
+
+Donde: \textit{Y} es el valor del color del pixel, y \textit{R,G y B}, solo sirven para muestrar el valor de cada uno de los canales del RGB.
+
+Como vemos la imagen de luminancia va a contener una
+mayor influencia por parte de la componente verde en relación-
+a las otras. A la hora de hacer la substracción anteriormente
+explicada, el objetivo deseado es obtener la máxima diferencia
+(mayor brillo en la imagen de diferencia) para la componente a
+extraer. Esto nos permitirá una mejor identificación de los
+objetivos a seguir en el \textit{tracking}\cite{IEEEreferencias:Ref47}.
+
+A partir de la imagen puede apreciar que no todas las
+componentes van a proporcionar la misma imagen diferencia, en
+concreto en la componente verde existe una diferencia mucho
+más precaria, lo cual se habrá de considerar en la etapa de
+procesado\cite{IEEEreferencias:Ref47}. 
 
 \section{Estado del Arte}
 Existen aplicaciones desarrolladas por grandes emporios que buscan brindarle a una persona que padece daltonismo, algún tipo de apoyo, por lo que encontrar herramientas que se apoyen de los sistemas computacionales es muy complicado. 
@@ -685,7 +776,7 @@ El denominado <<código braile para los daltónicos>>, es un código único, inc
 \begin{figure}[H]
 	\begin{center}
 \includegraphics[scale = 0.65]{Imagenes/coloradd.PNG}
-\captionof{figure}{\label{fig:1} Código de colores ColorADD.} 
+\captionof{figure}{\label{fig:10} Código de colores ColorADD\cite{IEEEreferencias:Ref50}} 
 	\end{center} 
 \end{figure}
 
@@ -697,7 +788,7 @@ Un dato curioso es el país de Portugal, el cual a día de hoy señaliza todas s
 \begin{figure}[H]
 	\begin{center}
 \includegraphics[scale = 0.14]{Imagenes/UNO.jpg}
-\captionof{figure}{\label{fig:1} Juego con código colorADD.} 
+\captionof{figure}{\label{fig:1} Juego con código colorADD\cite{IEEEreferencias:Ref17}} 
 	\end{center} 
 \end{figure}
 
@@ -706,7 +797,7 @@ De igual manera las empresas Viarco y Mattel generaron apoyándose del código C
 \begin{figure}[H]
 	\begin{center}
 \includegraphics[scale = 0.45]{Imagenes/coloradd.jpg}
-\captionof{figure}{\label{fig:1} Colores Viarco con código ColorADD.} 
+\captionof{figure}{\label{fig:1} Colores Viarco con código ColorADD \cite{IEEEreferencias:Ref17}} 
 	\end{center} 
 \end{figure}
 
@@ -728,7 +819,7 @@ El funcionamiento de la aplicación es algo sencillo, se trata de una aplicació
 \begin{figure}[H]
 	\begin{center}
 \includegraphics[scale =0.25]{Imagenes/Color_Binoculars_03-1.png}
-\captionof{figure}{\label{fig:1} Captura de pantalla de la aplicación en funcionamiento.} 
+\captionof{figure}{\label{fig:1} Captura de pantalla de la aplicación en funcionamiento\cite{IEEEreferencias:Ref18}} 
 	\end{center} 
 \end{figure}
 
@@ -752,7 +843,7 @@ A continuación se mostrará un diagrama que la misma marca proporciona en su po
 \begin{figure}[H]
 	\begin{center}
 \includegraphics[scale = 1.40]{Imagenes/Samsung-SeeColors-App-for-QLED-TV_main_2.jpg}
-\captionof{figure}{\label{fig:2} Diagrama a alto nivel de el proceso de funcionamiento de la aplicación Samsung\textregistered \space SeeColors} 
+\captionof{figure}{\label{fig:13} Diagrama a alto nivel de el proceso de funcionamiento de la aplicación Samsung\textregistered \space SeeColors \cite{IEEEreferencias:Ref19}} 
 	\end{center} 
 \end{figure}
 
@@ -794,17 +885,15 @@ Esperamos que el diseño universal de visión en color se incorpore en cada disp
 
 \subsection{Planteamiento del problema}
 
-El daltonismo es un problema, social, personal, familiar y médico poco atendido debido a que se trata de una alteración y no de una enfermedad, el cual como se definió el el marco teórico, se trata de una alteración que afecta la visión de colores, provocando problemas a todo aquel que la padece.
+El daltonismo es un problema, social,laboral, personal, familiar y médico poco atendido debido a que se trata de una alteración y no de una enfermedad, el cual como se definió el el marco teórico, se trata de una alteración congénita o adquirida que afecta la visión de colores, provocando problemas a todo aquel que la padece.
 
-\setlength{\parskip}{2mm}
+Para fines de este proyecto, se planteará como alcance solamente a la personas que padecen daltonismo congénito, ya que representa un mayor esfuerzo en aquellas que son por vía adquirida, debido a que como se estipula en el marco teórico estos no cumplen con las mismas características.
 
-Una manera viable de apoyar a la gente que lo padece, es diagnosticarlo a través de las cartas de Ishihara, método sencillo y claro para conocer si una persona es daltónica y de serlo que tipo de daltonismo padece.
+Se tiene que dejar como precedente, que el paciente-médico siempre debe ser visto como un solo ente, por lo que en el proyecto el paciente-oftalmólogo será presentado de esta manera, debido a que todo aquello que represente una mejora para cualquier personal del área médica(para fines del proyecto el oftalmólogo), presentará sustancialmente un impacto positivo para el paciente.
 
-\setlength{\parskip}{2mm}
+Así que su principal virtud será evitar casi en su totalidad el error humano del oftalmólogo producido por diferentes factores tales como, cansancio debido a largas jornadas de trabajo, distracciones, etc. Evitando así el crearle un falso diagnóstico de daltonismo a un paciente.
 
-El segundo paso y el más ocupado por los sistemas de hoy en día es alterar, a través de dispositivos electrónicos, la visión de correcta de los colores, realizando una alteración a los colores RGB, ya que a pesar de existir algunas herramientas como los son los lentes que alteran el color a través de medios físicos, estos suelen tener precios demasiado elevados,dejando de ser accesibles a la mayoria de la población.
-
-Por lo que algunas marcar reconocidas en el ambito de los sistemas han creado herramientas de apoyo, que hoy en día se siguen manteniendo en soporte, dejando claro a través del estado de arte, que ninguna de estas es de origen mexicano, por lo cual demuestra ser un gran apoyo y un renombrado prestigio para la Escuela superior de computo.
+Vale la pena recalcar por último, que es primordial, más no necesario, que este sea implementado como primera vía a niños en edad temprana, para sí se tenga un conocimiento certero de que este padece daltonismo, apoyando de diversas maneras a que la persona aminore su problema a una etapa adulta buscando alternativas que lo ayuden en su día a día.
 
 \subsection{Justificación}
 
@@ -818,7 +907,7 @@ Cabe mencionar algunas definiciones con las que cuenta esta metodología trabaja
 \begin{figure}[H]
 	\begin{center}
 \includegraphics[scale = 0.40]{Imagenes/desarrollo_scrum.jpg}
-\captionof{figure}{\label{fig:2} Ciclo de vida de un proyecto en SCRUM} 
+\captionof{figure}{\label{fig:2} Ciclo de vida de un proyecto en SCRUM \cite{IEEEreferencias:Ref51}} 
 	\end{center} 
 \end{figure}
 
@@ -871,7 +960,7 @@ Cabe recalcar que dentro de SCRUM existen diferente roles, tales como:
     \item \textbf{Scrum Team:} Son todos los integrantes directamente involucrados con el proyecto \cite{IEEEreferencias:Ref24}.
 \end{itemize}
 
-Una manera fácil, viable y sencilla de obtener requerimientos es proporcionada por Scrum, ya que se encuentran disponibles un par de ellas que van de la mano y ayudan al análisis del \textit{As is}. Este par de recursos son: 
+Una manera fácil, viable y sencilla de obtener requerimientos es proporcionada por Scrum, ya que se encuentran disponibles un par de ellas que van de la mano y ayudan al análisis del \textit{Asis}. Este par de recursos son: 
 
 \begin{itemize}
     \item \textbf{Historias de usuario:} Son historias redactadas por el \textit{scrum team}, respondiendo a las preguntas, ¿Quién?, ¿Cómo? y ¿Para qué?
@@ -887,54 +976,66 @@ El modelo ágil es uno de los más ocupados hoy en día en las empresas, es un m
 \subsubsection{Sprints del proyecto}
 Para cerrar el tema, la propuesta de actividades que a través de los sprint se buscarán realizar, y que en este momento se encuentra realizando.
 
-\begin{table}[htbp]
-\begin{center}
-\begin{tabular}{|p{1.0cm}|p{1.8cm}|p{4.8cm}|p{2.5cm}|p{2.5cm}|}
+\begin{longtable}{|p{0.8cm}|p{1.8cm}|p{4.0cm}|p{2.3cm}|p{2.3cm}|p{2.5cm}|}
 \hline
-Sprint & Duración & Entregable &Fecha inicial planeada & Fecha final planeada \\
-\hline
-A & 1 semana & Reporte técnico (Marco Teórico) & 02/08/2019 & 09/08/2019 \\
-\hline
-B &  2 semanas & Reporte técnico (Planteamiento del problema) & 12/08/2019 & 26/08/2019\\
-\hline
-C &  4 semanas  & Reporte técnico(Análisis) & 27/08/2019 & 17/09/2019\\
-\hline
-D & 4 semanas &Reporte técnico(Diseño) & 18/09/2019 & 14/10/2019\\
-\hline
-E & 0.14 semanas &Presentación TT1 &  30/10/2019 & 30/10/2019\\
-\hline
-1 & 4 semanas &Módulo Selector de respuesta & 18/11/2019 & 09/12/2019\\
-\hline
-2 & 4 semanas&Módulo diagnosticado & 09/12/2019 & 07/01/2020\\
-\hline
-3 & 2 semanas&Módulo de tratamiento & 07/01/2020 & 20/01/2020\\
-\hline
-4 & 1 semana&Servidor UDP & 21/01/2020 & 27/01/2020\\
-\hline
-5 & 4 semanas& Árbol de decisiones Fase I & 27/01/2020 & 24/02/2020\\
-\hline
-5 & 4 semanas& Árbol de decisiones Fase II& 25/02/2020 & 24/03/2020\\
-\hline
-6 & 2 semanas&Transformador de imágenes & 24/03/2020 & 14/04/2020\\
-\hline
-7 & 2 semanas& Módulo de la cámara & 15/04/2020 & 28/04/2020\\
-\hline
-8 & 1 semanas& Construcción & 28/04/2020 & 06/05/2020\\
-\hline
-9 & 0.14 semanas& Presentación TT2 & TBD & TBD\\
-\hline
-\end{tabular}
-\caption{Estimación de los Sprint.}
-\label{tabla1}
-\end{center}
-\end{table}
+Sprint & Duración & Entregable &Fecha inicial planeada & Fecha final planeada & Alcance del sprint \\
+\hline 
+\endfirsthead
 
-Para cerrar con este tema, se menciona que al inicio de cada sprint, se tiene que desarrollar el backlog, el cual se deberá priorizar correctamente. Además que al finalizar cada tarea este tiene que encontrarse actualizado.
+% aquí añadimos el encabezado del resto de hojas.
+\hline
+
+Sprint & Duración & Entregable &Fecha inicial planeada & Fecha final planeada & Alcance del sprint \\
+\hline 
+\endhead
+
+% aquí añadimos el fondo de todas las hojas, excepto de la última.
+\multicolumn{6}{c}{}
+\endfoot
+
+% aquí añadimos el fondo de la última hoja.
+\endlastfoot
+\hline
+A & 1 semana & Reporte técnico (Marco Teórico) & 02/08/2019 & 09/08/2019 & Generar el marco teórico del reporte técnico.\\
+\hline
+B &  2 semanas & Reporte técnico (Planteamiento del problema) & 12/08/2019 & 26/08/2019 &Generar el planteamiento del problema del proyecto.\\
+\hline
+C &  4 semanas  & Reporte técnico(Análisis) & 27/08/2019 & 17/09/2019 & Realizar el análisis del proyecto y generar la documentación del reporte. \\
+\hline
+D & 4 semanas &Reporte técnico(Diseño) & 18/09/2019 & 14/10/2019 & Realizar el diseño del proyecto y generar la documentación del reporte.\\
+\hline
+E & 0.14 semanas &Presentación TT1 &  30/10/2019 & 30/10/2019 & Presentar el alcance mínimo viable obtenido para TT1.\\
+\hline
+1 & 4 semanas &Módulo Selector de respuestas & 18/11/2019 & 09/12/2019 & Entregar el módulo selector de respuestas, el cual será un front que pregunte cosas relevantes para el proyecto.\\
+\hline
+2 & 4 semanas&Módulo diagnosticador(Tablas de Ishihara) & 09/12/2019 & 07/01/2020 & Se generará la parte del módulo diagnosticador correspondiente al test de ishihara\\
+\hline
+3 & 4 semanas&Módulo diagnosticador(Árbol de decisiones) & 07/01/2020 & 04/02/2020 & Se complementará el módulo diagnosticador con el diagnóstico en bruto\\
+\hline
+4 & 1 semana&Comunicación entre módulos generados & 05/02/2020 & 19/02/2020 & Se comunicarán ambos módulos (Selector de respuestas y diagnosticador) para que funcionen como uno solo\\
+\hline
+5 & 2 semanas& Módulo analizador & 20/02/2020 & 05/03/2020 & Será el módulo encargado de recibir la información del tipo de daltonismo que haya arrojado el sistema e integrarla o tomarla de la base de datos, para posteriormente cambiar de color\\
+\hline
+6 & 1 semana& Comunicación entre gafas y computadora& 06/03/2020 & 13/03/2020 & Creará solo la comunicación entre ambos dispositivos.\\
+\hline
+7 & 2 semanas& Módulo transformador de imágenes & 14/03/2020 & 27/03/2020 & Módulo encargado de filtrar la imagen obtenida por la cámara o la imagen mostrada en las gafas\\
+\hline
+8 & 4 semanas& Visualización de la cámara e imagen& 28/03/2020 & 28/04/2020 & Este proceso será el encargado de dejar observar la elección del paciente (Cámara o imagen) \\
+\hline
+9 & 2 semanas & Construcción & 28/04/2020 & 06/05/2020 & Será el periodo de acoplamiento de la herramienta.\\
+\hline
+10 & 0.14 semanas& Presentación TT2 & TBD & TBD & Presentación TT2\\
+\hline
+\caption{Sprints del proyecto}
+\label{tabla1}
+\end{longtable}
+
+\newpage 
+Cabe mencionar que al inicio de cada sprint, se tiene que desarrollar el backlog, el cual se deberá priorizar correctamente, tomando las tareas que deben de ser más importantes, considerando impacto en el proyecto y un avance sustancial. Al finalizar cada tarea este tiene que encontrarse actualizado.
 
 Con las fechas planteadas del sprint, se podrá llevar un control con el Sprint a través de la TaskBoard Chart, la cual nos dará una retrospectiva concreta al finalizar el proyecto.
 
-\newpage
-
+\newpage 
 \subsection{Tecnologías a ocupar}
 \subsubsection{JAVA}
 Java es un lenguaje de programación y una plataforma informática comercializada por primera vez en 1995 por Sun Microsystems. Hay muchas aplicaciones y sitios web que no funcionarán a menos que tenga Java instalado y cada día se crean más. Java es rápido, seguro y fiable. Desde portátiles hasta centros de datos, desde consolas para juegos hasta súper computadoras, desde teléfonos móviles hasta Internet, Java está en todas partes\cite{IEEEreferencias:Ref40}.
@@ -946,17 +1047,18 @@ Android es el nombre de un sistema operativo que se emplea en dispositivos móvi
 
 Siendo ocupado por el 86.8\% de la población mundial \cite{IEEEreferencias:Ref42}, es el sistema operativo para móviles más ocupado en el mercado, contando con Android Studio, una IDE oficial y amigable para la programación de aplicaciones para su sistema, por ello si se utiliza Android, se captará a más de la mitad de la población.
 
-\subsection{Transformación de imágenes RGB}
+\subsection{Módulo Transformador de colores}
+El módulo transformador de colores será uno de los dos más importantes del proyecto, ya que este será el encargado de filtrar los colores RGB, los cuales permitirán al paciente emular los colores como deberían de verse normalmente a través de una visión normal.
+
 \subsubsection{Filtros de colores RGB}
 
-Para hablar sobre el procesamiento de imágenes RGB debemos mecionar primeramente que es RGB.
+Se utilizará lo conocido en la teoría, primeramente sabemos que la obtención del color es a través del cálculo siguiente.
 
 Es un modelo de color en el cual es posible representar un color mediante la mezcla por adición de tres colores primarios: rojo, verde y azul\cite{IEEEreferencias:Ref43}.
 
 Funciona bien sobre <<fondo negro>>, por ejemplo una pantalla de computador\cite{IEEEreferencias:Ref43}.
 
 El número de colores posibles para un pixel, depende del número de bits presentes por píxel, dando por resultado la fórmula siguiente.
-
 
 \begin{equation}\label{ecuacion 1}
 N = (2^n)^3
@@ -971,21 +1073,82 @@ N=25633=16.777.216=16
 
 \setlength{\parskip}{2mm}
 Por lo que el algoritmo para cambiar los colores al color deseado, solo dependerá, de lo que la teoría nos marca junto a el cambio en el píxel del valor que este tendrá.
-\newpage
-\subsection{Árbol de decisión}
+\subsection{Módulo analizador}
+
+Este proyecto será el módulo encargado de realizar la petición al módulo transformador de colores, de tanto la decisión que haya tomado el paciente, como la de definir con que colores será transformada la imagen, en esto no se empleará un cliente-servidor UDP.
+
+\subsubsection{Servidor UDP}
+
+El servidor UDP que empleará será con tan solo una comunicación entre los lentes y la computadora, la elección de un servidor UDP, es debido a que tiende a ser más eficaz que un servidor TCP.
+
+\subsection{Módulo Selector de respuestas}
+
+Este módulo será el más sencillo de realizar del proyecto, ya que tan solo será un front que mostrará al médico la selección de la respuesta correcta.
+
+\subsection{Módulo Diagnosticador}
+\subsubsection{Cartas de Ishihara}
+Las cartas de ishihara se encuentran definidas en su funcionamiento en el marco teórico, y como se ha mencionado es el estudio más sencillo pero no ineficiente para obtener el conocimiento de si una persona es daltónica, como ya se explicó en el funcionamiento, este sólo se encargará de primeramente realizar un test clásico, de una manera secuencial mostrará las tablas, y para ser realizadas pruebas, solamente nos mostrará los resultados del test realizado, tomando en consideración validaciones tales como si el paciente menciona alguna respuesta absurda o no valida.
+
+Este módulo servirá como las preguntas bajo las que el árbol de decisiones se servirá para dar el conocimiento de que si el paciente es o no daltónico.
+
+\subsubsection{Árbol de decisión}
 En el marco teórico, ya se habló un poco sobre del árbol de decisiones, este es algoritmo de  \textit{machine learning} siendo un poco simple, pero eficaz para la clasificación, debido a que clasificaremos el tipo del daltonismo que pace la persona, se vuelve óptimo para el fin de la herramienta.
 
-La función que este algoritmo es el de ayudar a través de preguntas la decisión correcta a tomar. Un ejemplo muy práctico donde este se emplea, es la plataforma Akinator\textcopyright.
+Un ejemplo de como se irá generando el árbol de decisiones en conjunto con el test de ishihara será el siguiente, ejemplificando con algunas de las tablas presentes en el test, siempre siendo el nodo raíz el caso ideal, en el que siempre está presente el número 12, sin importar si el paciente es o no daltónico, en algunas tablas no se logra visualizar algún número, esto depende si la persona es daltónica o no, en algunos caso será motivo de una visión normal, mientras que en otros será motivo de algún tipo de daltonismo.
 
-Aterrizando en esta plataforma, la plataforma nos solicita primeramente que pensemos en un personaje, ya sea ficticio o real, para después ir cuestionando, aseverando que adivinará el personaje, después de varias preguntas, este llegará a un resultado, el cúal en un gran porcentaje,es nuestro personaje.
+El árbol irá preguntándole a través de la comunicación de módulos en que parte está, en caso de ser alguno respuesta absurda, el mismo módulo diagnosticador deberá de validar si se trata de un número cercano, si el daltonismo no es muy grave o las condiciones no son las ideales(el haz de luz se ve perjudicado), suele ser visible con mayor dificultad, en caso contrario deberá ver el número de manera clara.  
 
-Al igual que la plataforma, se preguntarán cosas, en este caso cada una de las cartas de ishihara, que evaluarán si la persona es daltónica o no, mientras que a través del mismo algoritmo de las cartas de Ishihara, este irá sumando puntos a las respuestas.
+La manera en la que el árbol llegará a alguna respuesta será a través del algoritmo mencionado en el marco teórico, se calculará la entropía de cada una de las laminas, la suma irá acercando a una respuesta, cuando un nodo respuesta al ser restado con la suma anteriormente mencionada nos de 0, será el momento en el que la inteligencia deduzca que se encuentre con una respuesta, esto demostrará que la persona es daltónica o no.
 
-En caso de acertar con las respuestas que el algoritmo de las cartas de Ishihara predetermina o encontrarse en un puntaje cercano al mismo, este nos dará como positivo que se trata de algún tipo de daltonismo, que dependerá de las respuestas de la persona en cuestión.
+Tras esto nos damos cuenta que la expansión del árbol es a lo largo más que a lo ancho, mientras que su poda convendrá sea eliminando todos los nodos respuesta que no fueron elegidos por el paciente, haciendo así una post-poda.
+
+\begin{figure}[H]
+	\begin{center}
+\includegraphics[scale = 0.60]{Imagenes/arbol.png}
+\captionof{figure}{\label{fig:2} Ejemplo de árbol de decisiones} 
+	\end{center} 
+\end{figure}
 \newpage
 \section{Análisis}
+\subsection{Viabilidad}
 
+\subsubsection{Alcance}
+
+Como fue definido en el planteamiento del problema, el proyecto buscará realizar un análisis para conocer que si el paciente es daltónico o no, para después transformar los colores buscando emular la manera correcta de la gama cromática.
+
+\subsubsection{Análisis de situación}
+
+\textbf{Fortalezas:}
+\begin{itemize}
+    \item Diagnosticará de manera más eficiente y sin error humano a un paciente con daltonismo.
+    \item Apoyará de manera más eficaz al oftalmólogo encargado.
+    \item Reducirá el tiempo que tarda en realizarse el test de ishihara.
+    \item Será una manera más interactiva para el paciente, principalmente si se trata de un menor de edad.
+    \item Se buscará ser empleado en sistemas de bajos recursos.
+    \item Será ecológico, realizando un estudio libre de hojas de papel.
+\end{itemize}
+
+
+\textbf{Debilidades:}
+\begin{itemize}
+    \item Se tendrá que contar con equipo de cómputo, en caso de no tenerlo involucrará un costo para el oftalmólogo.
+    \item Podría verse afectado si el estudio es realizado con luz artificial.
+   \item  Es mas económico si es realizado de la manera clásica.
+\end{itemize}
+
+\subsubsection{Enfoque}
+
+La herramienta se idealiza principalmente a ser siempre controlada por personal calificado, que en el caso del proyecto será el oftalmólogo, como se marcó en el planteamiento del problema, el paciente aunque no tiene un interacción directa con el sistema, se ve beneficiado debido al ser diagnosticado y apoyado a través de la herramienta.
+
+\subsubsection{Conclusión de la viabilidad}
+
+A pesar de que falta realizar la factibilidad económica y técnica, podemos definir que es un proyecto viable, ya que en la actualidad se cuenta con pocas herramientas que apoyen a las personas con daltonismo.
+
+Se pueden identificar más beneficios(Fortalezas) que problemas(Debilidades) por lo cual a consideración de las factibilidades, el proyecto tiende a ser viable.
+
+\newpage
 \subsection{Factibilidad}
+
 \subsubsection{Factibilidad Técnica}
 
 Debido a que se trata de un sistema de muy pocos requerimientos, funcionará de manera correcta en cualquier equipo.
@@ -1235,6 +1398,7 @@ Como resultado se elaboran una serie de requerimientos funcionales los cuales so
     \item Debe contar con una interfaz intuitiva para el médico.
     
 \end{enumerate}
+
 \newpage
 \subsection{Análisis de Riesgos}
 
@@ -1246,13 +1410,40 @@ Como resultado se elaboran una serie de requerimientos funcionales los cuales so
 \hline
 Riesgo & Categoría & Probabilidad & Impacto & Mitigación \\
 \hline
-Estimación baja del tamaño & PS & 30\% & 2 & Hacer una nueva estimación en cada Sprint \\
+Estimación baja del tamaño & PS & 30\% & 2 & Hacer una nueva estimación en cada Sprint del proyecto\\
 \hline
+
 Fecha de entrega equivocada & BU & 20\% & 2 & Seguir y controlar apropiadamente el proyecto en cada sprint. \\
 \hline
-Perdida de fondos & CU & 5\% & 1 & Seguir y controlar apropiadamente el gasto en cada sprint. \\
+Perdida de fondos & CU & 5\% & 1 & Seguir y controlar apropiadamente el gasto en cada sprint, realizar la retrospectiva debida del sprint. \\
 \hline
 Tecnología no santisface las expectativas & TE & 40\% & 3 & Mantener las herramientas de desarrollo actualizadas. \\
+\hline
+Ocurre alguna enfermedad que incapacite a algún director o a mí & CU & 70\% & 5 & Generar una ruta critica del sprint dependiendo del tiempo en el que alguno de los integrantes se vea incapacitado. \\
+\hline
+Falta de servicio de luz & CU & 30\% & 2 & Generar una ruta critica para no sobrepasar el tiempo límite. \\
+\hline
+\end{tabular}
+%\caption{Identificación y Clasificación.}
+\label{tabla2}
+\end{center}
+\end{table}
+
+\begin{table}[htbp]
+\begin{center}
+\begin{tabular}{|p{2.2cm}|p{2.2cm}|p{2.2cm}|p{2.2cm}|p{2.2cm}|}
+\hline
+Falta de servicio de internet & CU & 30\% & 2 & Generar una ruta critica para no sobrepasar el tiempo límite. \\
+\hline
+Perdida de equipo de computo & TE & 70\% & 4 & Mantener la información actualizada en una nube segura, como copia de seguridad y contar con una computadora que sirva de \textit{backup}. \\
+\hline
+Perdida de información & TE & 70\% & 4 & Mantener la información actualizada en una nube segura, como copia de seguridad. \\
+\hline
+Sinodal no se presenta a presentación &CU & 70\% & 4 & Seguir el protocolo de la CATT, y esperar a la decisión consensuada entre los directores y los sinodales asistentes, para poder generar el quórum necesario. \\
+\hline
+Correcciones en documentación  & BU & 50\% & 3 & Generar una ruta critica con las correcciones pertinentes que no hagan un impacto en los siguientes Sprint. \\
+\hline
+Encontrar una tarea no indentificada en el análisis & TE & 30\% & 2 & Scrum mitiga el riesgo, presentando la oportunidad de corregir un sprint. \\
 \hline
 \end{tabular}
 \caption{Identificación y Clasificación.}
@@ -1260,13 +1451,28 @@ Tecnología no santisface las expectativas & TE & 40\% & 3 & Mantener las herram
 \end{center}
 \end{table}
 
+
+
 \newpage
+
 \section{Diseño}
 
-\subsection{UML}
-Para el diseño, se comenzó con los diagramas UML tratándose de un software orientado a objetos.
+\subsection{Diagrama de arquitectura del sistema}
 
-A continuación se mostrarán los diagramas UML que se consideran necesarios para lograr la implementación del proyecto, estos son los siguientes:
+Este diagrama refleja lo que será, en cuanto a procesos, la herramienta que se realizará.
+
+\begin{figure}[H]
+	\begin{center}
+\includegraphics[scale = 0.75]{Imagenes/BOSQUEJO.PNG}
+\captionof{figure}{\label{fig:2} Diagrama a alto nivel de la herramienta}
+	\end{center} 
+\end{figure}
+
+
+\subsection{UML}
+Para el diseño, se comenzó con los diagramas UML ya que se optó por realizar un software que siga el paradigma orientado a objetos, con el que podrá funcionar de manera eficiente.
+
+Estos son los diagramas UML que se consideran necesarios para lograr la implementación del proyecto:
 
 \begin{itemize}
     \item Diagrama de casos de uso.
@@ -1277,18 +1483,378 @@ A continuación se mostrarán los diagramas UML que se consideran necesarios par
     \item Diagrama de componentes.
 \end{itemize}
 
+A continuación los observaremos dando una breve explicación de los mismos.
+
+\newpage
+
 \subsubsection{Diagrama de casos de uso}
 
 El diagrama de casos es el más fundamental en cada sistema y en este proyecto ayudará para conocer más a fondo algunos aspectos del sistema.
 
 \begin{figure}[H]
 	\begin{center}
-\includegraphics[scale = 0.60]{UML/casos.png}
+\includegraphics[scale = 0.60]{UML/UseCaseDiagram1.jpg}
 \captionof{figure}{\label{fig:2} Diagrama de casos de uso}
 	\end{center} 
 \end{figure}
 
 \newpage
+
+\subsubsection{Tablas de casos de uso}
+\begin{longtable}{|p{3.8cm}|p{10.8cm}|}
+\hline
+CASO DE USO & CU1: ver cámara o imagen\\
+\hline 
+\endfirsthead
+
+% aquí añadimos el encabezado del resto de hojas.
+\hline
+
+CASO DE USO & CU1: ver cámara o imagen\\
+\hline 
+\endhead
+
+% aquí añadimos el fondo de todas las hojas, excepto de la última.
+\multicolumn{2}{c}{}
+\endfoot
+
+% aquí añadimos el fondo de la última hoja.
+\endlastfoot
+\hline
+versión & 1\\
+\hline
+Autor & Jorge Armando Solis Solis\\
+\hline
+Revisiones & Gabriela de Jesús López Ruiz \\
+\hline
+Fecha de última revisión & 04/12/19\\
+\hline
+Actor(es) & Paciente \\
+\hline
+Propósito & El paciente tiene la posibilidad de elegir entre si quiere observar una imagen o un paciente en una simulación de la correcta visión del espectro de colores\\
+\hline
+Disparadores & \\
+\hline
+Entradas & nombre, tipo de daltonismo, selección\\
+\hline
+salidas & muestreo de la imagen\\
+\hline
+Pre-condiciones & Haber realizado el test de ishihara y haber sido diagnosticado con algún tipo de daltonismo \\
+\hline
+Post-condiciones &   \\
+\hline
+Flujo principal & \begin{enumerate}
+    \item El paciente decide que desea ver.
+    \item El médico presiona el botón de la selección del paciente.
+    \item El sistema obtiene tipo de daltonismo que padece el paciente.
+    \item El sistema filtra los colores del paciente.
+    \item El sistema despliega la imagen fija o de la cámara en las gafas.
+\end{enumerate}
+    \\
+\hline
+Flujos Alternos & \\
+\hline
+\caption{CASO DE USO 1}
+\label{tabla1}
+\end{longtable}
+
+\begin{longtable}{|p{3.8cm}|p{10.8cm}|}
+\hline
+CASO DE USO & CU2: Selección de respuestas\\
+\hline 
+\endfirsthead
+
+% aquí añadimos el encabezado del resto de hojas.
+\hline
+
+ & \\
+\hline 
+\endhead
+
+% aquí añadimos el fondo de todas las hojas, excepto de la última.
+\multicolumn{2}{c}{}
+\endfoot
+
+% aquí añadimos el fondo de la última hoja.
+\endlastfoot
+\hline
+versión & 1\\
+\hline
+Autor & Jorge Armando Solis Solis\\
+\hline
+Revisiones & Gabriela de Jesús López Ruiz \\
+\hline
+Fecha de última revisión & 04/12/19\\
+\hline
+Actor(es) & Paciente, oftalmólogo \\
+\hline
+Propósito & El paciente seleccionará las respuestas bajo las que el mismo será diagnosticado \\
+\hline
+Disparadores & \\
+\hline
+Entradas & pregunta, respuesta A, respuesta B, respuesta C, nombre de la carta, nombre del paciente\\
+\hline
+salidas & respuesta de la carta\\
+\hline
+Pre-condiciones & Encontrarse registrado el paciente al que se le realizará el análisis, Paciente puede ver una carta de Ishihara \\
+\hline
+Post-condiciones & Generación de diagnóstico\\
+\hline
+Flujo principal & \begin{enumerate}
+    \item El oftalmólogo registra la respuesta del paciente.
+    \item El sistema almacena la respuesta del paciente.
+    \item El sistema envía al árbol de decisiones la respuesta correcta.
+    \item El sistema repite el proceso hasta que el árbol de decisiones devuelve una respuesta.
+    \item El sistema diagnostica el tipo de daltonismo.
+\end{enumerate}
+    \\
+\hline
+Flujos Alternos & \\
+\hline
+\caption{CASO DE USO 2}
+\label{tabla1}
+\end{longtable}
+
+\begin{longtable}{|p{3.8cm}|p{10.8cm}|}
+\hline
+CASO DE USO & CU3: Visualizar Carta de Ishihara\\
+\hline 
+\endfirsthead
+
+% aquí añadimos el encabezado del resto de hojas.
+\hline
+
+ & \\
+\hline 
+\endhead
+
+% aquí añadimos el fondo de todas las hojas, excepto de la última.
+\multicolumn{2}{c}{}
+\endfoot
+
+% aquí añadimos el fondo de la última hoja.
+\endlastfoot
+\hline
+versión & 1\\
+\hline
+Autor & Jorge Armando Solis Solis\\
+\hline
+Revisiones & Gabriela de Jesús López Ruiz \\
+\hline
+Fecha de última revisión & 04/12/19\\
+\hline
+Actor(es) & Paciente, oftalmólogo \\
+\hline
+Propósito & El paciente visualiza las cartas bajo las que seleccionará las respuestas que decidirán si padece daltonismo\\
+\hline
+Disparadores & \\
+\hline
+Entradas & pregunta, nombre de la carta, nombre del paciente\\
+\hline
+salidas & respuesta de la carta\\
+\hline
+Pre-condiciones & Encontrarse registrado el paciente al que se le realizará el análisis \\
+\hline
+Post-condiciones & Decidir que si se tiene un resultado o se necesita una nueva carta. \\
+\hline
+Flujo principal & \begin{enumerate}
+    \item El sistema muestra una carta de Ishihara.
+    \item El paciente visualiza una carta de Ishihara.
+    \item El paciente decide la carta de Ishihara.
+    \item El paciente menciona la respuesta.
+\end{enumerate}
+    \\
+\hline
+Flujos Alternos & \\
+\hline
+\caption{CASO DE USO 3}
+\label{tabla1}
+\end{longtable}
+\newpage
+
+\begin{longtable}{|p{3.8cm}|p{10.8cm}|}
+\hline
+CASO DE USO & CU4: Crear paciente\\
+\hline 
+\endfirsthead
+
+% aquí añadimos el encabezado del resto de hojas.
+\hline
+
+ & \\
+\hline 
+\endhead
+
+% aquí añadimos el fondo de todas las hojas, excepto de la última.
+\multicolumn{2}{c}{}
+\endfoot
+
+% aquí añadimos el fondo de la última hoja.
+\endlastfoot
+\hline
+versión & 1\\
+\hline
+Autor & Jorge Armando Solis Solis\\
+\hline
+Revisiones & Gabriela de Jesús López Ruiz \\
+\hline
+Fecha de última revisión & 04/12/19\\
+\hline
+Actor(es) & Oftalmólogo \\
+\hline
+Propósito & Se creará un nuevo paciente que será generado al ser la primera cita del mismo, tomando los datos necesarios.\\
+\hline
+Disparadores & \\
+\hline
+Entradas & nombre del paciente, fecha de nacimiento del paciente, datos del oftalmólogo\\
+\hline
+salidas & Paciente generado\\
+\hline
+Pre-condiciones & Ser la primera cita del paciente \\
+\hline
+Post-condiciones & Diagnosticar al paciente para conocer si padece daltonismo. \\
+\hline
+Flujo principal & \begin{enumerate}
+    \item El oftalmólogo presiona el botón de nuevo paciente.
+    \item El oftalmólogo llena los datos del paciente.
+    \item El sistema verifica que el paciente no se encuentre registrado.
+    \item El sistema almacena al paciente en base de datos.
+\end{enumerate}
+    \\
+\hline
+Flujos Alternos & \begin{enumerate}
+    \item El oftalmólogo presiona el botón de nuevo paciente.
+    \item El oftalmólogo llena los datos del paciente.
+    \item El sistema verifica que el paciente no se encuentre registrado.
+    \item El sistema encuentra un paciente registrado.
+    \item El sistema no almacena al nuevo paciente.
+    \item El sistema advierte del registro previo del paciente.
+\end{enumerate}\\
+\hline
+\caption{CASO DE USO 4}
+\label{tabla1}
+\end{longtable}
+
+\begin{longtable}{|p{3.8cm}|p{10.8cm}|}
+\hline
+CASO DE USO & CU5: Iniciar Sesión\\
+\hline 
+\endfirsthead
+
+% aquí añadimos el encabezado del resto de hojas.
+\hline
+
+ & \\
+\hline 
+\endhead
+
+% aquí añadimos el fondo de todas las hojas, excepto de la última.
+\multicolumn{2}{c}{}
+\endfoot
+
+% aquí añadimos el fondo de la última hoja.
+\endlastfoot
+\hline
+versión & 1\\
+\hline
+Autor & Jorge Armando Solis Solis\\
+\hline
+Revisiones & Gabriela de Jesús López Ruiz \\
+\hline
+Fecha de última revisión & 04/12/19\\
+\hline
+Actor(es) & Oftalmólogo \\
+\hline
+Propósito & Se El médico debe iniciar sesión en el sistema para salvaguardar la seguridad de la información del paciente.\\
+\hline
+Disparadores & Verificador de que el usuario y contraseña exista.\\
+\hline
+Entradas & nombre de usuario, contraseña\\
+\hline
+salidas & Usuario encontrado\\
+\hline
+Pre-condiciones & Ser un médico registrado en el sistema\\
+\hline
+Post-condiciones & Verificar si el usuario existe. \\
+\hline
+Flujo principal & \begin{enumerate}
+    \item El oftalmólogo arranca el sistema.
+    \item El oftalmólogo ingresa su usuario.
+    \item El oftalmólogo ingresa su contraseña.
+    \item El sistema verifica que los datos sean correctos.
+    \item El sistema da acceso al oftalmólogo.
+\end{enumerate}
+    \\
+\hline
+Flujos Alternos & \begin{enumerate}
+    \item El oftalmólogo arranca el sistema.
+    \item El oftalmólogo ingresa su usuario.
+    \item El oftalmólogo ingresa su contraseña.
+    \item El sistema verifica que los datos sean correctos.
+    \item El sistema no encuentra coincidencia.
+    \item El sistema regresa mensaje de usuario incorrecto.
+\end{enumerate}\\
+\hline
+\caption{CASO DE USO 5}
+\label{tabla1}
+\end{longtable}
+
+\begin{longtable}{|p{3.8cm}|p{10.8cm}|}
+\hline
+CASO DE USO & CU6: Seleccionar paciente\\
+\hline 
+\endfirsthead
+
+% aquí añadimos el encabezado del resto de hojas.
+\hline
+
+ & \\
+\hline 
+\endhead
+
+% aquí añadimos el fondo de todas las hojas, excepto de la última.
+\multicolumn{2}{c}{}
+\endfoot
+
+% aquí añadimos el fondo de la última hoja.
+\endlastfoot
+\hline
+versión & 1\\
+\hline
+Autor & Jorge Armando Solis Solis\\
+\hline
+Revisiones & Gabriela de Jesús López Ruiz \\
+\hline
+Fecha de última revisión & 04/12/19\\
+\hline
+Actor(es) & Oftalmólogo \\
+\hline
+Propósito & El oftalmólogo debe de tener registrados a sus pacientes para poder llevar un control y acelerar el proceso para las próximas citas.\\
+\hline
+Disparadores & \\
+\hline
+Entradas & nombre del paciente\\
+\hline
+salidas & paciente\\
+\hline
+Pre-condiciones & Haber iniciado sesión\\
+\hline
+Post-condiciones & Decidir si se desea modificar o eliminar el paciente\\
+\hline
+Flujo principal & \begin{enumerate}
+    \item El oftalmólogo presiona el botón de seleccionar paciente.
+    \item El oftalmólogo busca el nombre del paciente.
+    \item El paciente presiona el nombre del paciente.
+    \item El sistema despliega una ventana con los datos del paciente y botones para modificarlo o eliminarlo.
+    \item El oftalmólogo decide si eliminarlo o modificarlo.
+\end{enumerate}
+    \\
+\hline
+Flujos Alternos & \\
+\hline
+\caption{CASO DE USO 6}
+\label{tabla1}
+\end{longtable}
 
 \subsubsection{Diagrama de clases}
 
@@ -1296,18 +1862,19 @@ Este diagrama se diseña a partir de los casos de uso, siendo uno de los fundame
 
 \begin{figure}[H]
 	\begin{center}
-\includegraphics[scale = 0.90]{UML/clases.png}
+\includegraphics[scale = 0.65]{UML/Model2!ClassDiagram1_2.jpg}
 \captionof{figure}{\label{fig:2} Diagrama de clases}
 	\end{center} 
 \end{figure}
 
+\newpage
 \subsubsection{Diagrama de de componentes}
 
 Se buscará mostrar todos los componentes que formarán el sistema.
 
 \begin{figure}[H]
 	\begin{center}
-\includegraphics[scale = 0.85]{UML/componentes.jpeg}
+\includegraphics[scale = 0.40]{UML/Model3!ComponentDiagram1_14.jpg}
 \captionof{figure}{\label{fig:2} Diagrama de componentes}
 	\end{center} 
 \end{figure}
@@ -1318,21 +1885,51 @@ Este diagrama muestra los estados en el que sistema podría encontrarse.
 
 \begin{figure}[H]
 	\begin{center}
-\includegraphics[scale = 0.80]{UML/estados.jpeg}
+\includegraphics[scale = 0.35]{UML/StateMachine1!StatechartDiagram1_3.jpg}
 \captionof{figure}{\label{fig:2} Diagrama de estados}
 	\end{center} 
 \end{figure}
+\newpage
 \subsubsection{Diagrama de secuencia}
 
-Este diagrama coloca a través del tiempo, la secuencia que este tendrá.
+Estos diagrama coloca a través del tiempo, la secuencia que este tendrá cada caso de uso.
 
 \begin{figure}[H]
 	\begin{center}
-\includegraphics[scale = 1.10]{UML/secuencia.jpeg}
-\captionof{figure}{\label{fig:2} Diagrama de secuencia}
+\includegraphics[scale = 0.60]{UML/Iniciar_sesion.jpg}
+\captionof{figure}{\label{fig:2} Diagrama de secuencia Log In}
 	\end{center} 
 \end{figure}
 
+\begin{figure}[H]
+	\begin{center}
+\includegraphics[scale = 0.40]{UML/s.jpg}
+\captionof{figure}{\label{fig:2} Diagrama de secuencia Seleccionar respuestas}
+	\end{center} 
+\end{figure}
+
+
+\begin{figure}[H]
+	\begin{center}
+\includegraphics[scale = 0.65]{UML/Collaboration2!Interaction1!modificar_paciente_6.jpg}
+\captionof{figure}{\label{fig:2} Diagrama de secuencia Modificar pacientes}
+	\end{center} 
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+\includegraphics[scale = 0.60]{UML/Collaboration3!Interaction1!Eliminar_paciente_8.jpg}
+\captionof{figure}{\label{fig:2} Diagrama de secuencia Eliminar paciente}
+	\end{center} 
+\end{figure}
+
+
+\begin{figure}[H]
+	\begin{center}
+\includegraphics[scale = 0.40]{UML/Collaboration4!Interaction1!Dejar_ver_imagen_a_paciente_9.jpg}
+\captionof{figure}{\label{fig:2} Diagrama de secuencia dejar ver imagen a paciente}
+	\end{center} 
+\end{figure}
 \newpage
 
 \subsubsection{Diagrama de actividades}
@@ -1341,7 +1938,7 @@ Este diagrama muestra todas las actividades que realizará el sistema.
 
 \begin{figure}[H]
 	\begin{center}
-\includegraphics[scale = 0.75]{UML/actividades.jpeg}
+\includegraphics[scale = 0.30]{UML/Activity1!ActivityDiagram1_12.jpg}
 \captionof{figure}{\label{fig:2} Diagrama de actividades}
 	\end{center} 
 \end{figure}
@@ -1352,7 +1949,7 @@ Como se debe incluir una Base de datos que almacene los doctores y los pacientes
 
 \begin{figure}[H]
 	\begin{center}
-\includegraphics[scale = 1.0]{UML/er.png}
+\includegraphics[scale = 0.50]{UML/ERDDiagram1.jpg}
 \captionof{figure}{\label{fig:2} Diagrama entidad relación}
 	\end{center} 
 \end{figure}
@@ -1368,19 +1965,60 @@ El diagrama de flujo trata de mostrar el flujo que llevará a través del tiempo
 	\end{center} 
 \end{figure}
 
-\subsection{Diagrama a alto nivel}
-
-Este diagrama refleja lo que será, en cuanto a procesos, la herramienta que se realizará.
+\subsection{maquetado}
+Las siguientes serán plantillas de las posibles pantallas finales que podrá observar el usuario, primeramente mostraremos las que observará el paciente y posteriormente las mostradas al oftalmólogo.
+\subsubsection{Ventanas del paciente}
 
 \begin{figure}[H]
 	\begin{center}
-\includegraphics[scale = 0.75]{Imagenes/BOSQUEJO.PNG}
-\captionof{figure}{\label{fig:2} Diagrama a alto nivel de la herramienta}
+\includegraphics[scale = 0.50]{Imagenes/Ventana5.png}
+\captionof{figure}{\label{fig:2} Ventana con carta de ishihara}
 	\end{center} 
 \end{figure}
 
+\subsubsection{Ventanas del olftalmólogo}
+
+
+\begin{figure}[H]
+	\begin{center}
+\includegraphics[scale = 0.60]{Imagenes/Ventana6.png}
+\captionof{figure}{\label{fig:2} Resultado }
+	\end{center} 
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+\includegraphics[scale = 0.20]{Imagenes/login.png}
+\captionof{figure}{\label{fig:2} LogIn del oftalmólogo}
+	\end{center} 
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+\includegraphics[scale = 0.20]{Imagenes/Ventana2.png}
+\captionof{figure}{\label{fig:2} Ventana con carta de selección de un paciente}
+	\end{center} 
+\end{figure}
 \newpage
 
+
+\begin{figure}[H]
+	\begin{center}
+\includegraphics[scale = 0.20]{Imagenes/Ventana3.png}
+\captionof{figure}{\label{fig:2} Ventana con información del paciente}
+	\end{center} 
+\end{figure}
+
+
+\begin{figure}[H]
+	\begin{center}
+\includegraphics[scale = 0.20]{Imagenes/Ventana4.png}
+\captionof{figure}{\label{fig:2} Ventana de insersión de datos del nuevo paciente}
+	\end{center} 
+\end{figure}
+
+
+\newpage
 \section{Conclusiones.}
 
 El daltonismo es una alteración poco atendida, y si bien un sistema no puede ser la cura para este tipo de alteración, si puede ser una herramienta para brindarle a quien la padece, una mejor calidad de vida e inclusive brindarle un apoyo desde una etapa temprana para que él o la paciente que lo padece pueda saber y conocer más a fondo sobre este padecimiento.
