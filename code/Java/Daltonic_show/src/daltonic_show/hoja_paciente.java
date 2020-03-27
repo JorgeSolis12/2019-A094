@@ -5,6 +5,20 @@
  */
 
 package daltonic_show;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.text.DateFormat;  
+import java.text.SimpleDateFormat;  
+import java.util.Date;  
+import java.util.Calendar;
 /**
  *
  * @author nirfa
@@ -18,6 +32,34 @@ public class hoja_paciente extends javax.swing.JFrame {
     public hoja_paciente(int id_recv) {
         initComponents();
         id = id_recv;
+        Connection cnx = null;
+        ResultSet rs = null;
+        
+        
+        int resultado = 0;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            cnx = DriverManager.getConnection("jdbc:mysql://localhost/bd_paciente", "jorgesolis12", "root2");
+            Statement st = cnx.createStatement();
+            String SSQL="SELECT * FROM paciente WHERE id ="+id;
+            int i = 0;
+            rs = st.executeQuery(SSQL);
+            while(rs.next()){
+                nombre.setText(rs.getString("nombre"));
+                String pattern = "MM/dd/yyyy";
+                DateFormat df = new SimpleDateFormat(pattern);
+                
+                fecha_nac.setText(df.format(rs.getDate(4)));
+                ingreso.setText(df.format(rs.getDate(5)));
+                ultima_cita.setText(df.format(rs.getDate(6)));
+                
+            }
+           rs.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(DS_main.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DS_main.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -30,6 +72,7 @@ public class hoja_paciente extends javax.swing.JFrame {
     private void initComponents() {
 
         editar = new javax.swing.JButton();
+        cita = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         eliminar = new javax.swing.JButton();
         fecha_nac = new javax.swing.JLabel();
@@ -52,23 +95,40 @@ public class hoja_paciente extends javax.swing.JFrame {
             }
         });
         getContentPane().add(editar);
-        editar.setBounds(240, 350, 140, 50);
+        editar.setBounds(80, 350, 140, 50);
+
+        cita.setText("Agendar próxima cita");
+        cita.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                citaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(cita);
+        cita.setBounds(540, 350, 200, 50);
 
         jButton1.setText("Habilitar Gafas");
         getContentPane().add(jButton1);
-        jButton1.setBounds(600, 350, 150, 50);
+        jButton1.setBounds(380, 350, 150, 50);
 
         eliminar.setText("eliminar usuario");
         getContentPane().add(eliminar);
-        eliminar.setBounds(420, 350, 140, 50);
+        eliminar.setBounds(230, 350, 140, 50);
+
+        fecha_nac.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         getContentPane().add(fecha_nac);
-        fecha_nac.setBounds(320, 190, 300, 30);
+        fecha_nac.setBounds(320, 190, 450, 30);
+
+        ingreso.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         getContentPane().add(ingreso);
-        ingreso.setBounds(290, 230, 250, 30);
+        ingreso.setBounds(290, 230, 460, 30);
+
+        ultima_cita.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         getContentPane().add(ultima_cita);
-        ultima_cita.setBounds(320, 270, 250, 30);
+        ultima_cita.setBounds(320, 270, 440, 30);
+
+        nombre.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         getContentPane().add(nombre);
-        nombre.setBounds(210, 130, 330, 30);
+        nombre.setBounds(210, 130, 560, 30);
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel3.setText("FECHA DE NACIMIENTO:");
@@ -101,11 +161,16 @@ public class hoja_paciente extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_editarActionPerformed
 
+    private void citaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_citaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_citaActionPerformed
+
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton cita;
     private javax.swing.JButton editar;
     private javax.swing.JButton eliminar;
     private javax.swing.JLabel fecha_nac;

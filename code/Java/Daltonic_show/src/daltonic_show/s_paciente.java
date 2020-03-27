@@ -47,7 +47,7 @@ public class s_paciente extends javax.swing.JFrame {
             rs = st.executeQuery(SSQL);
             while(rs.next()){
 
-                if(i>3){
+                if(i>2){
                     id.add(rs.getInt("id"));
                     String paciente = rs.getString("nombre")+ " " + rs.getString("apeido") ;
                     nombres.add(paciente);
@@ -58,9 +58,7 @@ public class s_paciente extends javax.swing.JFrame {
 
             }
            rs.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(DS_main.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
+        } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(DS_main.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -80,15 +78,12 @@ public class s_paciente extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        getContentPane().setLayout(null);
 
         pacientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pacientesActionPerformed(evt);
             }
         });
-        getContentPane().add(pacientes);
-        pacientes.setBounds(270, 320, 156, 20);
 
         jButton1.setText("Seleccionar este paciente");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -96,16 +91,37 @@ public class s_paciente extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(260, 350, 180, 40);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/daltonic_show/7db99d46d3568fe5b985e529b133cddb-icono-de-lupa-de-ojo-by-vexels.png"))); // NOI18N
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(200, 60, 310, 240);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/daltonic_show/purple-iphone-wallpaper-11.jpg"))); // NOI18N
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(-20, -120, 730, 590);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(220, 220, 220)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(290, 290, 290)
+                .addComponent(pacientes, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(280, 280, 280)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 730, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(180, 180, 180)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(pacientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 590, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

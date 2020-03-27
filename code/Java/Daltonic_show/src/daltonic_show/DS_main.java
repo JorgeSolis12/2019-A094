@@ -14,6 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 import javax.swing.WindowConstants;
 /**
  *
@@ -56,7 +57,8 @@ public class DS_main extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        user = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         exit = new javax.swing.JMenuItem();
         help = new javax.swing.JMenu();
         avis = new javax.swing.JMenuItem();
@@ -98,7 +100,7 @@ public class DS_main extends javax.swing.JFrame {
         getContentPane().add(lg);
         lg.setBounds(490, 20, 110, 40);
         getContentPane().add(Welcome);
-        Welcome.setBounds(550, 70, 170, 30);
+        Welcome.setBounds(480, 410, 220, 30);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/daltonic_show/11849.png"))); // NOI18N
         getContentPane().add(jLabel1);
@@ -108,7 +110,15 @@ public class DS_main extends javax.swing.JFrame {
         getContentPane().add(jLabel3);
         jLabel3.setBounds(0, 0, 730, 450);
 
-        jMenu1.setText("Opciones");
+        user.setText("Opciones");
+
+        jMenuItem1.setText("Crear Usuario");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        user.add(jMenuItem1);
 
         exit.setText("Salir");
         exit.addActionListener(new java.awt.event.ActionListener() {
@@ -116,9 +126,9 @@ public class DS_main extends javax.swing.JFrame {
                 exitActionPerformed(evt);
             }
         });
-        jMenu1.add(exit);
+        user.add(exit);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(user);
 
         help.setText("Acerca de...");
 
@@ -164,11 +174,23 @@ public class DS_main extends javax.swing.JFrame {
             Class.forName("com.mysql.jdbc.Driver");
             cnx = DriverManager.getConnection("jdbc:mysql://localhost/bd_paciente?useTimezone=true&serverTimezone=UTC&useSSL=false", "jorgesolis12", "root2");
             Statement st = cnx.createStatement();
+            String contrasena = null;
             
             String usuario = JOptionPane.showInputDialog(null,"Dame tu nombre de usuario");
-            String contrasena = JOptionPane.showInputDialog(null,"Dame la contraseña");       
-       
-            String SSQL="SELECT * FROM oftalmologo WHERE usuario ="+ "'"+usuario+ "'"+"AND contrasena="+"'"+contrasena+"'";
+            
+            // create a new JPasswordField
+           JPasswordField passwordField = new JPasswordField( );
+           // display nothing as the user types
+           passwordField.setEchoChar( '*' );
+           // set the width of the field to allow space for 20 characters
+           passwordField.setColumns( 10 );
+           int returnVal = JOptionPane.showConfirmDialog( null, passwordField, "Ingrese Contraseña", JOptionPane.OK_CANCEL_OPTION );
+
+           if ( returnVal == JOptionPane.OK_OPTION ){
+                contrasena = new String( passwordField.getPassword( ) );
+           }
+            
+           String SSQL="SELECT * FROM oftalmologo WHERE usuario ="+ "'"+usuario+ "'"+"AND contrasena="+"'"+contrasena+"'";
             rs = st.executeQuery(SSQL);
             if(rs.next()){
 
@@ -246,6 +268,12 @@ public class DS_main extends javax.swing.JFrame {
 
     }//GEN-LAST:event_selectionActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        crear_médico medico = new crear_médico();
+        medico.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -291,10 +319,11 @@ public class DS_main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JButton lg;
     private javax.swing.JButton logut;
     private javax.swing.JButton selection;
+    private javax.swing.JMenu user;
     // End of variables declaration//GEN-END:variables
 }
