@@ -6,6 +6,7 @@
 
 package daltonic_show;
 
+import java.awt.Image;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -19,6 +20,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;  
 import java.util.Date;  
 import java.util.Calendar;
+import javax.swing.ImageIcon;
 /**
  *
  * @author nirfa
@@ -31,6 +33,9 @@ public class hoja_paciente extends javax.swing.JFrame {
     int id = 0;
     public hoja_paciente(int id_recv) {
         initComponents();
+        Image icon = new ImageIcon(getClass().getResource("icon.png")).getImage();
+        setIconImage(icon);
+        this.setTitle("Información del paciente");
         id = id_recv;
         Connection cnx = null;
         ResultSet rs = null;

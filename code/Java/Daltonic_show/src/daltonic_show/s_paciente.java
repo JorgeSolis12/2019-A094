@@ -11,6 +11,7 @@
 
 package daltonic_show;
 
+import java.awt.Image;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -21,6 +22,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.ImageIcon;
 
 public class s_paciente extends javax.swing.JFrame {
 
@@ -30,6 +32,9 @@ public class s_paciente extends javax.swing.JFrame {
    
     public s_paciente() {
         initComponents();
+        Image icon = new ImageIcon(getClass().getResource("icon.png")).getImage();
+        setIconImage(icon);
+        this.setTitle("Seleccionar paciente");
         Connection cnx = null;
         ResultSet rs = null;
         

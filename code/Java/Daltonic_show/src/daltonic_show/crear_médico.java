@@ -5,6 +5,7 @@
  */
 package daltonic_show;
 
+import java.awt.Image;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -15,6 +16,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
  import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 /**
@@ -28,6 +30,9 @@ public class crear_médico extends javax.swing.JFrame {
      */
     public crear_médico() {
         initComponents();
+        Image icon = new ImageIcon(getClass().getResource("icon.png")).getImage();
+        setIconImage(icon);
+        this.setTitle("Crear Nuevo Usuario");
     }
 
     /**

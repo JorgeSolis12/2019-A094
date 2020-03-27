@@ -5,6 +5,7 @@
  */
 package daltonic_show;
 import java.awt.BorderLayout;
+import java.awt.Image;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.*;
@@ -12,6 +13,7 @@ import java.sql.Statement;
 import java.sql.PreparedStatement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
@@ -30,6 +32,9 @@ public class DS_main extends javax.swing.JFrame {
     s_paciente seleccion = new s_paciente();
     public DS_main() {
         initComponents(); 
+        Image icon = new ImageIcon(getClass().getResource("icon.png")).getImage();
+        setIconImage(icon);
+        this.setTitle("Daltonic Show");
         logut.setEnabled(false);
         diagnostico.setEnabled(false);
         selection.setEnabled(false);
@@ -86,6 +91,11 @@ public class DS_main extends javax.swing.JFrame {
         selection.setBounds(450, 230, 150, 40);
 
         diagnostico.setText("Diagnosticar Paciente");
+        diagnostico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                diagnosticoActionPerformed(evt);
+            }
+        });
         getContentPane().add(diagnostico);
         diagnostico.setBounds(450, 180, 150, 40);
         getContentPane().add(jLabel2);
@@ -112,6 +122,8 @@ public class DS_main extends javax.swing.JFrame {
 
         user.setText("Opciones");
 
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/daltonic_show/medico.png"))); // NOI18N
         jMenuItem1.setText("Crear Usuario");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -120,6 +132,8 @@ public class DS_main extends javax.swing.JFrame {
         });
         user.add(jMenuItem1);
 
+        exit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_MASK));
+        exit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/daltonic_show/exit.png"))); // NOI18N
         exit.setText("Salir");
         exit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -132,6 +146,7 @@ public class DS_main extends javax.swing.JFrame {
 
         help.setText("Acerca de...");
 
+        avis.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
         avis.setText("Aviso de privacidad");
         avis.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -140,6 +155,7 @@ public class DS_main extends javax.swing.JFrame {
         });
         help.add(avis);
 
+        directors.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         directors.setText("Directores y Desarrollo");
         directors.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -273,6 +289,12 @@ public class DS_main extends javax.swing.JFrame {
         crear_médico medico = new crear_médico();
         medico.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void diagnosticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diagnosticoActionPerformed
+        // TODO add your handling code here:
+        crear_paciente paciente = new crear_paciente();
+        paciente.setVisible(true);
+    }//GEN-LAST:event_diagnosticoActionPerformed
 
     /**
      * @param args the command line arguments
