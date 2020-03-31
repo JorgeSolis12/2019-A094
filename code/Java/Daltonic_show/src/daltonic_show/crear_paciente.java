@@ -13,6 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -268,7 +269,7 @@ public class crear_paciente extends javax.swing.JFrame {
                 }
                 PreparedStatement usuario = null;
                 try {
-                    usuario = cnx.prepareStatement("INSERT INTO paciente(nombre,apeido,fecha_de_nacimiento,fecha_de_ingreso) VALUES (?,?,?,?)");
+                    usuario = cnx.prepareStatement("INSERT INTO paciente(nombre,apeido,fecha_de_nacimiento,fecha_de_ingreso,fecha_de_ultima_cita,fecha_de_siguiente_cita) VALUES (?,?,?,?,?,?)");
                 } catch (SQLException ex) {
                     Logger.getLogger(crear_paciente.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -281,14 +282,42 @@ public class crear_paciente extends javax.swing.JFrame {
 
                     Calendar date = new GregorianCalendar();
                     int dia_ingreso = date.get(Calendar.DAY_OF_MONTH);
-                    int mes_ingreso = date.get(Calendar.MONTH);
+                    int mes_ingreso = date.get(Calendar.MONTH)+1;
                     int ano_ingreso = date.get(Calendar.YEAR);
-                    String fecha_ingreso = Integer.toString(ano_ingreso)+"-"+Integer.toString(mes_ingreso)+"-"+Integer.toString(dia_ingreso);
+                    String fecha_ingreso = null;
+                    String dia_mysql;
+                    String mes_mysql;
+                    String ano_mysql = Integer.toString(ano_ingreso);
                     
+                    System.out.println(dia_ingreso);
+                    if(dia_ingreso>9){
+                        dia_mysql = Integer.toString(dia_ingreso);
+                    }
+                    else{
+                        dia_mysql = "0"+Integer.toString(dia_ingreso);
+                    }
+                    
+                    if(mes_ingreso>9){
+                        mes_mysql = Integer.toString(mes_ingreso);
+                    }
+                    else{
+                        mes_mysql ="0"+Integer.toString(mes_ingreso);
+                    }
+                    
+                    
+                    fecha_ingreso = ano_mysql+"-"+mes_mysql+"-"+dia_mysql;
+                    
+                    SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
+                    String pasofecha;
+  
                     usuario.setString(4, fecha_ingreso);
-
-                    usuario.executeUpdate();
+                    usuario.setString(5, fecha_ingreso);
+                    usuario.setString(6, fecha_ingreso);
                     
+                    int rowsUpdated = usuario.executeUpdate();
+                    if (rowsUpdated > 0) {
+                        this.setVisible(false);
+                    }
                     
                 } catch (SQLException ex) {
                     Logger.getLogger(crear_paciente.class.getName()).log(Level.SEVERE, null, ex);
