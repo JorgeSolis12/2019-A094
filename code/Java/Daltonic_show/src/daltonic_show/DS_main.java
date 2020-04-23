@@ -110,7 +110,7 @@ public class DS_main extends javax.swing.JFrame {
         getContentPane().add(lg);
         lg.setBounds(490, 20, 110, 40);
         getContentPane().add(Welcome);
-        Welcome.setBounds(480, 410, 220, 30);
+        Welcome.setBounds(460, 330, 220, 30);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/daltonic_show/11849.png"))); // NOI18N
         getContentPane().add(jLabel1);

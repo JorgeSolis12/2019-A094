@@ -95,7 +95,7 @@
 
 \textsc{\large \itshape Trabajo Terminal}\\[0.4cm]
 
-{ \huge \bfseries Prototipo de Herramienta de apoyo al daltonismo}\\[0.4cm]	%%%-
+{ \huge \bfseries Prototipo de herramienta de apoyo al daltonismo}\\[0.4cm]	%%%-
 
 { \large  2019-A094}\\[1.00cm] 																					%%%
 													%%%
@@ -885,7 +885,7 @@ Esperamos que el diseño universal de visión en color se incorpore en cada disp
 
 \subsection{Planteamiento del problema}
 
-El daltonismo es un problema, social,laboral, personal, familiar y médico poco atendido debido a que se trata de una alteración y no de una enfermedad, el cual como se definió el el marco teórico, se trata de una alteración congénita o adquirida que afecta la visión de colores, provocando problemas a todo aquel que la padece.
+El daltonismo es un problema, social,laboral, personal, familiar y médico poco atendido debido a que se trata de una alteración y no de una enfermedad, el cual como se definió en el marco teórico, se trata de una alteración congénita o adquirida que afecta la visión de colores, provocando problemas a todo aquel que la padece.
 
 Para fines de este proyecto, se planteará como alcance solamente a la personas que padecen daltonismo congénito, ya que representa un mayor esfuerzo en aquellas que son por vía adquirida, debido a que como se estipula en el marco teórico estos no cumplen con las mismas características.
 
@@ -1493,24 +1493,96 @@ El diagrama de casos es el más fundamental en cada sistema y en este proyecto a
 
 \begin{figure}[H]
 	\begin{center}
-\includegraphics[scale = 0.60]{UML/UseCaseDiagram1.jpg}
+\includegraphics[scale = 0.40]{UML/UseCaseDiagram1.jpg}
 \captionof{figure}{\label{fig:2} Diagrama de casos de uso}
 	\end{center} 
 \end{figure}
 
 \newpage
 
-\subsubsection{Tablas de casos de uso}
-\begin{longtable}{|p{3.8cm}|p{10.8cm}|}
+
+\subsubsection{Tablas de mensajes}
+
+\begin{longtable}{|p{5.0cm}|p{3.5cm}|p{6.5cm}|}
 \hline
-CASO DE USO & CU1: ver cámara o imagen\\
+Tabla de mensajes\\
 \hline 
 \endfirsthead
 
 % aquí añadimos el encabezado del resto de hojas.
 \hline
 
-CASO DE USO & CU1: ver cámara o imagen\\
+Tabla de mensajes\\
+\hline 
+\endhead
+
+% aquí añadimos el fondo de todas las hojas, excepto de la última.
+\multicolumn{3}{c}{}
+\endfoot
+
+% aquí añadimos el fondo de la última hoja.
+\endlastfoot
+\hline
+ID & Tipo & Descripción\\
+\hline
+
+msj1 & Mensaje de entrada & El mensaje sirve para que el oftalmólogo pueda introducir la cadena del usuario para ser validada por el software a través de los registros encontrados en la base de datos.\\
+\hline
+
+msj2 & Mensaje de entrada & El mensaje sirve para que el oftalmólogo pueda introducir la cadena de contraseña para ser validado por el software a través de los registros encontrados en la base de datos.\\
+\hline
+
+msj3 & Mensaje de salida & Le indica al oftalmólogo que fue exitosa su entrada del usuario y contraseña introducidos con anterioridad en el diseño. \\
+\hline
+
+msj4 & Mensaje de error & Le indica al oftalmólogo que no fue exitosa su entrada de usuario y contraseña introducidos con anterioridad en el diseño\\
+\hline
+
+msj5 & Mensaje de opción & Le pregunta al oftalmólogo si desea cerrar la sesión actual, en caso de decir que no, se mantendrá la sesión, en caso de cerrar, se olvidarán los datos de la sesión.\\
+\hline
+
+msj6 & Mensaje de opción & Le pregunta al oftalmólogo si desea entrar a las gafas del paciente en modo cámara o imagen \\
+\hline
+
+msj7 & Mensaje de advertencia & Le pregunta al oftalmólogo si realmente desea salir del software y cerrarlo definitivamente \\
+\hline
+
+msj8 & Mensaje de salida & Muestra el mensaje del aviso de privacidad \\
+\hline
+
+msj9 & Mensaje de salida & Muestra el quien lo desarrollo y los directores del trabajo terminal \\
+\hline
+
+msj10 & Mensaje de Error & Muestra el error al generar un usuario o paciente \\
+\hline
+
+msj11 & Mensaje de Error &  Muestra el error al ingresar un dato en la generación de usuario o paciente\\
+\hline
+
+msj12 & Mensaje de salida & Menciona que se creó el usuario correctamente \\
+\hline
+
+msj13 & Mensaje de Error & Menciona el error al crear una cita en la agenda \\
+\hline
+msj14 & Mensaje de salida & Muestra que se generó correctamente la cita del paciente \\
+\hline
+\caption{Tabla de mensajes}
+\label{tabla1}
+\end{longtable}
+
+\newpage
+
+\subsubsection{Tablas de casos de uso}
+\begin{longtable}{|p{3.8cm}|p{10.8cm}|}
+\hline
+CASO DE USO & CU1: Iniciar sesión\\
+\hline 
+\endfirsthead
+
+% aquí añadimos el encabezado del resto de hojas.
+\hline
+
+CASO DE USO & CU1: Iniciar sesión\\
 \hline 
 \endhead
 
@@ -1525,34 +1597,48 @@ versión & 1\\
 \hline
 Autor & Jorge Armando Solis Solis\\
 \hline
-Revisiones & Gabriela de Jesús López Ruiz \\
+Revisiones & Gabriela de Jesús López Ruiz\newline
+José Carlos Davalos López\newline
+Edgar Armando Catalán Salgado\newline
+Rafael Norman Delgado Saucedo\newline
+Rosa Itzel Solis Solis
+\\
+
 \hline
-Fecha de última revisión & 04/12/19\\
+Fecha de última revisión & 26/02/20\\
 \hline
-Actor(es) & Paciente \\
+Actor(es) & Oftalmólogo \\
 \hline
-Propósito & El paciente tiene la posibilidad de elegir entre si quiere observar una imagen o un paciente en una simulación de la correcta visión del espectro de colores\\
+Propósito & El oftalmólogo debe de iniciar sesión para poder comprobar que se trata de él, debido a la información sensible que maneja el sistema.\\
 \hline
-Disparadores & \\
+Entradas & usuario y contraseña\\
 \hline
-Entradas & nombre, tipo de daltonismo, selección\\
+salidas & mensaje de inicio de sesión exitoso\\
 \hline
-salidas & muestreo de la imagen\\
+Mensajes & ms1, ms2, msj3 msj4\\
 \hline
-Pre-condiciones & Haber realizado el test de ishihara y haber sido diagnosticado con algún tipo de daltonismo \\
+Pre-condiciones & haber creado un usuario \\
 \hline
-Post-condiciones &   \\
+Post-condiciones &  encontrar usuario y contraseña correctos \\
 \hline
 Flujo principal & \begin{enumerate}
-    \item El paciente decide que desea ver.
-    \item El médico presiona el botón de la selección del paciente.
-    \item El sistema obtiene tipo de daltonismo que padece el paciente.
-    \item El sistema filtra los colores del paciente.
-    \item El sistema despliega la imagen fija o de la cámara en las gafas.
+    \item El oftalmólogo ingresa usuario.
+    \item El oftalmólogo ingresa contraseña.
+    \item El oftalmólogo da en el botón aceptar.
+    \item El sistema valida datos en la base de datos.
+    \item El sistema despliega el mensaje de éxito.
 \end{enumerate}
     \\
 \hline
-Flujos Alternos & \\
+Flujos Alternos &  \begin{enumerate}
+    \item El oftalmólogo ingresa usuario.
+    \item El oftalmólogo ingresa contraseña.
+    \item El oftalmólogo da en el botón aceptar.
+    \item El sistema valida datos en la base de datos.
+    \item El sistema no encuentra datos.
+    \item el sistema despliega mensaje de error.
+    \item El oftalmólogo reingresa los datos.
+\end{enumerate}\\
 \hline
 \caption{CASO DE USO 1}
 \label{tabla1}
@@ -2016,6 +2102,19 @@ Las siguientes serán plantillas de las posibles pantallas finales que podrá ob
 \captionof{figure}{\label{fig:2} Ventana de insersión de datos del nuevo paciente}
 	\end{center} 
 \end{figure}
+
+\newpage
+\section{Construcción}
+
+\subsection{Construcción de Módulo de \textit{Log In}}
+
+Como se había planteado en el \textit{Log In} del sistema, se ocupó Java, especificamente \textbf{Java JDK 8.221} junto con el conector de \textbf{JDBC 5.1.48} y el \textbf{mysql 8.0.19}, con los que a través de \textbf{Neatbeans 8.2} realizamos las interfaces gráficas que facilitan el como se verán cada uno de los \textit{front-end} que serán visibles para el oftalmólogo, en el caso especial de java se ocupan para introducir los datos, dos \textit{JOptionPane.InputMessage}, los cuales guardarán en datos de tipo \textit{String} las cadenas que serán introducidas en el \textit{Query} que será enviado a la base de datos, la cual regresará un 1 en caso de ser exitoso y 0 en el caso contrario, facilitándonos el saber si este se encuentra dentro la base de datos.
+
+\subsection{Construcción de la base de datos bd\_paciente}
+
+La base de datos, como ya se mencionó con anterioridad se construyó con \textbf{mysql 8.2}, basándose y conservando el diseño que se realizó en el diagrama de entidad relación, esto incluye llaves primarias y foráneas, tipos de datos y si estos reciben un autoincremento o no pueden ser nulos.
+
+El llenado de los usuarios, al haber tenido la prueba realizada con anterioridad con pacientes reales a través de un \textit{Google Forms} y diagnósticos con pacientes presenciales, fue primeramente manual, discerniendo a pacientes daltónicos encontrados.
 
 
 \newpage
