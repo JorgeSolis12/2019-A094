@@ -1566,6 +1566,10 @@ msj13 & Mensaje de Error & Menciona el error al crear una cita en la agenda \\
 \hline
 msj14 & Mensaje de salida & Muestra que se generó correctamente la cita del paciente \\
 \hline
+msj15 & Mensaje de salida & Avisa al oftalmólogo el inicio del diagnóstico.\\
+\hline
+msj16 & Mensaje de salida & Muestra al oftalmólogo el tipo de daltonismo que padece el paciente. \\
+\hline
 \caption{Tabla de mensajes}
 \label{tabla1}
 \end{longtable}
@@ -1644,16 +1648,18 @@ Flujos Alternos &  \begin{enumerate}
 \label{tabla1}
 \end{longtable}
 
+\newpage
+
 \begin{longtable}{|p{3.8cm}|p{10.8cm}|}
 \hline
-CASO DE USO & CU2: Selección de respuestas\\
+CASO DE USO & CU2: Crear usuario\\
 \hline 
 \endfirsthead
 
 % aquí añadimos el encabezado del resto de hojas.
 \hline
 
- & \\
+CASO DE USO & CU2: Crear usuario\\
 \hline 
 \endhead
 
@@ -1668,106 +1674,67 @@ versión & 1\\
 \hline
 Autor & Jorge Armando Solis Solis\\
 \hline
-Revisiones & Gabriela de Jesús López Ruiz \\
+Revisiones & Gabriela de Jesús López Ruiz\newline
+José Carlos Davalos López\newline
+Edgar Armando Catalán Salgado\newline
+Rafael Norman Delgado Saucedo\newline
+Rosa Itzel Solis Solis
+\\
+
 \hline
-Fecha de última revisión & 04/12/19\\
+Fecha de última revisión & 26/02/20\\
 \hline
-Actor(es) & Paciente, oftalmólogo \\
+Actor(es) & Oftalmólogo \\
 \hline
-Propósito & El paciente seleccionará las respuestas bajo las que el mismo será diagnosticado \\
+Propósito & El oftalmólogo desea crear un usuario no existente en la base de datos, para poder visualizar los pacientes.\\
 \hline
-Disparadores & \\
+Entradas & Nombre, apellido, cédula profesional, usuario, contraseña\\
 \hline
-Entradas & pregunta, respuesta A, respuesta B, respuesta C, nombre de la carta, nombre del paciente\\
+salidas & mensaje de inicio creación de usuario\\
 \hline
-salidas & respuesta de la carta\\
+Mensajes & ms10, ms11, msj12\\
 \hline
-Pre-condiciones & Encontrarse registrado el paciente al que se le realizará el análisis, Paciente puede ver una carta de Ishihara \\
+Pre-condiciones & Ser un oftalmólogo interesado en crear un usuario \\
 \hline
-Post-condiciones & Generación de diagnóstico\\
+Post-condiciones & usuario validado y guardado en la base de datos con la información proporcionada. \\
 \hline
 Flujo principal & \begin{enumerate}
-    \item El oftalmólogo registra la respuesta del paciente.
-    \item El sistema almacena la respuesta del paciente.
-    \item El sistema envía al árbol de decisiones la respuesta correcta.
-    \item El sistema repite el proceso hasta que el árbol de decisiones devuelve una respuesta.
-    \item El sistema diagnostica el tipo de daltonismo.
+    \item El oftalmólogo entra a la opción crear usuario.
+    \item Ingresar los datos de entrada.
+    \item El oftalmólogo da en el botón aceptar.
+    \item El sistema valida datos y los ingresa en la base de datos.
+    \item El sistema despliega el mensaje de éxito.
 \end{enumerate}
     \\
 \hline
-Flujos Alternos & \\
+Flujos Alternos &  \begin{enumerate}
+    \item El oftalmólogo entra a la opción crear usuario.
+    \item Ingresar los datos de entrada.
+    \item El oftalmólogo da en el botón aceptar.
+    \item El sistema valida datos.
+    \item El sistema encuentra un error en los datos.
+    \item El sistema encuentra solicita el dato incorrecto.
+    \item El oftalmólogo ingresa el dato corregido.
+    \item El oftalmólogo valida e ingresa los datos.
+    \item El sistema despliega el mensaje de éxito.
+\end{enumerate}\\
 \hline
 \caption{CASO DE USO 2}
 \label{tabla1}
 \end{longtable}
 
-\begin{longtable}{|p{3.8cm}|p{10.8cm}|}
-\hline
-CASO DE USO & CU3: Visualizar Carta de Ishihara\\
-\hline 
-\endfirsthead
-
-% aquí añadimos el encabezado del resto de hojas.
-\hline
-
- & \\
-\hline 
-\endhead
-
-% aquí añadimos el fondo de todas las hojas, excepto de la última.
-\multicolumn{2}{c}{}
-\endfoot
-
-% aquí añadimos el fondo de la última hoja.
-\endlastfoot
-\hline
-versión & 1\\
-\hline
-Autor & Jorge Armando Solis Solis\\
-\hline
-Revisiones & Gabriela de Jesús López Ruiz \\
-\hline
-Fecha de última revisión & 04/12/19\\
-\hline
-Actor(es) & Paciente, oftalmólogo \\
-\hline
-Propósito & El paciente visualiza las cartas bajo las que seleccionará las respuestas que decidirán si padece daltonismo\\
-\hline
-Disparadores & \\
-\hline
-Entradas & pregunta, nombre de la carta, nombre del paciente\\
-\hline
-salidas & respuesta de la carta\\
-\hline
-Pre-condiciones & Encontrarse registrado el paciente al que se le realizará el análisis \\
-\hline
-Post-condiciones & Decidir que si se tiene un resultado o se necesita una nueva carta. \\
-\hline
-Flujo principal & \begin{enumerate}
-    \item El sistema muestra una carta de Ishihara.
-    \item El paciente visualiza una carta de Ishihara.
-    \item El paciente decide la carta de Ishihara.
-    \item El paciente menciona la respuesta.
-\end{enumerate}
-    \\
-\hline
-Flujos Alternos & \\
-\hline
-\caption{CASO DE USO 3}
-\label{tabla1}
-\end{longtable}
 \newpage
 
 \begin{longtable}{|p{3.8cm}|p{10.8cm}|}
 \hline
-CASO DE USO & CU4: Crear paciente\\
+CASO DE USO & CU3: Crear paciente\\
 \hline 
 \endfirsthead
 
 % aquí añadimos el encabezado del resto de hojas.
 \hline
 
- & \\
+CASO DE USO & CU2: Crear paciente\\
 \hline 
 \endhead
 
@@ -1782,55 +1749,147 @@ versión & 1\\
 \hline
 Autor & Jorge Armando Solis Solis\\
 \hline
-Revisiones & Gabriela de Jesús López Ruiz \\
+Revisiones & Gabriela de Jesús López Ruiz\newline
+José Carlos Davalos López\newline
+Edgar Armando Catalán Salgado\newline
+Rafael Norman Delgado Saucedo\newline
+Rosa Itzel Solis Solis
+\\
+
 \hline
-Fecha de última revisión & 04/12/19\\
+Fecha de última revisión & 26/02/20\\
 \hline
 Actor(es) & Oftalmólogo \\
 \hline
-Propósito & Se creará un nuevo paciente que será generado al ser la primera cita del mismo, tomando los datos necesarios.\\
+Propósito & El oftalmólogo recibe un nuevo paciente, debe guardarlo en la base de datos para proceder a diagnosticarlo. \\
 \hline
-Disparadores & \\
+Entradas & Nombre, apellido, fecha de ingreso, fecha de nacimiento.\\
 \hline
-Entradas & nombre del paciente, fecha de nacimiento del paciente, datos del oftalmólogo\\
+salidas & mensaje de inicio creación de usuario\\
 \hline
-salidas & Paciente generado\\
+Mensajes & ms10, ms11, msj12\\
 \hline
-Pre-condiciones & Ser la primera cita del paciente \\
+Pre-condiciones & Paciente nuevo desea realizarse estudio del daltonismo.\\
 \hline
-Post-condiciones & Diagnosticar al paciente para conocer si padece daltonismo. \\
+Post-condiciones & El paciente debe realizar el diagnóstico.\\
 \hline
 Flujo principal & \begin{enumerate}
-    \item El oftalmólogo presiona el botón de nuevo paciente.
-    \item El oftalmólogo llena los datos del paciente.
-    \item El sistema verifica que el paciente no se encuentre registrado.
-    \item El sistema almacena al paciente en base de datos.
+    \item El oftalmólogo entra a la opción crear nuevo paciente.
+    \item Ingresar los datos de entrada.
+    \item El oftalmólogo da en el botón aceptar.
+    \item El sistema valida datos y los ingresa en la base de datos.
+    \item El sistema despliega el mensaje de éxito.
+    \item Comienza el diagnóstico. 
 \end{enumerate}
     \\
 \hline
-Flujos Alternos & \begin{enumerate}
-    \item El oftalmólogo presiona el botón de nuevo paciente.
-    \item El oftalmólogo llena los datos del paciente.
-    \item El sistema verifica que el paciente no se encuentre registrado.
-    \item El sistema encuentra un paciente registrado.
-    \item El sistema no almacena al nuevo paciente.
-    \item El sistema advierte del registro previo del paciente.
+Flujos Alternos &  \begin{enumerate}
+    \item El oftalmólogo entra a la opción crear nuevo.
+    \item Ingresar los datos de entrada.
+    \item El oftalmólogo da en el botón aceptar.
+    \item El sistema valida datos.
+    \item El sistema encuentra un error en los datos.
+    \item El sistema encuentra solicita el dato incorrecto.
+    \item El oftalmólogo ingresa el dato corregido.
+    \item El oftalmólogo valida e ingresa los datos.
+    \item El sistema despliega el mensaje de éxito.
+    \item Comienza el diagnóstico.
+\end{enumerate}\\
+\hline
+\caption{CASO DE USO 3}
+\label{tabla1}
+\end{longtable}
+
+\newpage
+
+\begin{longtable}{|p{3.8cm}|p{10.8cm}|}
+\hline
+CASO DE USO & CU4: Iniciar diagnóstico del paciente\\
+\hline 
+\endfirsthead
+
+% aquí añadimos el encabezado del resto de hojas.
+\hline
+
+CASO DE USO & CU4: Iniciar diagnóstico del paciente\\
+\hline 
+\endhead
+
+% aquí añadimos el fondo de todas las hojas, excepto de la última.
+\multicolumn{2}{c}{}
+\endfoot
+
+% aquí añadimos el fondo de la última hoja.
+\endlastfoot
+\hline
+versión & 1\\
+\hline
+Autor & Jorge Armando Solis Solis\\
+\hline
+Revisiones & Gabriela de Jesús López Ruiz\newline
+José Carlos Davalos López\newline
+Edgar Armando Catalán Salgado\newline
+Rafael Norman Delgado Saucedo\newline
+Rosa Itzel Solis Solis
+\\
+
+\hline
+Fecha de última revisión & 26/02/20\\
+\hline
+Actor(es) & Oftalmólogo \\
+\hline
+Propósito & El oftalmólogo recibe un nuevo paciente, después de ingresarlo en su base de datos, desea diagnosticarlo. \\
+\hline
+Entradas & Paciente a diagnosticar, datos que visualiza el paciente.\\
+\hline
+salidas & Cartas de ishihara, tipo de daltonismo que padece. \\
+\hline
+Mensajes & ms15, ms16\\
+\hline
+Pre-condiciones & Paciente nuevo desea realizarse estudio del daltonismo\\
+\hline
+Post-condiciones & Paciente tiene un tipo de daltonismo.\\
+\hline
+Flujo principal & \begin{enumerate}
+    \item El oftalmólogo pulsa el botón de diagnosticar.
+    \item El sistema muestra la carta de ishihara correspondiente.
+    \item El paciente menciona el dato que visualiza.
+    \item El oftalmólogo ingresa el valor mencionado por el paciente.
+    \item El sistema realiza la impresión diagnóstica.
+    \item El oftalmólogo acepta el diagnóstico.
+    \item El paciente padece algún tipo de daltonismo.
+    \item El sistema almacena en la base de datos el tipo de daltonismo.
+    \item Al paciente se le habilita la opción de habilitar gafas.
+\end{enumerate}
+    \\
+\hline
+Flujos Alternos &  \begin{enumerate}
+    \item El oftalmólogo pulsa el botón de diagnosticar.
+    \item El sistema muestra la carta de ishihara correspondiente.
+    \item El paciente menciona el dato que visualiza.
+    \item El oftalmólogo ingresa el valor mencionado por el paciente.
+    \item El sistema realiza la impresión diagnóstica.
+    \item El oftalmólogo acepta el diagnóstico.
+    \item El paciente no padece algún tipo de daltonismo.
+    \item El sistema almacena en la base de datos el tipo de daltonismo.
 \end{enumerate}\\
 \hline
 \caption{CASO DE USO 4}
 \label{tabla1}
 \end{longtable}
 
+\newpage
+
 \begin{longtable}{|p{3.8cm}|p{10.8cm}|}
 \hline
-CASO DE USO & CU5: Iniciar Sesión\\
+CASO DE USO & CU5: Seleccionar paciente\\
 \hline 
 \endfirsthead
 
 % aquí añadimos el encabezado del resto de hojas.
 \hline
 
- & \\
+CASO DE USO & CU5: Seleccionar paciente\\
 \hline 
 \endhead
 
@@ -1845,56 +1904,64 @@ versión & 1\\
 \hline
 Autor & Jorge Armando Solis Solis\\
 \hline
-Revisiones & Gabriela de Jesús López Ruiz \\
+Revisiones & Gabriela de Jesús López Ruiz\newline
+José Carlos Davalos López\newline
+Edgar Armando Catalán Salgado\newline
+Rafael Norman Delgado Saucedo\newline
+Rosa Itzel Solis Solis
+\\
+
 \hline
-Fecha de última revisión & 04/12/19\\
+Fecha de última revisión & 26/02/20\\
 \hline
 Actor(es) & Oftalmólogo \\
 \hline
-Propósito & Se El médico debe iniciar sesión en el sistema para salvaguardar la seguridad de la información del paciente.\\
+Propósito & El oftalmólogo recibe un paciente, lo busca en la base de datos. \\
 \hline
-Disparadores & Verificador de que el usuario y contraseña exista.\\
+Entradas & Paciente encontrado en base de datos\\
 \hline
-Entradas & nombre de usuario, contraseña\\
+salidas & Cartas de ishihara, tipo de daltonismo que padece. \\
 \hline
-salidas & Usuario encontrado\\
+Mensajes & \\
 \hline
-Pre-condiciones & Ser un médico registrado en el sistema\\
+Pre-condiciones & Paciente debe de estar registrado previamente.\\
 \hline
-Post-condiciones & Verificar si el usuario existe. \\
+Post-condiciones & Paciente tiene un tipo de daltonismo.\\
 \hline
 Flujo principal & \begin{enumerate}
-    \item El oftalmólogo arranca el sistema.
-    \item El oftalmólogo ingresa su usuario.
-    \item El oftalmólogo ingresa su contraseña.
-    \item El sistema verifica que los datos sean correctos.
-    \item El sistema da acceso al oftalmólogo.
+    \item El oftalmólogo pulsa el botón de seleccionar paciente.
+    \item El sistema muestra los pacientes posibles registrados a seleccionar.
+    \item El oftalmólogo selecciona el paciente.
+    \item El sistema despliega la información del paciente y las funciones posibles.
 \end{enumerate}
     \\
 \hline
-Flujos Alternos & \begin{enumerate}
-    \item El oftalmólogo arranca el sistema.
-    \item El oftalmólogo ingresa su usuario.
-    \item El oftalmólogo ingresa su contraseña.
-    \item El sistema verifica que los datos sean correctos.
-    \item El sistema no encuentra coincidencia.
-    \item El sistema regresa mensaje de usuario incorrecto.
+Flujos Alternos &  \begin{enumerate}
+    \item El oftalmólogo pulsa el botón de seleccionar paciente.
+    \item El sistema muestra los pacientes posibles registrados a seleccionar.
+    \item El paciente no está en la base de datos. 
+    \item El oftalmólogo crea y diagnóstica al paciente.
+    \item El oftalmólogo pulsa el botón seleccionar paciente.
+    \item El oftalmólogo selecciona el paciente.
+    \item El paciente despliega la información del paciente y las funciones posibles.
 \end{enumerate}\\
 \hline
 \caption{CASO DE USO 5}
 \label{tabla1}
 \end{longtable}
 
+\newpage
+
 \begin{longtable}{|p{3.8cm}|p{10.8cm}|}
 \hline
-CASO DE USO & CU6: Seleccionar paciente\\
+CASO DE USO & CU6: Eliminar paciente\\
 \hline 
 \endfirsthead
 
 % aquí añadimos el encabezado del resto de hojas.
 \hline
 
- & \\
+CASO DE USO & CU6: Eliminar paciente\\
 \hline 
 \endhead
 
@@ -1909,40 +1976,525 @@ versión & 1\\
 \hline
 Autor & Jorge Armando Solis Solis\\
 \hline
-Revisiones & Gabriela de Jesús López Ruiz \\
+Revisiones & Gabriela de Jesús López Ruiz\newline
+José Carlos Davalos López\newline
+Edgar Armando Catalán Salgado\newline
+Rafael Norman Delgado Saucedo\newline
+Rosa Itzel Solis Solis
+\\
+
 \hline
-Fecha de última revisión & 04/12/19\\
+Fecha de última revisión & 26/02/20\\
 \hline
 Actor(es) & Oftalmólogo \\
 \hline
-Propósito & El oftalmólogo debe de tener registrados a sus pacientes para poder llevar un control y acelerar el proceso para las próximas citas.\\
+Propósito & El oftalmólogo por alguna razón desea eliminar a un paciente. \\
 \hline
-Disparadores & \\
+Entradas & Paciente se encuentra en base de datos y ha sido seleccionado\\
 \hline
-Entradas & nombre del paciente\\
+salidas & El paciente ha sido eliminado. \\
 \hline
-salidas & paciente\\
+Mensajes & ms12\\
 \hline
-Pre-condiciones & Haber iniciado sesión\\
+Pre-condiciones & Paciente debe de estar registrado previamente.\\
 \hline
-Post-condiciones & Decidir si se desea modificar o eliminar el paciente\\
+Post-condiciones & Paciente no debe de estar registrado en base de datos.\\
 \hline
 Flujo principal & \begin{enumerate}
-    \item El oftalmólogo presiona el botón de seleccionar paciente.
-    \item El oftalmólogo busca el nombre del paciente.
-    \item El paciente presiona el nombre del paciente.
-    \item El sistema despliega una ventana con los datos del paciente y botones para modificarlo o eliminarlo.
-    \item El oftalmólogo decide si eliminarlo o modificarlo.
+    \item El oftalmólogo pulsa el botón eliminar paciente.
+    \item El sistema elimina de la base de datos al paciente.
+    \item El sistema lanza el mensaje de paciente eliminado.
+    
 \end{enumerate}
     \\
 \hline
-Flujos Alternos & \\
+Flujos Alternos &  
+    N/A\\
 \hline
 \caption{CASO DE USO 6}
 \label{tabla1}
 \end{longtable}
 
+
+\begin{longtable}{|p{3.8cm}|p{10.8cm}|}
+\hline
+CASO DE USO & CU7: Habilitar gafas\\
+\hline 
+\endfirsthead
+
+% aquí añadimos el encabezado del resto de hojas.
+\hline
+
+CASO DE USO & CU7: Habilitar gafas\\
+\hline 
+\endhead
+
+% aquí añadimos el fondo de todas las hojas, excepto de la última.
+\multicolumn{2}{c}{}
+\endfoot
+
+% aquí añadimos el fondo de la última hoja.
+\endlastfoot
+\hline
+versión & 1\\
+\hline
+Autor & Jorge Armando Solis Solis\\
+\hline
+Revisiones & Gabriela de Jesús López Ruiz\newline
+José Carlos Davalos López\newline
+Edgar Armando Catalán Salgado\newline
+Rafael Norman Delgado Saucedo\newline
+Rosa Itzel Solis Solis
+\\
+
+\hline
+Fecha de última revisión & 26/02/20\\
+\hline
+Actor(es) & Oftalmólogo \\
+\hline
+Propósito & El oftalmólogo habilita gafas con la imagen en colores cercanos a la visión normal para el paciente.\\
+\hline
+Entradas & Selección del paciente, paciente diagnosticado.\\
+\hline
+salidas & imagen en colores cercanos a la visión normal.\\
+\hline
+Mensajes & \\
+\hline
+Pre-condiciones & El paciente debe estar registrado.\\
+\hline
+Post-condiciones & El paciente debe de tener los datos actualizados en la base.\\
+\hline
+Flujo principal & \begin{enumerate}
+    \item El oftalmólogo pulsa el botón habilitar gafas.
+    \item El paciente visualiza la imagen.
+\end{enumerate}
+    \\
+\hline
+Flujos Alternos &  N/A\\
+\hline
+\caption{CASO DE USO 7}
+\label{tabla1}
+\end{longtable}
+
+\newpage 
+\begin{longtable}{|p{3.8cm}|p{10.8cm}|}
+\hline
+CASO DE USO & CU8: Modificar paciente\\
+\hline 
+\endfirsthead
+
+% aquí añadimos el encabezado del resto de hojas.
+\hline
+
+CASO DE USO & CU8: Modificar paciente\\
+\hline 
+\endhead
+
+% aquí añadimos el fondo de todas las hojas, excepto de la última.
+\multicolumn{2}{c}{}
+\endfoot
+
+% aquí añadimos el fondo de la última hoja.
+\endlastfoot
+\hline
+versión & 1\\
+\hline
+Autor & Jorge Armando Solis Solis\\
+\hline
+Revisiones & Gabriela de Jesús López Ruiz\newline
+José Carlos Davalos López\newline
+Edgar Armando Catalán Salgado\newline
+Rafael Norman Delgado Saucedo\newline
+Rosa Itzel Solis Solis
+\\
+
+\hline
+Fecha de última revisión & 26/02/20\\
+\hline
+Actor(es) & Oftalmólogo \\
+\hline
+Propósito & El oftalmólogo desea modificar los datos del paciente por alguna razón.\\
+\hline
+Entradas & Datos del paciente.\\
+\hline
+salidas & Se actualizan los datos en la base de datos del paciente. \\
+\hline
+Mensajes & m13,m14\\
+\hline
+Pre-condiciones & El paciente debe estar registrado.\\
+\hline
+Post-condiciones & El paciente debe de tener los datos actualizados en la base.\\
+\hline
+Flujo principal & \begin{enumerate}
+    \item El oftalmólogo pulsa el botón modificar paciente.
+    \item El oftalmólogo ingresa los datos a modificar.
+    \item El oftalmólogo pulsa aceptar paciente.
+    \item El sistema acepta los cambios y los actualiza.
+    
+\end{enumerate}
+    \\
+\hline
+Flujos Alternos &  \begin{enumerate}
+    \item El oftalmólogo pulsa el botón modificar paciente.
+    \item El oftalmólogo ingresa los datos a modificar.
+    \item El oftalmólogo pulsa aceptar paciente.
+    \item El sistema encuentra un error en los datos.
+    \item El sistema imprime el mensaje de error.
+    \item El oftalmólogo corrige los datos.
+    \item El oftalmólogo valida y actualiza los datos.
+\end{enumerate}
+    \\
+\hline
+\caption{CASO DE USO 8}
+\label{tabla1}
+\end{longtable}
+
+
+\newpage 
+
+\begin{longtable}{|p{3.8cm}|p{10.8cm}|}
+\hline
+CASO DE USO & CU9: Agendar cita a paciente\\
+\hline 
+\endfirsthead
+
+% aquí añadimos el encabezado del resto de hojas.
+\hline
+
+CASO DE USO & CU9: Agendar cita a paciente\\
+\hline 
+\endhead
+
+% aquí añadimos el fondo de todas las hojas, excepto de la última.
+\multicolumn{2}{c}{}
+\endfoot
+
+% aquí añadimos el fondo de la última hoja.
+\endlastfoot
+\hline
+versión & 1\\
+\hline
+Autor & Jorge Armando Solis Solis\\
+\hline
+Revisiones & Gabriela de Jesús López Ruiz\newline
+José Carlos Davalos López\newline
+Edgar Armando Catalán Salgado\newline
+Rafael Norman Delgado Saucedo\newline
+Rosa Itzel Solis Solis
+\\
+
+\hline
+Fecha de última revisión & 26/02/20\\
+\hline
+Actor(es) & Oftalmólogo \\
+\hline
+Propósito & EL paciente desea volver a asistir con el oftalmólogo.\\
+\hline
+Entradas & paciente registrado, diagnosticado y con anteriores citas.\\
+\hline
+salidas & Se agenda cita en fechas próximas del paciente.\\
+\hline
+Mensajes & m14\\
+\hline
+Pre-condiciones & El paciente debe estar registrado, diagnosticado y tener citas anteriores.\\
+\hline
+Post-condiciones & La cita se agendará en la base de datos.\\
+\hline
+Flujo principal & \begin{enumerate}
+    \item El oftalmólogo pulsa el botón agendar paciente.
+    \item El oftalmólogo ingresa los datos de la próxima cita.
+    \item El oftalmólogo pulsa aceptar.
+    \item El sistema valida si la fecha es valida.
+    \item El sistema almacena la fecha en la base de datos.
+    
+\end{enumerate}
+    \\
+\hline
+Flujos Alternos & \begin{enumerate}
+    \item El oftalmólogo pulsa el botón agendar paciente.
+    \item El oftalmólogo ingresa los datos de la próxima cita.
+    \item El oftalmólogo pulsa aceptar.
+    \item El sistema valida si la fecha es valida.
+    \item El sistema imprime el mensaje de error.
+    \item El oftalmólogo vuelve a ingresar la fecha.
+    \item El sistema almacena la fecha en la base de datos.
+\end{enumerate}
+    \\
+\hline
+\caption{CASO DE USO 9}
+\label{tabla1}
+\end{longtable}
+
+\newpage 
+
+\begin{longtable}{|p{3.8cm}|p{10.8cm}|}
+\hline
+CASO DE USO & CU10: Visualizar gafas\\
+\hline 
+\endfirsthead
+
+% aquí añadimos el encabezado del resto de hojas.
+\hline
+
+CASO DE USO & CU10: Visualizar gafas\\
+\hline 
+\endhead
+
+% aquí añadimos el fondo de todas las hojas, excepto de la última.
+\multicolumn{2}{c}{}
+\endfoot
+
+% aquí añadimos el fondo de la última hoja.
+\endlastfoot
+\hline
+versión & 1\\
+\hline
+Autor & Jorge Armando Solis Solis\\
+\hline
+Revisiones & Gabriela de Jesús López Ruiz\newline
+José Carlos Davalos López\newline
+Edgar Armando Catalán Salgado\newline
+Rafael Norman Delgado Saucedo\newline
+Rosa Itzel Solis Solis
+\\
+
+\hline
+Fecha de última revisión & 26/02/20\\
+\hline
+Actor(es) & paciente \\
+\hline
+Propósito & El paciente visualiza la imagen que seleccionó en las gafas.\\
+\hline
+Entradas & tipo de daltonismo que padece el paciente, selección del paciente.\\
+\hline
+salidas & Imagen modificada con la visión del tipo de daltonismo del paciente.\\
+\hline
+Mensajes & \\
+\hline
+Pre-condiciones & El paciente debe de estar registrado y padecer algún tipo de daltonismo.\\
+\hline
+Post-condiciones & N/A\\
+\hline
+Flujo principal & \begin{enumerate}
+    \item El paciente selecciona imagen.
+    \item El oftalmólogo habilita las gafas con la imagen deseada.
+    \item El paciente ve imagen.
+\end{enumerate}
+    \\
+\hline
+Flujos Alternos & 
+    N/A\\
+\hline
+\caption{CASO DE USO 10}
+\label{tabla1}
+\end{longtable}
+
+\newpage 
+
+\begin{longtable}{|p{3.8cm}|p{10.8cm}|}
+\hline
+CASO DE USO & CU11: Visualizar carta de ishihara\\
+\hline 
+\endfirsthead
+
+% aquí añadimos el encabezado del resto de hojas.
+\hline
+
+CASO DE USO & CU11: Visualizar carta de ishihara\\
+\hline 
+\endhead
+
+% aquí añadimos el fondo de todas las hojas, excepto de la última.
+\multicolumn{2}{c}{}
+\endfoot
+
+% aquí añadimos el fondo de la última hoja.
+\endlastfoot
+\hline
+versión & 1\\
+\hline
+Autor & Jorge Armando Solis Solis\\
+\hline
+Revisiones & Gabriela de Jesús López Ruiz\newline
+José Carlos Davalos López\newline
+Edgar Armando Catalán Salgado\newline
+Rafael Norman Delgado Saucedo\newline
+Rosa Itzel Solis Solis
+\\
+
+\hline
+Fecha de última revisión & 26/02/20\\
+\hline
+Actor(es) & Paciente\\
+\hline
+Propósito & El paciente visualiza las cartas de ishihara que servirán al sistema para encontrar si padece daltonismo.\\
+\hline
+Entradas & Dato que percibe el paciente.\\
+\hline
+salidas & Carta de ishihara.\\
+\hline
+Mensajes & \\
+\hline
+Pre-condiciones & El paciente debe de estar registrado.\\
+\hline
+Post-condiciones & El paciente debe obtener el tipo de daltonismo que padece.\\
+\hline
+Flujo principal & \begin{enumerate}
+    \item El paciente observa carta de ishihara.
+    \item El paciente menciona el número que observa.
+    \item El oftalmólogo lo registra.
+    \item El sistema muestra la siguiente imagen.
+\end{enumerate}
+    \\
+\hline
+Flujos Alternos & 
+    N/A\\
+\hline
+\caption{CASO DE USO 11}
+\label{tabla1}
+\end{longtable}
+
+\newpage 
+
+\begin{longtable}{|p{3.8cm}|p{10.8cm}|}
+\hline
+CASO DE USO & CU12: Realiza impresión diagnóstica.\\
+\hline 
+\endfirsthead
+
+% aquí añadimos el encabezado del resto de hojas.
+\hline
+
+CASO DE USO & CU12: Realiza impresión diagnóstica\\
+\hline 
+\endhead
+
+% aquí añadimos el fondo de todas las hojas, excepto de la última.
+\multicolumn{2}{c}{}
+\endfoot
+
+% aquí añadimos el fondo de la última hoja.
+\endlastfoot
+\hline
+versión & 1\\
+\hline
+Autor & Jorge Armando Solis Solis\\
+\hline
+Revisiones & Gabriela de Jesús López Ruiz\newline
+José Carlos Davalos López\newline
+Edgar Armando Catalán Salgado\newline
+Rafael Norman Delgado Saucedo\newline
+Rosa Itzel Solis Solis
+\\
+
+\hline
+Fecha de última revisión & 26/02/20\\
+\hline
+Actor(es) & sistema\\
+\hline
+Propósito & El sistema realizará la impresión diagnóstica del paciente con base en las respuestas del paciente.\\
+\hline
+Entradas & Respuestas del paciente.\\
+\hline
+salidas & Impresión diagnóstica\\
+\hline
+Mensajes & \\
+\hline
+Pre-condiciones & El paciente debe estar registrado.\\
+\hline
+Post-condiciones & El paciente debe obtener el tipo de daltonismo que padece.\\
+\hline
+Flujo principal & \begin{enumerate}
+    \item El oftalmólogo ingresa la respuesta del paciente.
+    \item El sistema guarda el dato en la base.
+    \item El sistema procesa la respuesta.
+    \item El sistema elige si cuenta con los datos necesarios para dar la impresión diagnóstica o realiza una pregunta más.
+    \item El sistema muestra la impresión diagnóstica.
+\end{enumerate}
+    \\
+\hline
+Flujos Alternos & 
+    N/A\\
+\hline
+\caption{CASO DE USO 12}
+\label{tabla1}
+\end{longtable}
+
+\newpage 
+
+\begin{longtable}{|p{3.8cm}|p{10.8cm}|}
+\hline
+CASO DE USO & CU13: Aceptar diagnóstico.\\
+\hline 
+\endfirsthead
+
+% aquí añadimos el encabezado del resto de hojas.
+\hline
+
+CASO DE USO & CU13: Aceptar diagnóstico.\\
+\hline 
+\endhead
+
+% aquí añadimos el fondo de todas las hojas, excepto de la última.
+\multicolumn{2}{c}{}
+\endfoot
+
+% aquí añadimos el fondo de la última hoja.
+\endlastfoot
+\hline
+versión & 1\\
+\hline
+Autor & Jorge Armando Solis Solis\\
+\hline
+Revisiones & Gabriela de Jesús López Ruiz\newline
+José Carlos Davalos López\newline
+Edgar Armando Catalán Salgado\newline
+Rafael Norman Delgado Saucedo\newline
+Rosa Itzel Solis Solis
+\\
+
+\hline
+Fecha de última revisión & 26/02/20\\
+\hline
+Actor(es) & sistema, oftalmólogo\\
+\hline
+Propósito & El sistema realizará la impresión diagnóstica del paciente con base en las respuestas del paciente y el oftalmólogo revelará si está en lo correcto.\\
+\hline
+Entradas & Impresión diagnóstica.\\
+\hline
+salidas & Diagnóstico.\\
+\hline
+Mensajes & \\
+\hline
+Pre-condiciones & El paciente debió haber realizado el test.\\
+\hline
+Post-condiciones & El paciente debe obtener el tipo de daltonismo que padece.\\
+\hline
+Flujo principal & \begin{enumerate}
+    \item El sistema imprime la impresión diagnóstica.
+    \item El oftalmólogo decide si es correcta.
+    \item El oftalmólogo la acepta.
+    \item El sistema la almacena en la base de datos.
+\end{enumerate}
+    \\
+\hline
+Flujos Alternos & 
+    \begin{enumerate}
+    \item El sistema imprime la impresión diagnóstica.
+    \item El oftalmólogo decide si es correcta.
+    \item El oftalmólogo no la acepta.
+    \item El oftalmólogo elige el tipo de daltonismo que debería ser.
+    \item El sistema lo guarda en la base de datos.
+\end{enumerate}
+    \\
+\hline
+\caption{CASO DE USO 13}
+\label{tabla1}
+\end{longtable}
+
+\newpage 
 \subsubsection{Diagrama de clases}
+
 
 Este diagrama se diseña a partir de los casos de uso, siendo uno de los fundamentales en todo sistema.
 
@@ -1952,6 +2504,7 @@ Este diagrama se diseña a partir de los casos de uso, siendo uno de los fundame
 \captionof{figure}{\label{fig:2} Diagrama de clases}
 	\end{center} 
 \end{figure}
+
 
 \newpage
 \subsubsection{Diagrama de de componentes}
