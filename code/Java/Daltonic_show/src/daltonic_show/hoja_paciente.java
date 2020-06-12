@@ -143,7 +143,7 @@ public class hoja_paciente extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        getContentPane().setLayout(null);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         cita.setText("Agendar próxima cita");
         cita.addActionListener(new java.awt.event.ActionListener() {
@@ -151,12 +151,10 @@ public class hoja_paciente extends javax.swing.JFrame {
                 citaActionPerformed(evt);
             }
         });
-        getContentPane().add(cita);
-        cita.setBounds(340, 350, 200, 50);
+        getContentPane().add(cita, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 350, 200, 50));
 
         jButton1.setText("Habilitar Gafas");
-        getContentPane().add(jButton1);
-        jButton1.setBounds(180, 350, 150, 50);
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 350, 150, 50));
 
         eliminar.setText("eliminar usuario");
         eliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -164,20 +162,16 @@ public class hoja_paciente extends javax.swing.JFrame {
                 eliminarActionPerformed(evt);
             }
         });
-        getContentPane().add(eliminar);
-        eliminar.setBounds(30, 350, 140, 50);
+        getContentPane().add(eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, 140, 50));
 
         fecha_nactf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fecha_nactfActionPerformed(evt);
             }
         });
-        getContentPane().add(fecha_nactf);
-        fecha_nactf.setBounds(330, 170, 290, 40);
-        getContentPane().add(nombretf);
-        nombretf.setBounds(220, 120, 190, 40);
-        getContentPane().add(ingresotf);
-        ingresotf.setBounds(330, 220, 290, 40);
+        getContentPane().add(fecha_nactf, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 170, 290, 40));
+        getContentPane().add(nombretf, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 120, 190, 40));
+        getContentPane().add(ingresotf, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 220, 290, 40));
 
         editar.setText("Editar usuario");
         editar.addActionListener(new java.awt.event.ActionListener() {
@@ -185,8 +179,7 @@ public class hoja_paciente extends javax.swing.JFrame {
                 editarActionPerformed(evt);
             }
         });
-        getContentPane().add(editar);
-        editar.setBounds(560, 350, 140, 50);
+        getContentPane().add(editar, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 350, 140, 50));
 
         guardar.setText("Guardar cambios");
         guardar.addActionListener(new java.awt.event.ActionListener() {
@@ -194,8 +187,7 @@ public class hoja_paciente extends javax.swing.JFrame {
                 guardarActionPerformed(evt);
             }
         });
-        getContentPane().add(guardar);
-        guardar.setBounds(610, 10, 160, 50);
+        getContentPane().add(guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 10, 160, 50));
 
         cancelar.setText("Cerrar");
         cancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -203,36 +195,28 @@ public class hoja_paciente extends javax.swing.JFrame {
                 cancelarActionPerformed(evt);
             }
         });
-        getContentPane().add(cancelar);
-        cancelar.setBounds(450, 10, 150, 50);
-        getContentPane().add(ultima_citatf);
-        ultima_citatf.setBounds(330, 270, 290, 40);
-        getContentPane().add(apeidotf);
-        apeidotf.setBounds(420, 120, 200, 40);
+        getContentPane().add(cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 10, 150, 50));
+        getContentPane().add(ultima_citatf, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 270, 290, 40));
+        getContentPane().add(apeidotf, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 120, 200, 40));
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel3.setText("FECHA DE NACIMIENTO:");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(90, 170, 220, 60);
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, 220, 60));
 
         jLabel5.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel5.setText("FECHA DE INGRESO:");
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(90, 220, 210, 40);
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 220, 210, 40));
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel4.setText("FECHA DE ÚLTIMA CITA:");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(90, 270, 240, 30);
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 270, 240, 30));
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel2.setText("NOMBRE: ");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(90, 100, 150, 90);
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, 150, 90));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/daltonic_show/66539476-fondo-de-póquer-de-color-azul-claro-minimalista-con-textura-transparente-compuesta-de-símbolos-de-la-tarj.jpg"))); // NOI18N
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 0, 1340, 894);
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 790, 430));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

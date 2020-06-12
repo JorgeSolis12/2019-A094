@@ -64,40 +64,34 @@ public class agendar_cita extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        getContentPane().setLayout(null);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         day.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 dayActionPerformed(evt);
             }
         });
-        getContentPane().add(day);
-        day.setBounds(30, 280, 50, 40);
+        getContentPane().add(day, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, 50, 40));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel4.setText("/");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(160, 270, 34, 60);
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 270, 34, 60));
 
         month.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 monthActionPerformed(evt);
             }
         });
-        getContentPane().add(month);
-        month.setBounds(110, 280, 50, 40);
-        getContentPane().add(year);
-        year.setBounds(180, 280, 100, 40);
+        getContentPane().add(month, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 280, 50, 40));
+        getContentPane().add(year, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 280, 100, 40));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel5.setText("/");
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(90, 270, 34, 60);
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 270, 34, 60));
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel3.setText("Ingrese la fecha:");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(30, 250, 170, 30);
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 170, 30));
 
         disponibilidad.setText("Buscar Disponibilidad");
         disponibilidad.addActionListener(new java.awt.event.ActionListener() {
@@ -105,16 +99,13 @@ public class agendar_cita extends javax.swing.JFrame {
                 disponibilidadActionPerformed(evt);
             }
         });
-        getContentPane().add(disponibilidad);
-        disponibilidad.setBounds(60, 340, 170, 40);
+        getContentPane().add(disponibilidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 340, 170, 40));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/daltonic_show/hora.png"))); // NOI18N
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(0, -90, 870, 530);
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -90, 870, 530));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/daltonic_show/fondo-gris-tecnologia_1035-9343.jpg"))); // NOI18N
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 0, 630, 407);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/daltonic_show/preview.jpg"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 870, 460));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

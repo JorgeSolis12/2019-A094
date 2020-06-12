@@ -4,6 +4,10 @@
  * and open the template in the editor.
  */
 package daltonic_show;
+
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author nirfa
@@ -15,6 +19,7 @@ public class Diagnosticador extends javax.swing.JFrame {
      */
     public Diagnosticador() {
         initComponents();
+        respuesta.setVisible(false);
     }
 
     /**
@@ -26,68 +31,102 @@ public class Diagnosticador extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        respuesta = new javax.swing.JButton();
+        res = new javax.swing.JTextField();
         carta = new javax.swing.JLabel();
+        iniciar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        Intrucciones = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setText("Enviar Respuesta");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        respuesta.setText("Siguiente");
+        respuesta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                respuestaActionPerformed(evt);
             }
         });
+        getContentPane().add(respuesta, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 420, 150, 40));
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        res.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                resActionPerformed(evt);
             }
         });
+        getContentPane().add(res, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 360, 260, 40));
+        getContentPane().add(carta, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 50, 250, 240));
 
-        carta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/daltonic_show/Test de Ishihara/1.jpg"))); // NOI18N
+        iniciar.setText("Iniciar");
+        iniciar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                iniciarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(iniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, 80, 30));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/daltonic_show/66539476-fondo-de-póquer-de-color-azul-claro-minimalista-con-textura-transparente-compuesta-de-símbolos-de-la-tarj.jpg"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-3, 0, 610, 490));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(190, 190, 190)
-                .addComponent(carta, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(170, 170, 170)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(220, 220, 220)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(carta, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(70, 70, 70)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(420, 420, 420)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
+        Intrucciones.setText("Instrucciones");
+
+        jMenuItem1.setText("Instrucciones");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        Intrucciones.add(jMenuItem1);
+
+        jMenuBar1.add(Intrucciones);
+
+        setJMenuBar(jMenuBar1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void resActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_resActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void respuestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_respuestaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        int val = 0;
+        String cad = res.getText();
+        if(cad.length()==0){
+            JOptionPane.showMessageDialog(null, "No se ha introducido una respuesta","Hey!", JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+            
+            String compare = "ninguno";
+            if(cad.equals(compare)){
+                val = -1;
+                System.out.println(val);
+            }
+            else{
+                System.out.println(Integer.parseInt(cad));
+            }
+            int numero = (int) (Math.random() * 20) + 2;
+            carta.setIcon(new ImageIcon("C:/Users/nirfa/OneDrive/Documentos/GitHub/2019-A094/code/Java/Daltonic_show/src/daltonic_show/Test de Ishihara/"+Integer.toString(numero)+".jpg"));
+            res.setText("");
+        }
+        
+    }//GEN-LAST:event_respuestaActionPerformed
+
+    private void iniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarActionPerformed
+        // TODO add your handling code here:
+        carta.setIcon(new ImageIcon("C:/Users/nirfa/OneDrive/Documentos/GitHub/2019-A094/code/Java/Daltonic_show/src/daltonic_show/Test de Ishihara/1.jpg"));
+        respuesta.setVisible(true); 
+        iniciar.setVisible(false);
+    }//GEN-LAST:event_iniciarActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        Instrucciones i = new Instrucciones();
+        i.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -125,9 +164,13 @@ public class Diagnosticador extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu Intrucciones;
     private javax.swing.JLabel carta;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton iniciar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JTextField res;
+    private javax.swing.JButton respuesta;
     // End of variables declaration//GEN-END:variables
 }

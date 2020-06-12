@@ -40,6 +40,7 @@ public class crear_paciente extends javax.swing.JFrame {
         Image icon = new ImageIcon(getClass().getResource("icon.png")).getImage();
         setIconImage(icon);
         this.setTitle("Diagnosticar Paciente");
+        //diagnosticar.setVisible(false);
     }
 
     /**
@@ -51,6 +52,7 @@ public class crear_paciente extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        diagnosticar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         name = new javax.swing.JTextField();
         day = new javax.swing.JTextField();
@@ -65,73 +67,69 @@ public class crear_paciente extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        getContentPane().setLayout(null);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        diagnosticar.setText("Diagnosticar");
+        diagnosticar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                diagnosticarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(diagnosticar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 440, 110, 40));
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel2.setText("Nombre:");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(50, 90, 100, 40);
-        getContentPane().add(name);
-        name.setBounds(50, 140, 460, 30);
-        getContentPane().add(day);
-        day.setBounds(60, 360, 50, 40);
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 100, 40));
+        getContentPane().add(name, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, 460, 30));
+        getContentPane().add(day, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 360, 50, 40));
 
         postname.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 postnameActionPerformed(evt);
             }
         });
-        getContentPane().add(postname);
-        postname.setBounds(50, 240, 460, 30);
+        getContentPane().add(postname, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, 460, 30));
 
         mes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mesActionPerformed(evt);
             }
         });
-        getContentPane().add(mes);
-        mes.setBounds(150, 360, 50, 40);
+        getContentPane().add(mes, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 360, 50, 40));
 
         year.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 yearActionPerformed(evt);
             }
         });
-        getContentPane().add(year);
-        year.setBounds(250, 360, 140, 40);
+        getContentPane().add(year, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 360, 140, 40));
 
-        agregar.setText("Diagnosticar");
+        agregar.setText("Agregar");
         agregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 agregarActionPerformed(evt);
             }
         });
-        getContentPane().add(agregar);
-        agregar.setBounds(290, 440, 110, 40);
+        getContentPane().add(agregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 440, 110, 40));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel6.setText("/");
-        getContentPane().add(jLabel6);
-        jLabel6.setBounds(220, 360, 20, 30);
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 360, 20, 30));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel5.setText("/");
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(120, 360, 20, 30);
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 360, 20, 30));
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel4.setText("Fecha de nacimiento:");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(50, 310, 390, 40);
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, 390, 40));
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel3.setText("Apeidos:");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(50, 180, 120, 50);
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, 120, 50));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/daltonic_show/66539476-fondo-de-póquer-de-color-azul-claro-minimalista-con-textura-transparente-compuesta-de-símbolos-de-la-tarj.jpg"))); // NOI18N
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 0, 670, 510);
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 670, 510));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -324,7 +322,7 @@ public class crear_paciente extends javax.swing.JFrame {
                 }
                 
                 JOptionPane.showMessageDialog(null, "Usuario crado", "Información", JOptionPane.INFORMATION_MESSAGE, null); 
-                
+                diagnosticar.setVisible(true);
             }
             else{
                 switch(caso){
@@ -352,7 +350,14 @@ public class crear_paciente extends javax.swing.JFrame {
             
             JOptionPane.showMessageDialog(null, "Fecha no Valida", "Error", JOptionPane.ERROR_MESSAGE, null); 
         }
+        
     }//GEN-LAST:event_agregarActionPerformed
+
+    private void diagnosticarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diagnosticarActionPerformed
+        // TODO add your handling code here:
+        Diagnosticador d = new Diagnosticador();
+        d.setVisible(true);
+    }//GEN-LAST:event_diagnosticarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -392,6 +397,7 @@ public class crear_paciente extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton agregar;
     private javax.swing.JTextField day;
+    private javax.swing.JButton diagnosticar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

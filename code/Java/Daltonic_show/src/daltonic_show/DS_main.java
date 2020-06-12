@@ -70,7 +70,7 @@ public class DS_main extends javax.swing.JFrame {
         directors = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(null);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         logut.setText("Cerrar Sesión");
         logut.addActionListener(new java.awt.event.ActionListener() {
@@ -78,8 +78,7 @@ public class DS_main extends javax.swing.JFrame {
                 logutActionPerformed(evt);
             }
         });
-        getContentPane().add(logut);
-        logut.setBounds(610, 20, 110, 40);
+        getContentPane().add(logut, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 20, 110, 40));
 
         selection.setText("Seleccionar paciente");
         selection.addActionListener(new java.awt.event.ActionListener() {
@@ -87,8 +86,7 @@ public class DS_main extends javax.swing.JFrame {
                 selectionActionPerformed(evt);
             }
         });
-        getContentPane().add(selection);
-        selection.setBounds(450, 230, 150, 40);
+        getContentPane().add(selection, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 230, 150, 40));
 
         diagnostico.setText("Diagnosticar Paciente");
         diagnostico.addActionListener(new java.awt.event.ActionListener() {
@@ -96,10 +94,8 @@ public class DS_main extends javax.swing.JFrame {
                 diagnosticoActionPerformed(evt);
             }
         });
-        getContentPane().add(diagnostico);
-        diagnostico.setBounds(450, 180, 150, 40);
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(651, 274, 0, 0);
+        getContentPane().add(diagnostico, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 180, 150, 40));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(651, 274, -1, -1));
 
         lg.setText("Iniciar sesión");
         lg.addActionListener(new java.awt.event.ActionListener() {
@@ -107,18 +103,14 @@ public class DS_main extends javax.swing.JFrame {
                 lgActionPerformed(evt);
             }
         });
-        getContentPane().add(lg);
-        lg.setBounds(490, 20, 110, 40);
-        getContentPane().add(Welcome);
-        Welcome.setBounds(460, 330, 220, 30);
+        getContentPane().add(lg, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 20, 110, 40));
+        getContentPane().add(Welcome, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 330, 220, 30));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/daltonic_show/11849.png"))); // NOI18N
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(40, 20, 440, 380);
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 440, 380));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/daltonic_show/preview.jpg"))); // NOI18N
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(0, 0, 730, 450);
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 450));
 
         user.setText("Opciones");
 
