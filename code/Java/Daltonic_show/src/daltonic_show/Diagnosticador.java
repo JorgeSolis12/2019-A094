@@ -7,6 +7,17 @@ package daltonic_show;
 
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import com.mysql.jdbc.Connection;
+import com.mysql.jdbc.Statement;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Objects;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -17,9 +28,40 @@ public class Diagnosticador extends javax.swing.JFrame {
     /**
      * Creates new form Diagnosticador
      */
+    int[] respuestas_rv = {12,3,5,70,35,2,5,17,21,-1,-1,-1,-1,-1,-1,-1,-1,5,2,45,73};
+    int[] respuestas_vn = {12,8,6,29,57,5,3,15,74,2,6,97,45,5,7,16,73,-1,-1,-1,-1};
+    int[] respuestas_ac = {12,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
+
+    ArrayList<Integer> id_vn = new ArrayList<Integer>();
+    ArrayList<Integer> id_rv = new ArrayList<Integer>(); 
+    ArrayList<Integer> val_rv = new ArrayList<Integer>();
+
+    ArrayList<Integer> valores_nodo = new ArrayList<Integer>();
+    ArrayList<Integer> valores_nodo_vn = new ArrayList<Integer>();
+    ArrayList<Integer> blacklist = new ArrayList<Integer>();
+
+
+    int ent_rv = 0;
+    int val_vn = 0;
+    int val_ac = 0;
+    
+    
+    int siguiente_vn = 2;
+    int siguiente_rv = 2;
+    int siguiente_ac = 2;
+    int siguiente = 2;
+
+    Connection cnx = null;
+    ResultSet rs = null;
+    
+    node nuevo_nodo = new node();
+           
     public Diagnosticador() {
         initComponents();
         respuesta.setVisible(false);
+             
+            
+           
     }
 
     /**
@@ -33,6 +75,7 @@ public class Diagnosticador extends javax.swing.JFrame {
 
         respuesta = new javax.swing.JButton();
         res = new javax.swing.JTextField();
+        pregunta = new javax.swing.JLabel();
         carta = new javax.swing.JLabel();
         iniciar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -56,7 +99,10 @@ public class Diagnosticador extends javax.swing.JFrame {
                 resActionPerformed(evt);
             }
         });
-        getContentPane().add(res, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 360, 260, 40));
+        getContentPane().add(res, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 370, 260, 40));
+
+        pregunta.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        getContentPane().add(pregunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 300, 260, 60));
         getContentPane().add(carta, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 50, 250, 240));
 
         iniciar.setText("Iniciar");
@@ -93,33 +139,781 @@ public class Diagnosticador extends javax.swing.JFrame {
 
     private void respuestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_respuestaActionPerformed
         // TODO add your handling code here:
-        int val = 0;
-        String cad = res.getText();
-        if(cad.length()==0){
-            JOptionPane.showMessageDialog(null, "No se ha introducido una respuesta","Hey!", JOptionPane.ERROR_MESSAGE);
-        }
-        else{
+        if(ent_rv >= 0 || val_vn >= 0 || val_ac < 10){
             
-            String compare = "ninguno";
-            if(cad.equals(compare)){
-                val = -1;
-                System.out.println(val);
+            pregunta.setText(nuevo_nodo.pregunta);
+               
+               String m;
+               m = res.getText();
+               int val = 0;
+        
+            if(m.length()==0){
+                JOptionPane.showMessageDialog(null, "No se ha introducido una respuesta","Hey!", JOptionPane.ERROR_MESSAGE);
             }
             else{
-                System.out.println(Integer.parseInt(cad));
+
+                String compare = "ninguno";
+                if(m.equals(compare)){
+                    val = -1;
+                    m = Integer.toString(val);
+                }
+                
             }
-            int numero = (int) (Math.random() * 20) + 2;
-            carta.setIcon(new ImageIcon("C:/Users/nirfa/OneDrive/Documentos/GitHub/2019-A094/code/Java/Daltonic_show/src/daltonic_show/Test de Ishihara/"+Integer.toString(numero)+".jpg"));
+               //Generar nodo de rojo-verde
+               
+                int i = 1;
+
+                int may = 0;
+                while(i<=21){
+
+                    if(may< valores_nodo.get(i-1)){
+                        if(blacklist.contains(i)){
+                            i++;
+                         }
+                        else{
+                            may = valores_nodo.get(i-1);
+                            siguiente_rv = i;
+                            i++;
+                        }
+                    }
+
+                }
+                node nodo_rv = new node(); 
+                nodo_rv.padre = nuevo_nodo;
+                nodo_rv.id = siguiente_rv ;
+                nodo_rv.respuesta_vn = respuestas_rv[siguiente_rv-1];
+                nodo_rv.respuesta_rv = respuestas_vn[siguiente_rv-1];
+                nodo_rv.respueta_ac = respuestas_ac[siguiente_rv-1];
+                
+                // Generar nodo visión normal
+                
+                    i = 1;
+                    
+                    may = 0;
+                    while(i<=21){
+                        
+                        if(may< valores_nodo_vn.get(i-1)){
+                            if(blacklist.contains(i)){
+                                i++;
+                             }
+                            else{
+                                may = valores_nodo_vn.get(i-1);
+                                siguiente_vn = i;
+                                i++;
+                            }
+                        }
+                        
+                    }
+                    node nodo_vn = new node(); 
+                    nodo_vn.padre = nuevo_nodo;
+                    nodo_vn.id = siguiente_rv ;
+                    nodo_vn.respuesta_vn = respuestas_rv[siguiente_vn-1];
+                    nodo_vn.respuesta_rv = respuestas_vn[siguiente_vn-1];
+                    nodo_vn.respueta_ac = respuestas_ac[siguiente_vn-1];
+                    
+                 //Generar nodo acromatopsia
+               
+                 siguiente_ac++;
+                 while(blacklist.contains(siguiente_ac)){
+                    siguiente_ac++;  
+                 }
+                 node nodo_ac = new node(); 
+                 nodo_ac.padre = nuevo_nodo;
+                 nodo_ac.id = siguiente_ac ;
+                 nodo_ac.respuesta_vn = respuestas_rv[siguiente_ac-1];
+                 nodo_ac.respuesta_rv = respuestas_vn[siguiente_ac-1];
+                 nodo_ac.respueta_ac = respuestas_ac[siguiente_ac-1];
+                   
+                 //Generar respuesta no contenida en BD
+                 
+                 siguiente++;
+                 while(blacklist.contains(siguiente)){
+                    siguiente++;  
+                 }
+                 node nodo_aux = new node(); 
+                 nodo_aux.padre = nuevo_nodo;
+                 nodo_aux.id = siguiente ;
+                 nodo_aux.respuesta_vn = respuestas_rv[siguiente-1];
+                 nodo_aux.respuesta_rv = respuestas_vn[siguiente-1];
+                 nodo_aux.respueta_ac = respuestas_ac[siguiente-1];
+                 
+               //buscar el siguiente nodo para preguntar.
+               int p = Integer.parseInt(m);
+               if(p == nuevo_nodo.respuesta_rv){
+                    ent_rv = ent_rv - valores_nodo.get(siguiente_rv-1);
+                    blacklist.add(siguiente_rv);
+                    nuevo_nodo = nodo_rv;
+                }
+               
+               else{ 
+                    if(p == nuevo_nodo.respuesta_vn){
+                    val_vn = val_vn - valores_nodo_vn.get(siguiente_vn-1);
+                    blacklist.add(siguiente_vn);
+                    nuevo_nodo = nodo_vn;
+                    }
+               
+                    else{ 
+                        if(p == nuevo_nodo.respueta_ac){
+                            val_ac++;
+                            blacklist.add(siguiente_ac);
+                            nuevo_nodo = nodo_ac;
+                        }
+                        else{
+                            System.out.println("Siguiente");
+                            blacklist.add(siguiente);
+                            nuevo_nodo = nodo_aux;
+                        }
+                    }
+               }
+            carta.setIcon(new ImageIcon("C:/Users/nirfa/OneDrive/Documentos/GitHub/2019-A094/code/Java/Daltonic_show/src/daltonic_show/Instrucciones/"+Integer.toString(nuevo_nodo.id)+".jpg"));
             res.setText("");
         }
+        else{
+            if(ent_rv == 0){
+                resultado r = new resultado("Daltonismo a Rojos y Verdes");
+                r.setVisible(true);
+            }
+            else if(val_vn == 0){
+                resultado r = new resultado("Visión Normal");
+                r.setVisible(true);
+            }
+            else{
+                resultado r = new resultado("Acromatopsia");
+                r.setVisible(true);
+                
+            }
+            
+        }
+        
         
     }//GEN-LAST:event_respuestaActionPerformed
 
     private void iniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarActionPerformed
         // TODO add your handling code here:
         carta.setIcon(new ImageIcon("C:/Users/nirfa/OneDrive/Documentos/GitHub/2019-A094/code/Java/Daltonic_show/src/daltonic_show/Test de Ishihara/1.jpg"));
-        respuesta.setVisible(true); 
+        respuesta.setVisible(true);
+        pregunta.setText("¿Qué número observa?");
         iniciar.setVisible(false);
+        //visión normal
+            
+            try {
+            Class.forName("com.mysql.jdbc.Driver");
+            cnx = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/bd_paciente", "jorgesolis12", "root2");
+            Statement st = (Statement) cnx.createStatement();
+
+          
+            String SSQL="select * from paciente_tiene_daltonismo where id_daltonismo= 1;";
+            rs = st.executeQuery(SSQL);
+            
+            while(rs.next()){
+                id_vn.add(rs.getInt("id_paciente"));           
+            }
+           rs.close();
+          
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(Diagnosticador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+           
+           
+           
+            //visión rv
+            
+            try {
+            Class.forName("com.mysql.jdbc.Driver");
+            cnx = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/bd_paciente", "jorgesolis12", "root2");
+            Statement st = (Statement) cnx.createStatement();
+
+           
+            String SSQL="select * from paciente_tiene_daltonismo where id_daltonismo != 1;";
+            rs = st.executeQuery(SSQL);
+
+            while(rs.next()){
+                id_rv.add(rs.getInt("id_paciente"));           
+            }
+               rs.close();
+            
+        
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(Diagnosticador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+           
+           
+           
+           //Generar valor de cada nodo y entriopia.
+           
+           //Entriopia de Rojo-Verde  
+            try {
+                Class.forName("com.mysql.jdbc.Driver");
+                cnx = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/bd_paciente", "jorgesolis12", "root2");
+                Statement st = (Statement) cnx.createStatement();
+
+                //Carta 1
+                String SSQL = "select count(paciente_ve_carta.id_paciente) FROM paciente_ve_carta "
+                        + "RIGHT JOIN paciente_tiene_daltonismo ON paciente_tiene_daltonismo.id_paciente = paciente_ve_carta.id_paciente "
+                        + "where paciente_tiene_daltonismo.id_daltonismo != 1 and paciente_ve_carta.id_carta = 1 "
+                        + "and paciente_ve_carta.respuesta = 12;";
+                rs = st.executeQuery(SSQL);
+
+                while(rs.next()){    
+                    valores_nodo.add(rs.getInt(1));
+                    //System.out.println(rs.getInt(1));
+                }
+                
+                //Carta 2
+                SSQL = "select count(paciente_ve_carta.id_paciente) FROM paciente_ve_carta "
+                        + "RIGHT JOIN paciente_tiene_daltonismo ON paciente_tiene_daltonismo.id_paciente = paciente_ve_carta.id_paciente "
+                        + "where paciente_tiene_daltonismo.id_daltonismo != 1 and paciente_ve_carta.id_carta = 2 "
+                        + "and paciente_ve_carta.respuesta = 3;";
+                rs = st.executeQuery(SSQL);
+
+                while(rs.next()){    
+                    valores_nodo.add(rs.getInt(1));
+                    //System.out.println(rs.getInt(1));
+                }
+                
+                //Carta 3
+                SSQL = "select count(paciente_ve_carta.id_paciente) FROM paciente_ve_carta "
+                        + "RIGHT JOIN paciente_tiene_daltonismo ON paciente_tiene_daltonismo.id_paciente = paciente_ve_carta.id_paciente "
+                        + "where paciente_tiene_daltonismo.id_daltonismo != 1 and paciente_ve_carta.id_carta = 3 "
+                        + "and paciente_ve_carta.respuesta = 5;";
+                rs = st.executeQuery(SSQL);
+
+                while(rs.next()){    
+                    valores_nodo.add(rs.getInt(1));
+                    //System.out.println(rs.getInt(1));
+                }
+                
+                //Carta 4
+                SSQL = "select count(paciente_ve_carta.id_paciente) FROM paciente_ve_carta "
+                        + "RIGHT JOIN paciente_tiene_daltonismo ON paciente_tiene_daltonismo.id_paciente = paciente_ve_carta.id_paciente "
+                        + "where paciente_tiene_daltonismo.id_daltonismo != 1 and paciente_ve_carta.id_carta = 4 "
+                        + "and paciente_ve_carta.respuesta = 70;";
+                rs = st.executeQuery(SSQL);
+
+                while(rs.next()){    
+                    valores_nodo.add(rs.getInt(1));
+                    //System.out.println(rs.getInt(1));
+                }
+                
+                //Carta 5
+                SSQL = "select count(paciente_ve_carta.id_paciente) FROM paciente_ve_carta "
+                        + "RIGHT JOIN paciente_tiene_daltonismo ON paciente_tiene_daltonismo.id_paciente = paciente_ve_carta.id_paciente "
+                        + "where paciente_tiene_daltonismo.id_daltonismo != 1 and paciente_ve_carta.id_carta = 5 "
+                        + "and paciente_ve_carta.respuesta = 35;";
+                rs = st.executeQuery(SSQL);
+
+                while(rs.next()){    
+                    valores_nodo.add(rs.getInt(1));
+                    //System.out.println(rs.getInt(1));
+                }
+                
+                //Carta 6
+                SSQL = "select count(paciente_ve_carta.id_paciente) FROM paciente_ve_carta "
+                        + "RIGHT JOIN paciente_tiene_daltonismo ON paciente_tiene_daltonismo.id_paciente = paciente_ve_carta.id_paciente "
+                        + "where paciente_tiene_daltonismo.id_daltonismo != 1 and paciente_ve_carta.id_carta = 6 "
+                        + "and paciente_ve_carta.respuesta = 2;";
+                rs = st.executeQuery(SSQL);
+
+                while(rs.next()){    
+                    valores_nodo.add(rs.getInt(1));
+                    //System.out.println(rs.getInt(1));
+                }
+                
+                //Carta 7
+                SSQL = "select count(paciente_ve_carta.id_paciente) FROM paciente_ve_carta "
+                        + "RIGHT JOIN paciente_tiene_daltonismo ON paciente_tiene_daltonismo.id_paciente = paciente_ve_carta.id_paciente "
+                        + "where paciente_tiene_daltonismo.id_daltonismo != 1 and paciente_ve_carta.id_carta = 7 "
+                        + "and paciente_ve_carta.respuesta = 5;";
+                rs = st.executeQuery(SSQL);
+
+                while(rs.next()){    
+                    valores_nodo.add(rs.getInt(1));
+                    //System.out.println(rs.getInt(1));
+                }
+                
+                //Carta 8
+                SSQL = "select count(paciente_ve_carta.id_paciente) FROM paciente_ve_carta "
+                        + "RIGHT JOIN paciente_tiene_daltonismo ON paciente_tiene_daltonismo.id_paciente = paciente_ve_carta.id_paciente "
+                        + "where paciente_tiene_daltonismo.id_daltonismo != 1 and paciente_ve_carta.id_carta = 8 "
+                        + "and paciente_ve_carta.respuesta = 17;";
+                rs = st.executeQuery(SSQL);
+
+                while(rs.next()){    
+                    valores_nodo.add(rs.getInt(1));
+                    //System.out.println(rs.getInt(1));
+                }
+                
+                
+                //Carta 9
+                SSQL = "select count(paciente_ve_carta.id_paciente) FROM paciente_ve_carta "
+                        + "RIGHT JOIN paciente_tiene_daltonismo ON paciente_tiene_daltonismo.id_paciente = paciente_ve_carta.id_paciente "
+                        + "where paciente_tiene_daltonismo.id_daltonismo != 1 and paciente_ve_carta.id_carta = 9 "
+                        + "and paciente_ve_carta.respuesta = 21;";
+                rs = st.executeQuery(SSQL);
+
+                while(rs.next()){    
+                    valores_nodo.add(rs.getInt(1));
+                    //System.out.println(rs.getInt(1));
+                }
+                
+                //Carta 10
+                SSQL = "select count(paciente_ve_carta.id_paciente) FROM paciente_ve_carta "
+                        + "RIGHT JOIN paciente_tiene_daltonismo ON paciente_tiene_daltonismo.id_paciente = paciente_ve_carta.id_paciente "
+                        + "where paciente_tiene_daltonismo.id_daltonismo != 1 and paciente_ve_carta.id_carta = 10 "
+                        + "and paciente_ve_carta.respuesta = -1;";
+                rs = st.executeQuery(SSQL);
+
+                while(rs.next()){    
+                    valores_nodo.add(rs.getInt(1));
+                    //System.out.println(rs.getInt(1));
+                }
+                
+                //Carta 11
+                SSQL = "select count(paciente_ve_carta.id_paciente) FROM paciente_ve_carta "
+                        + "RIGHT JOIN paciente_tiene_daltonismo ON paciente_tiene_daltonismo.id_paciente = paciente_ve_carta.id_paciente "
+                        + "where paciente_tiene_daltonismo.id_daltonismo != 1 and paciente_ve_carta.id_carta = 11 "
+                        + "and paciente_ve_carta.respuesta = -1;";
+                rs = st.executeQuery(SSQL);
+
+                while(rs.next()){    
+                    valores_nodo.add(rs.getInt(1));
+                    //System.out.println(rs.getInt(1));
+                }
+                
+                //Carta 12
+                SSQL = "select count(paciente_ve_carta.id_paciente) FROM paciente_ve_carta "
+                        + "RIGHT JOIN paciente_tiene_daltonismo ON paciente_tiene_daltonismo.id_paciente = paciente_ve_carta.id_paciente "
+                        + "where paciente_tiene_daltonismo.id_daltonismo != 1 and paciente_ve_carta.id_carta = 12 "
+                        + "and paciente_ve_carta.respuesta = -1;";
+                rs = st.executeQuery(SSQL);
+
+                while(rs.next()){    
+                    valores_nodo.add(rs.getInt(1));
+                    //System.out.println(rs.getInt(1));
+                }
+                
+                //Carta 13
+                SSQL = "select count(paciente_ve_carta.id_paciente) FROM paciente_ve_carta "
+                        + "RIGHT JOIN paciente_tiene_daltonismo ON paciente_tiene_daltonismo.id_paciente = paciente_ve_carta.id_paciente "
+                        + "where paciente_tiene_daltonismo.id_daltonismo != 1 and paciente_ve_carta.id_carta = 13 "
+                        + "and paciente_ve_carta.respuesta = -1;";
+                rs = st.executeQuery(SSQL);
+
+                while(rs.next()){    
+                    valores_nodo.add(rs.getInt(1));
+                    //System.out.println(rs.getInt(1));
+                }
+                
+                
+                //Carta 14
+                SSQL = "select count(paciente_ve_carta.id_paciente) FROM paciente_ve_carta "
+                        + "RIGHT JOIN paciente_tiene_daltonismo ON paciente_tiene_daltonismo.id_paciente = paciente_ve_carta.id_paciente "
+                        + "where paciente_tiene_daltonismo.id_daltonismo != 1 and paciente_ve_carta.id_carta = 14 "
+                        + "and paciente_ve_carta.respuesta = -1;";
+                rs = st.executeQuery(SSQL);
+
+                while(rs.next()){    
+                    valores_nodo.add(rs.getInt(1));
+                    //System.out.println(rs.getInt(1));
+                }
+                
+                //Carta 15
+                SSQL = "select count(paciente_ve_carta.id_paciente) FROM paciente_ve_carta "
+                        + "RIGHT JOIN paciente_tiene_daltonismo ON paciente_tiene_daltonismo.id_paciente = paciente_ve_carta.id_paciente "
+                        + "where paciente_tiene_daltonismo.id_daltonismo != 1 and paciente_ve_carta.id_carta = 15 "
+                        + "and paciente_ve_carta.respuesta = -1;";
+                rs = st.executeQuery(SSQL);
+
+                while(rs.next()){    
+                    valores_nodo.add(rs.getInt(1));
+                    //System.out.println(rs.getInt(1));
+                }
+                
+                //Carta 16
+                SSQL = "select count(paciente_ve_carta.id_paciente) FROM paciente_ve_carta "
+                        + "RIGHT JOIN paciente_tiene_daltonismo ON paciente_tiene_daltonismo.id_paciente = paciente_ve_carta.id_paciente "
+                        + "where paciente_tiene_daltonismo.id_daltonismo != 1 and paciente_ve_carta.id_carta = 16 "
+                        + "and paciente_ve_carta.respuesta = -1;";
+                rs = st.executeQuery(SSQL);
+
+                while(rs.next()){    
+                    valores_nodo.add(rs.getInt(1));
+                    //System.out.println(rs.getInt(1));
+                }
+                
+                //Carta 17
+                SSQL = "select count(paciente_ve_carta.id_paciente) FROM paciente_ve_carta "
+                        + "RIGHT JOIN paciente_tiene_daltonismo ON paciente_tiene_daltonismo.id_paciente = paciente_ve_carta.id_paciente "
+                        + "where paciente_tiene_daltonismo.id_daltonismo != 1 and paciente_ve_carta.id_carta = 17 "
+                        + "and paciente_ve_carta.respuesta = -1;";
+                rs = st.executeQuery(SSQL);
+
+                while(rs.next()){    
+                    valores_nodo.add(rs.getInt(1));
+                    //System.out.println(rs.getInt(1));
+                }
+                
+                //Carta 18
+                SSQL = "select count(paciente_ve_carta.id_paciente) FROM paciente_ve_carta "
+                        + "RIGHT JOIN paciente_tiene_daltonismo ON paciente_tiene_daltonismo.id_paciente = paciente_ve_carta.id_paciente "
+                        + "where paciente_tiene_daltonismo.id_daltonismo != 1 and paciente_ve_carta.id_carta = 18 "
+                        + "and paciente_ve_carta.respuesta = 5;";
+                rs = st.executeQuery(SSQL);
+
+                while(rs.next()){    
+                    valores_nodo.add(rs.getInt(1));
+                    //System.out.println(rs.getInt(1));
+                }
+                
+                //Carta 19
+                SSQL = "select count(paciente_ve_carta.id_paciente) FROM paciente_ve_carta "
+                        + "RIGHT JOIN paciente_tiene_daltonismo ON paciente_tiene_daltonismo.id_paciente = paciente_ve_carta.id_paciente "
+                        + "where paciente_tiene_daltonismo.id_daltonismo != 1 and paciente_ve_carta.id_carta = 19 "
+                        + "and paciente_ve_carta.respuesta = 2;";
+                rs = st.executeQuery(SSQL);
+
+                while(rs.next()){    
+                    valores_nodo.add(rs.getInt(1));
+                    //System.out.println(rs.getInt(1));
+                }
+                
+                //Carta 20
+                SSQL = "select count(paciente_ve_carta.id_paciente) FROM paciente_ve_carta "
+                        + "RIGHT JOIN paciente_tiene_daltonismo ON paciente_tiene_daltonismo.id_paciente = paciente_ve_carta.id_paciente "
+                        + "where paciente_tiene_daltonismo.id_daltonismo != 1 and paciente_ve_carta.id_carta = 20 "
+                        + "and paciente_ve_carta.respuesta = 45;";
+                rs = st.executeQuery(SSQL);
+
+                while(rs.next()){    
+                    valores_nodo.add(rs.getInt(1));
+                    //System.out.println(rs.getInt(1));
+                }
+                
+                //Carta 21
+                SSQL = "select count(paciente_ve_carta.id_paciente) FROM paciente_ve_carta "
+                        + "RIGHT JOIN paciente_tiene_daltonismo ON paciente_tiene_daltonismo.id_paciente = paciente_ve_carta.id_paciente "
+                        + "where paciente_tiene_daltonismo.id_daltonismo != 1 and paciente_ve_carta.id_carta = 21 "
+                        + "and paciente_ve_carta.respuesta = 73;";
+                rs = st.executeQuery(SSQL);
+
+                while(rs.next()){    
+                    valores_nodo.add(rs.getInt(1));
+                    //System.out.println(rs.getInt(1));
+                }
+                rs.close();
+                
+             System.out.println(valores_nodo);
+
+            } catch (SQLException | ClassNotFoundException ex) {
+                Logger.getLogger(Diagnosticador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+               
+            for(int i = 0; i<21; i++){
+            ent_rv= ent_rv+ valores_nodo.get(i);
+            }
+
+           System.out.println(ent_rv);
+           
+           
+           //Entriopia de Visión Normal 
+            try {
+                Class.forName("com.mysql.jdbc.Driver");
+                cnx = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/bd_paciente", "jorgesolis12", "root2");
+                Statement st = (Statement) cnx.createStatement();
+
+                //Carta 1
+                String SSQL = "select count(paciente_ve_carta.id_paciente) FROM paciente_ve_carta "
+                        + "RIGHT JOIN paciente_tiene_daltonismo ON paciente_tiene_daltonismo.id_paciente = paciente_ve_carta.id_paciente "
+                        + "where paciente_tiene_daltonismo.id_daltonismo = 1 and paciente_ve_carta.id_carta = 1 "
+                        + "and paciente_ve_carta.respuesta = 12;";
+                rs = st.executeQuery(SSQL);
+
+                while(rs.next()){    
+                    valores_nodo_vn.add(rs.getInt(1));
+                    //System.out.println(rs.getInt(1));
+                }
+                
+                //Carta 2
+                SSQL = "select count(paciente_ve_carta.id_paciente) FROM paciente_ve_carta "
+                        + "RIGHT JOIN paciente_tiene_daltonismo ON paciente_tiene_daltonismo.id_paciente = paciente_ve_carta.id_paciente "
+                        + "where paciente_tiene_daltonismo.id_daltonismo = 1 and paciente_ve_carta.id_carta = 2 "
+                        + "and paciente_ve_carta.respuesta = 8;";
+                rs = st.executeQuery(SSQL);
+
+                while(rs.next()){    
+                    valores_nodo_vn.add(rs.getInt(1));
+                    //System.out.println(rs.getInt(1));
+                }
+                
+                //Carta 3
+                SSQL = "select count(paciente_ve_carta.id_paciente) FROM paciente_ve_carta "
+                        + "RIGHT JOIN paciente_tiene_daltonismo ON paciente_tiene_daltonismo.id_paciente = paciente_ve_carta.id_paciente "
+                        + "where paciente_tiene_daltonismo.id_daltonismo = 1 and paciente_ve_carta.id_carta = 3 "
+                        + "and paciente_ve_carta.respuesta = 6;";
+                rs = st.executeQuery(SSQL);
+
+                while(rs.next()){    
+                    valores_nodo_vn.add(rs.getInt(1));
+                    //System.out.println(rs.getInt(1));
+                }
+                
+                //Carta 4
+                SSQL = "select count(paciente_ve_carta.id_paciente) FROM paciente_ve_carta "
+                        + "RIGHT JOIN paciente_tiene_daltonismo ON paciente_tiene_daltonismo.id_paciente = paciente_ve_carta.id_paciente "
+                        + "where paciente_tiene_daltonismo.id_daltonismo = 1 and paciente_ve_carta.id_carta = 4 "
+                        + "and paciente_ve_carta.respuesta = 29;";
+                rs = st.executeQuery(SSQL);
+
+                while(rs.next()){    
+                    valores_nodo_vn.add(rs.getInt(1));
+                    //System.out.println(rs.getInt(1));
+                }
+                
+                //Carta 5
+                SSQL = "select count(paciente_ve_carta.id_paciente) FROM paciente_ve_carta "
+                        + "RIGHT JOIN paciente_tiene_daltonismo ON paciente_tiene_daltonismo.id_paciente = paciente_ve_carta.id_paciente "
+                        + "where paciente_tiene_daltonismo.id_daltonismo = 1 and paciente_ve_carta.id_carta = 5 "
+                        + "and paciente_ve_carta.respuesta = 57;";
+                rs = st.executeQuery(SSQL);
+
+                while(rs.next()){    
+                    valores_nodo_vn.add(rs.getInt(1));
+                    //System.out.println(rs.getInt(1));
+                }
+                
+                //Carta 6
+                SSQL = "select count(paciente_ve_carta.id_paciente) FROM paciente_ve_carta "
+                        + "RIGHT JOIN paciente_tiene_daltonismo ON paciente_tiene_daltonismo.id_paciente = paciente_ve_carta.id_paciente "
+                        + "where paciente_tiene_daltonismo.id_daltonismo = 1 and paciente_ve_carta.id_carta = 6 "
+                        + "and paciente_ve_carta.respuesta = 5;";
+                rs = st.executeQuery(SSQL);
+
+                while(rs.next()){    
+                    valores_nodo_vn.add(rs.getInt(1));
+                    //System.out.println(rs.getInt(1));
+                }
+                
+                //Carta 7
+                SSQL = "select count(paciente_ve_carta.id_paciente) FROM paciente_ve_carta "
+                        + "RIGHT JOIN paciente_tiene_daltonismo ON paciente_tiene_daltonismo.id_paciente = paciente_ve_carta.id_paciente "
+                        + "where paciente_tiene_daltonismo.id_daltonismo = 1 and paciente_ve_carta.id_carta = 7 "
+                        + "and paciente_ve_carta.respuesta = 3;";
+                rs = st.executeQuery(SSQL);
+
+                while(rs.next()){    
+                    valores_nodo_vn.add(rs.getInt(1));
+                    //System.out.println(rs.getInt(1));
+                }
+                
+                //Carta 8
+                SSQL = "select count(paciente_ve_carta.id_paciente) FROM paciente_ve_carta "
+                        + "RIGHT JOIN paciente_tiene_daltonismo ON paciente_tiene_daltonismo.id_paciente = paciente_ve_carta.id_paciente "
+                        + "where paciente_tiene_daltonismo.id_daltonismo = 1 and paciente_ve_carta.id_carta = 8 "
+                        + "and paciente_ve_carta.respuesta = 15;";
+                rs = st.executeQuery(SSQL);
+
+                while(rs.next()){    
+                    valores_nodo_vn.add(rs.getInt(1));
+                    //System.out.println(rs.getInt(1));
+                }
+                
+                
+                //Carta 9
+                SSQL = "select count(paciente_ve_carta.id_paciente) FROM paciente_ve_carta "
+                        + "RIGHT JOIN paciente_tiene_daltonismo ON paciente_tiene_daltonismo.id_paciente = paciente_ve_carta.id_paciente "
+                        + "where paciente_tiene_daltonismo.id_daltonismo = 1 and paciente_ve_carta.id_carta = 9 "
+                        + "and paciente_ve_carta.respuesta = 74;";
+                rs = st.executeQuery(SSQL);
+
+                while(rs.next()){    
+                    valores_nodo_vn.add(rs.getInt(1));
+                    //System.out.println(rs.getInt(1));
+                }
+                
+                //Carta 10
+                SSQL = "select count(paciente_ve_carta.id_paciente) FROM paciente_ve_carta "
+                        + "RIGHT JOIN paciente_tiene_daltonismo ON paciente_tiene_daltonismo.id_paciente = paciente_ve_carta.id_paciente "
+                        + "where paciente_tiene_daltonismo.id_daltonismo = 1 and paciente_ve_carta.id_carta = 10 "
+                        + "and paciente_ve_carta.respuesta = 2;";
+                rs = st.executeQuery(SSQL);
+
+                while(rs.next()){    
+                    valores_nodo_vn.add(rs.getInt(1));
+                    //System.out.println(rs.getInt(1));
+                }
+                
+                //Carta 11
+                SSQL = "select count(paciente_ve_carta.id_paciente) FROM paciente_ve_carta "
+                        + "RIGHT JOIN paciente_tiene_daltonismo ON paciente_tiene_daltonismo.id_paciente = paciente_ve_carta.id_paciente "
+                        + "where paciente_tiene_daltonismo.id_daltonismo = 1 and paciente_ve_carta.id_carta = 11 "
+                        + "and paciente_ve_carta.respuesta = 6;";
+                rs = st.executeQuery(SSQL);
+
+                while(rs.next()){    
+                    valores_nodo_vn.add(rs.getInt(1));
+                    //System.out.println(rs.getInt(1));
+                }
+                
+                //Carta 12
+                SSQL = "select count(paciente_ve_carta.id_paciente) FROM paciente_ve_carta "
+                        + "RIGHT JOIN paciente_tiene_daltonismo ON paciente_tiene_daltonismo.id_paciente = paciente_ve_carta.id_paciente "
+                        + "where paciente_tiene_daltonismo.id_daltonismo = 1 and paciente_ve_carta.id_carta = 12 "
+                        + "and paciente_ve_carta.respuesta = 97;";
+                rs = st.executeQuery(SSQL);
+
+                while(rs.next()){    
+                    valores_nodo_vn.add(rs.getInt(1));
+                    //System.out.println(rs.getInt(1));
+                }
+                
+                //Carta 13
+                SSQL = "select count(paciente_ve_carta.id_paciente) FROM paciente_ve_carta "
+                        + "RIGHT JOIN paciente_tiene_daltonismo ON paciente_tiene_daltonismo.id_paciente = paciente_ve_carta.id_paciente "
+                        + "where paciente_tiene_daltonismo.id_daltonismo = 1 and paciente_ve_carta.id_carta = 13 "
+                        + "and paciente_ve_carta.respuesta = 45;";
+                rs = st.executeQuery(SSQL);
+
+                while(rs.next()){    
+                    valores_nodo_vn.add(rs.getInt(1));
+                    //System.out.println(rs.getInt(1));
+                }
+                
+                
+                //Carta 14
+                SSQL = "select count(paciente_ve_carta.id_paciente) FROM paciente_ve_carta "
+                        + "RIGHT JOIN paciente_tiene_daltonismo ON paciente_tiene_daltonismo.id_paciente = paciente_ve_carta.id_paciente "
+                        + "where paciente_tiene_daltonismo.id_daltonismo = 1 and paciente_ve_carta.id_carta = 14 "
+                        + "and paciente_ve_carta.respuesta = 5;";
+                rs = st.executeQuery(SSQL);
+
+                while(rs.next()){    
+                    valores_nodo_vn.add(rs.getInt(1));
+                    //System.out.println(rs.getInt(1));
+                }
+                
+                //Carta 15
+                SSQL = "select count(paciente_ve_carta.id_paciente) FROM paciente_ve_carta "
+                        + "RIGHT JOIN paciente_tiene_daltonismo ON paciente_tiene_daltonismo.id_paciente = paciente_ve_carta.id_paciente "
+                        + "where paciente_tiene_daltonismo.id_daltonismo = 1 and paciente_ve_carta.id_carta = 15 "
+                        + "and paciente_ve_carta.respuesta = 7;";
+                rs = st.executeQuery(SSQL);
+
+                while(rs.next()){    
+                    valores_nodo_vn.add(rs.getInt(1));
+                    //System.out.println(rs.getInt(1));
+                }
+                
+                //Carta 16
+                SSQL = "select count(paciente_ve_carta.id_paciente) FROM paciente_ve_carta "
+                        + "RIGHT JOIN paciente_tiene_daltonismo ON paciente_tiene_daltonismo.id_paciente = paciente_ve_carta.id_paciente "
+                        + "where paciente_tiene_daltonismo.id_daltonismo = 1 and paciente_ve_carta.id_carta = 16 "
+                        + "and paciente_ve_carta.respuesta = 16;";
+                rs = st.executeQuery(SSQL);
+
+                while(rs.next()){    
+                    valores_nodo_vn.add(rs.getInt(1));
+                    //System.out.println(rs.getInt(1));
+                }
+                
+                //Carta 17
+                SSQL = "select count(paciente_ve_carta.id_paciente) FROM paciente_ve_carta "
+                        + "RIGHT JOIN paciente_tiene_daltonismo ON paciente_tiene_daltonismo.id_paciente = paciente_ve_carta.id_paciente "
+                        + "where paciente_tiene_daltonismo.id_daltonismo = 1 and paciente_ve_carta.id_carta = 17 "
+                        + "and paciente_ve_carta.respuesta = 73;";
+                rs = st.executeQuery(SSQL);
+
+                while(rs.next()){    
+                    valores_nodo_vn.add(rs.getInt(1));
+                    //System.out.println(rs.getInt(1));
+                }
+                
+                //Carta 18
+                SSQL = "select count(paciente_ve_carta.id_paciente) FROM paciente_ve_carta "
+                        + "RIGHT JOIN paciente_tiene_daltonismo ON paciente_tiene_daltonismo.id_paciente = paciente_ve_carta.id_paciente "
+                        + "where paciente_tiene_daltonismo.id_daltonismo = 1 and paciente_ve_carta.id_carta = 18 "
+                        + "and paciente_ve_carta.respuesta = -1;";
+                rs = st.executeQuery(SSQL);
+
+                while(rs.next()){    
+                    valores_nodo_vn.add(rs.getInt(1));
+                    //System.out.println(rs.getInt(1));
+                }
+                
+                //Carta 19
+                SSQL = "select count(paciente_ve_carta.id_paciente) FROM paciente_ve_carta "
+                        + "RIGHT JOIN paciente_tiene_daltonismo ON paciente_tiene_daltonismo.id_paciente = paciente_ve_carta.id_paciente "
+                        + "where paciente_tiene_daltonismo.id_daltonismo = 1 and paciente_ve_carta.id_carta = 19 "
+                        + "and paciente_ve_carta.respuesta = -1;";
+                rs = st.executeQuery(SSQL);
+
+                while(rs.next()){    
+                    valores_nodo_vn.add(rs.getInt(1));
+                    //System.out.println(rs.getInt(1));
+                }
+                
+                //Carta 20
+                SSQL = "select count(paciente_ve_carta.id_paciente) FROM paciente_ve_carta "
+                        + "RIGHT JOIN paciente_tiene_daltonismo ON paciente_tiene_daltonismo.id_paciente = paciente_ve_carta.id_paciente "
+                        + "where paciente_tiene_daltonismo.id_daltonismo = 1 and paciente_ve_carta.id_carta = 20 "
+                        + "and paciente_ve_carta.respuesta = -1;";
+                rs = st.executeQuery(SSQL);
+
+                while(rs.next()){    
+                    valores_nodo_vn.add(rs.getInt(1));
+                    //System.out.println(rs.getInt(1));
+                }
+                
+                //Carta 21
+                SSQL = "select count(paciente_ve_carta.id_paciente) FROM paciente_ve_carta "
+                        + "RIGHT JOIN paciente_tiene_daltonismo ON paciente_tiene_daltonismo.id_paciente = paciente_ve_carta.id_paciente "
+                        + "where paciente_tiene_daltonismo.id_daltonismo = 1 and paciente_ve_carta.id_carta = 21 "
+                        + "and paciente_ve_carta.respuesta = -1;";
+                rs = st.executeQuery(SSQL);
+
+                while(rs.next()){    
+                    valores_nodo_vn.add(rs.getInt(1));
+                    //System.out.println(rs.getInt(1));
+                }
+                rs.close();
+                
+             System.out.println(valores_nodo_vn);
+
+            } catch (SQLException | ClassNotFoundException ex) {
+                Logger.getLogger(Diagnosticador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+               
+            for(int i = 0; i<21; i++){
+            val_vn= val_vn+ valores_nodo_vn.get(i);
+            }
+
+           System.out.println(val_vn);
+           
+
+           //Generar árbol
+                       
+           
+           node head = new node(); 
+           
+           head.id = 1;
+           head.respuesta_vn = respuestas_rv[0];
+           head.respuesta_rv = respuestas_vn[0];
+           head.respueta_ac = respuestas_ac[0];
+           
+           int n;
+           n = Integer.parseInt(res.getText());
+           
+           ent_rv = ent_rv - valores_nodo.get(0);
+           val_vn = val_vn - valores_nodo_vn.get(0);
+           blacklist.add(1);
+           
+           
+           nuevo_nodo.padre = head;
+           nuevo_nodo.id = 2;
+           carta.setIcon(new ImageIcon("C:/Users/nirfa/OneDrive/Documentos/GitHub/2019-A094/code/Java/Daltonic_show/src/daltonic_show/Test de Ishihara/"+Integer.toString(nuevo_nodo.id)+".jpg"));
+           nuevo_nodo.respuesta_vn = respuestas_rv[1];
+           nuevo_nodo.respuesta_rv = respuestas_vn[1];
+           nuevo_nodo.respueta_ac = respuestas_ac[1];
+           blacklist.add(2);
     }//GEN-LAST:event_iniciarActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -170,6 +964,7 @@ public class Diagnosticador extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JLabel pregunta;
     private javax.swing.JTextField res;
     private javax.swing.JButton respuesta;
     // End of variables declaration//GEN-END:variables
