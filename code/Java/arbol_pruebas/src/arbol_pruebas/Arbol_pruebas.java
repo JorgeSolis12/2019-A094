@@ -651,6 +651,11 @@ public class Arbol_pruebas {
            
            node head = new node(); 
            
+           head.id = 1;
+           head.respuesta_vn = respuestas_rv[0];
+           head.respuesta_rv = respuestas_vn[0];
+           head.respueta_ac = respuestas_ac[0];
+           
            int n;
            Scanner sc = new Scanner(System.in);
            System.out.println(head.pregunta);
