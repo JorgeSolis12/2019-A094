@@ -13,9 +13,11 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Objects;
 import java.util.Scanner;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -43,16 +45,20 @@ public class Diagnosticador extends javax.swing.JFrame {
 
     int ent_rv = 0;
     int val_vn = 0;
-    int val_ac = 0;
+    int val_ac = 8;
     
     
     int siguiente_vn = 2;
     int siguiente_rv = 2;
     int siguiente_ac = 2;
     int siguiente = 2;
-
+    
+    int count = 0;
+    
     Connection cnx = null;
     ResultSet rs = null;
+    
+    boolean resultado = true;
     
     node nuevo_nodo = new node();
            
@@ -139,14 +145,49 @@ public class Diagnosticador extends javax.swing.JFrame {
 
     private void respuestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_respuestaActionPerformed
         // TODO add your handling code here:
-        if(ent_rv >= 0 || val_vn >= 0 || val_ac < 10){
-            
+        
+        
+        
+        if(count == 0){
+            //Generar árbol
+                       
+           
+           node head = new node(); 
+           
+           head.id = 1;
+           head.respuesta_vn = respuestas_rv[0];
+           head.respuesta_rv = respuestas_vn[0];
+           head.respueta_ac = respuestas_ac[0];
+            int n;
+           n = Integer.parseInt(res.getText());
+           
+           ent_rv = ent_rv - valores_nodo.get(0);
+           val_vn = val_vn - valores_nodo_vn.get(0);
+           blacklist.add(1);
+           
+           
+           nuevo_nodo.padre = head;
+           nuevo_nodo.id = 2;
+           carta.setIcon(new ImageIcon("C:/Users/nirfa/OneDrive/Documentos/GitHub/2019-A094/code/Java/Daltonic_show/src/daltonic_show/Test de Ishihara/"+Integer.toString(nuevo_nodo.id)+".jpg"));
+           nuevo_nodo.respuesta_vn = respuestas_rv[1];
+           nuevo_nodo.respuesta_rv = respuestas_vn[1];
+           nuevo_nodo.respueta_ac = respuestas_ac[1];
+           blacklist.add(2);
+           count++;
+        }
+        
+        System.out.println(resultado);
+        System.out.println(ent_rv);
+        System.out.println(val_vn);
+        System.out.println(val_ac);
+        
+        if(resultado == true){
             pregunta.setText(nuevo_nodo.pregunta);
-               
+
                String m;
                m = res.getText();
                int val = 0;
-        
+
             if(m.length()==0){
                 JOptionPane.showMessageDialog(null, "No se ha introducido una respuesta","Hey!", JOptionPane.ERROR_MESSAGE);
             }
@@ -157,52 +198,45 @@ public class Diagnosticador extends javax.swing.JFrame {
                     val = -1;
                     m = Integer.toString(val);
                 }
-                
+
             }
                //Generar nodo de rojo-verde
-               
-                int i = 1;
+
+
 
                 int may = 0;
-                while(i<=21){
+                for(int i=1;i<=21;i++){
 
                     if(may< valores_nodo.get(i-1)){
-                        if(blacklist.contains(i)){
-                            i++;
-                         }
-                        else{
+                        if(!blacklist.contains(i)){
                             may = valores_nodo.get(i-1);
                             siguiente_rv = i;
-                            i++;
-                        }
+                         }
                     }
 
                 }
+                System.out.println("salio con: "+ Integer.toString(siguiente_rv));
                 node nodo_rv = new node(); 
                 nodo_rv.padre = nuevo_nodo;
                 nodo_rv.id = siguiente_rv ;
                 nodo_rv.respuesta_vn = respuestas_rv[siguiente_rv-1];
                 nodo_rv.respuesta_rv = respuestas_vn[siguiente_rv-1];
                 nodo_rv.respueta_ac = respuestas_ac[siguiente_rv-1];
-                
+
                 // Generar nodo visión normal
-                
-                    i = 1;
-                    
+
+
                     may = 0;
-                    while(i<=21){
-                        
+                    for(int i = 1;i<=21;i++){
+
                         if(may< valores_nodo_vn.get(i-1)){
-                            if(blacklist.contains(i)){
-                                i++;
-                             }
-                            else{
+                            if(!blacklist.contains(i)){
                                 may = valores_nodo_vn.get(i-1);
                                 siguiente_vn = i;
                                 i++;
                             }
                         }
-                        
+
                     }
                     node nodo_vn = new node(); 
                     nodo_vn.padre = nuevo_nodo;
@@ -210,12 +244,13 @@ public class Diagnosticador extends javax.swing.JFrame {
                     nodo_vn.respuesta_vn = respuestas_rv[siguiente_vn-1];
                     nodo_vn.respuesta_rv = respuestas_vn[siguiente_vn-1];
                     nodo_vn.respueta_ac = respuestas_ac[siguiente_vn-1];
-                    
+
                  //Generar nodo acromatopsia
-               
-                 siguiente_ac++;
+
                  while(blacklist.contains(siguiente_ac)){
-                    siguiente_ac++;  
+                    if(siguiente_ac<=21){
+                        siguiente_ac++;  
+                    }
                  }
                  node nodo_ac = new node(); 
                  nodo_ac.padre = nuevo_nodo;
@@ -223,12 +258,14 @@ public class Diagnosticador extends javax.swing.JFrame {
                  nodo_ac.respuesta_vn = respuestas_rv[siguiente_ac-1];
                  nodo_ac.respuesta_rv = respuestas_vn[siguiente_ac-1];
                  nodo_ac.respueta_ac = respuestas_ac[siguiente_ac-1];
-                   
+
                  //Generar respuesta no contenida en BD
+
                  
-                 siguiente++;
                  while(blacklist.contains(siguiente)){
-                    siguiente++;  
+                    if(siguiente <=21){
+                        siguiente++;
+                    }                           
                  }
                  node nodo_aux = new node(); 
                  nodo_aux.padre = nuevo_nodo;
@@ -236,27 +273,46 @@ public class Diagnosticador extends javax.swing.JFrame {
                  nodo_aux.respuesta_vn = respuestas_rv[siguiente-1];
                  nodo_aux.respuesta_rv = respuestas_vn[siguiente-1];
                  nodo_aux.respueta_ac = respuestas_ac[siguiente-1];
-                 
+
                //buscar el siguiente nodo para preguntar.
                int p = Integer.parseInt(m);
                if(p == nuevo_nodo.respuesta_rv){
                     ent_rv = ent_rv - valores_nodo.get(siguiente_rv-1);
                     blacklist.add(siguiente_rv);
                     nuevo_nodo = nodo_rv;
+                    if(ent_rv <=0){
+                        resultado r = new resultado("Daltonismo a Rojos y verdes");
+                        r.setVisible(true);
+                        resultado = false;
+                        this.setVisible(false);
+                    }
                 }
-               
+
                else{ 
                     if(p == nuevo_nodo.respuesta_vn){
-                    val_vn = val_vn - valores_nodo_vn.get(siguiente_vn-1);
-                    blacklist.add(siguiente_vn);
-                    nuevo_nodo = nodo_vn;
+                        val_vn = val_vn - valores_nodo_vn.get(siguiente_vn-1);
+                        blacklist.add(siguiente_vn);
+                        nuevo_nodo = nodo_vn;
+                        if(val_vn <=0){
+                            resultado r = new resultado("Visión Normal");
+                            r.setVisible(true);
+                            resultado = false;
+                            this.setVisible(false);
+                        }
                     }
-               
+
                     else{ 
                         if(p == nuevo_nodo.respueta_ac){
-                            val_ac++;
+                            val_ac--;
                             blacklist.add(siguiente_ac);
                             nuevo_nodo = nodo_ac;
+                            
+                            if(val_ac <=0){
+                                resultado r = new resultado("Acromatopsia");
+                                r.setVisible(true);
+                                resultado = false;
+                                this.setVisible(false);
+                            }
                         }
                         else{
                             System.out.println("Siguiente");
@@ -265,26 +321,13 @@ public class Diagnosticador extends javax.swing.JFrame {
                         }
                     }
                }
-            carta.setIcon(new ImageIcon("C:/Users/nirfa/OneDrive/Documentos/GitHub/2019-A094/code/Java/Daltonic_show/src/daltonic_show/Instrucciones/"+Integer.toString(nuevo_nodo.id)+".jpg"));
+            carta.setIcon(new ImageIcon("C:/Users/nirfa/OneDrive/Documentos/GitHub/2019-A094/code/Java/Daltonic_show/src/daltonic_show/Test de Ishihara/"+Integer.toString(nuevo_nodo.id)+".jpg"));
             res.setText("");
         }
-        else{
-            if(ent_rv == 0){
-                resultado r = new resultado("Daltonismo a Rojos y Verdes");
-                r.setVisible(true);
-            }
-            else if(val_vn == 0){
-                resultado r = new resultado("Visión Normal");
-                r.setVisible(true);
-            }
-            else{
-                resultado r = new resultado("Acromatopsia");
-                r.setVisible(true);
-                
-            }
-            
-        }
         
+        System.out.println(ent_rv);
+        System.out.println(val_vn);
+        System.out.println(val_ac);
         
     }//GEN-LAST:event_respuestaActionPerformed
 
@@ -888,32 +931,12 @@ public class Diagnosticador extends javax.swing.JFrame {
 
            System.out.println(val_vn);
            
+           val_vn = (val_vn*47)/100;
+           ent_rv = (ent_rv*47)/100;
 
-           //Generar árbol
-                       
-           
-           node head = new node(); 
-           
-           head.id = 1;
-           head.respuesta_vn = respuestas_rv[0];
-           head.respuesta_rv = respuestas_vn[0];
-           head.respueta_ac = respuestas_ac[0];
-           
-           int n;
-           n = Integer.parseInt(res.getText());
-           
-           ent_rv = ent_rv - valores_nodo.get(0);
-           val_vn = val_vn - valores_nodo_vn.get(0);
-           blacklist.add(1);
            
            
-           nuevo_nodo.padre = head;
-           nuevo_nodo.id = 2;
-           carta.setIcon(new ImageIcon("C:/Users/nirfa/OneDrive/Documentos/GitHub/2019-A094/code/Java/Daltonic_show/src/daltonic_show/Test de Ishihara/"+Integer.toString(nuevo_nodo.id)+".jpg"));
-           nuevo_nodo.respuesta_vn = respuestas_rv[1];
-           nuevo_nodo.respuesta_rv = respuestas_vn[1];
-           nuevo_nodo.respueta_ac = respuestas_ac[1];
-           blacklist.add(2);
+           
     }//GEN-LAST:event_iniciarActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed

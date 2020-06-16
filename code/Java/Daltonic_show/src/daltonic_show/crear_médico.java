@@ -157,11 +157,38 @@ public class crear_médico extends javax.swing.JFrame {
         String pass =  new String(contrasena.getPassword());
         String confirm =  new String(confirmacion.getPassword());
         
+        boolean igual = true;
+        boolean igual2 = true;
+        
+        int cedulita = 0; 
+        try {
+            Connection cnx = null;
+            Class.forName("com.mysql.jdbc.Driver");
+            cnx = DriverManager.getConnection("jdbc:mysql://localhost/bd_paciente?useTimezone=true&serverTimezone=UTC&useSSL=false", "jorgesolis12", "root2");
+            Statement st = cnx.createStatement();
+            ResultSet rs = null;
+          
+           String SSQL="SELECT * FROM oftalmologo WHERE cedula ="+ license;
+            rs = st.executeQuery(SSQL);
+            if(rs.next()){
+                cedulita=1;
+            }
+            
+            if(cedulita == 1){
+               JOptionPane.showMessageDialog(null, "Cedula ya registrada", "Acceso denegado",JOptionPane.ERROR_MESSAGE);   
+               igual = false;
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DS_main.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DS_main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
         int strlen1 = pass.length();
         int strlen2 = confirm.length();
         int tam = 0;
-        boolean igual = true;
-        boolean igual2 = true;
+        
         if(strlen1 != strlen2){
             igual = false;
         }
@@ -234,6 +261,7 @@ public class crear_médico extends javax.swing.JFrame {
                  }
                          
             }
+            this.setVisible(false);
         }
     }//GEN-LAST:event_createActionPerformed
 

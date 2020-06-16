@@ -6,6 +6,7 @@
 package daltonic_show;
 
 import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
 
 /**
  *
@@ -18,9 +19,12 @@ public class resultado extends javax.swing.JFrame {
      */
     String rest;
     public resultado(String resultado) {
+        
+        initComponents();
         rest = resultado;
         resultado_text.setText(rest);
-        initComponents();
+        resultado_text.setHorizontalAlignment(SwingConstants.CENTER);
+        resultado_text.setVerticalAlignment(SwingConstants.CENTER);
     }
 
     /**
@@ -38,9 +42,10 @@ public class resultado extends javax.swing.JFrame {
         fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(null);
-        getContentPane().add(resultado_text);
-        resultado_text.setBounds(40, 150, 440, 90);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        resultado_text.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        getContentPane().add(resultado_text, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 440, 90));
 
         ok.setText("OK");
         ok.addActionListener(new java.awt.event.ActionListener() {
@@ -48,17 +53,14 @@ public class resultado extends javax.swing.JFrame {
                 okActionPerformed(evt);
             }
         });
-        getContentPane().add(ok);
-        ok.setBounds(210, 320, 80, 40);
+        getContentPane().add(ok, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 320, 80, 40));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("EL PACIENTE TIENE COMO RESULTADO:");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(80, 60, 390, 60);
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 390, 60));
 
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/daltonic_show/purple-iphone-wallpaper-11.jpg"))); // NOI18N
-        getContentPane().add(fondo);
-        fondo.setBounds(0, 0, 510, 400);
+        getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, 400));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

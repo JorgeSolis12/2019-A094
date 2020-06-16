@@ -40,7 +40,7 @@ public class crear_paciente extends javax.swing.JFrame {
         Image icon = new ImageIcon(getClass().getResource("icon.png")).getImage();
         setIconImage(icon);
         this.setTitle("Diagnosticar Paciente");
-        //diagnosticar.setVisible(false);
+        diagnosticar.setVisible(false);
     }
 
     /**
