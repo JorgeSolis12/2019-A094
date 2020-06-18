@@ -267,7 +267,7 @@ public class crear_paciente extends javax.swing.JFrame {
                 }
                 PreparedStatement usuario = null;
                 try {
-                    usuario = cnx.prepareStatement("INSERT INTO paciente(nombre,apeido,fecha_de_nacimiento,fecha_de_ingreso,fecha_de_ultima_cita,fecha_de_siguiente_cita) VALUES (?,?,?,?,?,?)");
+                    usuario = cnx.prepareStatement("INSERT INTO paciente(nombre,apeido,fecha_de_nacimiento,fecha_de_ingreso,fecha_de_ultima_cita,fecha_nueva_cita) VALUES (?,?,?,?,?,?)");
                 } catch (SQLException ex) {
                     Logger.getLogger(crear_paciente.class.getName()).log(Level.SEVERE, null, ex);
                 }
