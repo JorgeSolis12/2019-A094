@@ -226,7 +226,7 @@ public class agendar_cita extends javax.swing.JFrame {
                   fecha_ultima = df.format(rs.getDate("fecha_de_siguiente_cita"));
                 }
                 
-                String sql = "UPDATE paciente SET fecha_de_ultima_cita =?,fecha_de_siguiente_cita=? WHERE id=?";
+                String sql = "UPDATE paciente SET fecha_de_ultima_cita =?,fecha_nueva_cita=? WHERE id=?";
                 PreparedStatement statement = cnx.prepareStatement(sql);
                 statement.setString(1, fecha_ultima);
                 statement.setString(2, fecha);
