@@ -314,7 +314,8 @@ public class crear_paciente extends javax.swing.JFrame {
                     
                     int rowsUpdated = usuario.executeUpdate();
                     if (rowsUpdated > 0) {
-                        this.setVisible(false);
+                        //this.setVisible(false);
+                        System.out.println("Agregado");
                     }
                     
                 } catch (SQLException ex) {
