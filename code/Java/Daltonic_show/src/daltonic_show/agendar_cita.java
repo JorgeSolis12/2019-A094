@@ -216,14 +216,14 @@ public class agendar_cita extends javax.swing.JFrame {
                 String fecha = ano+"-"+mes+"-"+dia;
                 Statement st = cnx.createStatement();
                 
-                String SSQL="SELECT fecha_de_siguiente_cita FROM paciente WHERE id ="+id_a;
+                String SSQL="SELECT fecha_nueva_cita FROM paciente WHERE id ="+id_a;
                 int i = 0;
                 String fecha_ultima = null;
                 rs = st.executeQuery(SSQL);
                 while(rs.next()){
                   String pattern = "yyyy/MM/dd";   
                   DateFormat df = new SimpleDateFormat(pattern);
-                  fecha_ultima = df.format(rs.getDate("fecha_de_siguiente_cita"));
+                  fecha_ultima = df.format(rs.getDate("fecha_nueva_cita"));
                 }
                 
                 String sql = "UPDATE paciente SET fecha_de_ultima_cita =?,fecha_nueva_cita=? WHERE id=?";
